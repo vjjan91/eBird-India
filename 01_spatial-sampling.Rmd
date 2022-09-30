@@ -288,7 +288,7 @@ land <- ne_countries(
 land <- st_transform(land, 32643)
 ```
 
-```{r plot_obs_distributions,echo=FALSE}
+```{r, echo=FALSE}
 # make plot
 tamil_nadu <- st_transform(tamil_nadu, 32643)
 tn_bbox <- st_bbox(tamil_nadu)
