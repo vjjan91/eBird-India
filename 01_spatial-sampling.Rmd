@@ -5,7 +5,7 @@ editor_options:
 
 # Spatial sampling   
 
-In this script, we will examine data across multiple states with a focus on Kerala and Tamil Nadu separately. Since the Kerala Bird Atlas has been released, we suspect that the data is more structured when compared to the state of Tamil Nadu. we do not make an attempt to compare temporal sampling across scales in this script. For the state of Tamil Nadu and Kerala, we examine the proportion of checklists reported at 25 x 25 km grid level.  
+In this script, we will examine data across multiple states with a focus on Kerala and Tamil Nadu. Since the Kerala Bird Atlas has been released, we suspect that the data is more structured when compared to the state of Tamil Nadu. we do not make an attempt to compare temporal sampling across scales in this script. For the state of Tamil Nadu and Kerala, we examine the proportion of checklists reported at 25 x 25 km grid level.  
 
 ## Prepare libraries
 ```{r setup_sup_02}
@@ -29,15 +29,6 @@ round_25 <- function(x, accuracy = 25000) {
   round(x / accuracy) * accuracy
 }
 
-round_10 <- function(x, accuracy = 10000) {
-  round(x / accuracy) * accuracy
-}
-
-round_5 <- function(x, accuracy = 5000) {
-  round(x / accuracy) * accuracy
-}
-
-
 # set file paths for auk functions
 # To use these two datasets, please download the latest versions from https://ebird.org/data/download and set the file path accordingly. Since these two datasets are extremely large, we have not uploaded the same to GitHub.
 # In this study, the version of data loaded corresponds to July 2022.
@@ -45,7 +36,6 @@ round_5 <- function(x, accuracy = 5000) {
 f_in_ebd <- file.path("data/ebd_IN_relJul-2022.txt")
 f_in_sampling <- file.path("data/ebd_sampling_relJul-2022.txt")
 ```
-
 
 ## Subset observations by geographical confines of the study area  
 
@@ -368,7 +358,7 @@ dev.off()
 
 ## What species are reported sufficiently in checklists?
 
-Here, we estimate the proportion of species that are reported in atleast 50% of checklists across each grid (grid size: 25 km x 25 km) 
+Similar to Ramesh et al. (2022), we visualized and listed species that occurred in atleast 5% of all checklists across half of the unique study area grids they were reported from. For example, let us consider the case of Pitta brachyura for the state of Tamil Nadu. This species occurs in ~ 129 unique grids across the state (there are 257 unique grids). We used a stringent cutoff of 5% and found that this species occurs in atleast 5% of all checklists across ~65 unique grids (half of the grids they were reported from - 130/2). 
 
 ```{r}
 p_cutoff <- 0.05 # Proportion of checklists a species has been reported in
@@ -413,12 +403,12 @@ ker_spp_sum_chk <- ker_ebd_summary %>%
   mutate(sum_chk = sum(nrep)) %>%
   distinct(scientific_name, sum_chk)
 
-# 58 species of the list of 527 occur in >5% of all checklists for Tamil Nadu
+# 70 species of the list of 527 occur in >5% of all checklists for Tamil Nadu
 tn_prop_all_lists <- tn_spp_sum_chk %>%
   mutate(prop_lists = sum_chk / tn_total_number_lists) %>%
   arrange(desc(prop_lists))
 
-# 66 species of the list of 526 occur in 5% of all checklists for Kerala
+# 65 species of the list of 526 occur in 5% of all checklists for Kerala
 ker_prop_all_lists <- ker_spp_sum_chk %>%
   mutate(prop_lists = sum_chk / ker_total_number_lists) %>%
   arrange(desc(prop_lists))
