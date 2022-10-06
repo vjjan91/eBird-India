@@ -5,7 +5,7 @@ editor_options:
 
 # Temporal sampling
 
-In this script, we examine temporal differences in the reporting of observations for the states of Tamil Nadu and Kerala. We apply an additional filter in this script, where we choose complete checklists only. 
+In this script, we examine temporal differences in the reporting of observations for the states of Tamil Nadu and Kerala. 
 
 
 The analyses we carry out include: a) reporting of checklists for every 5-year interval
@@ -140,52 +140,8 @@ ebd <- ebd %>%
   ))
 ```
 
-## Figure: Overall number of checklists across time-periods per state
+## Subset data spatially 
 ```{r}
-trial <- ebd %>%
-  group_by(sampling_event_identifier) %>%
-  mutate()
-
-
-
-fig_totChk_timePeriod <- ggplot(ebd, aes(x="timePeriod", y=PXt, fill=Habitat.type)) +  geom_boxplot(alpha=0.7) +  
-  scale_fill_scico_d(palette = "roma",
-                     labels=c("Forest", "Grassland", "Generalist", "Wooded Habitat")) +   theme_bw() +
-  geom_point(aes(fill = Habitat.type), size = 4, shape = 21, alpha = 0.3,position = position_jitterdodge()) +
-    labs(x="", 
-       y="Persistence probabilty\n") +
-  scale_x_discrete(labels = 'Modern') +
-    theme(axis.title = element_text(family = "Century Gothic",
-      size = 14, face = "bold"),
-        axis.text = element_text(family="Century Gothic",size = 14),
-      axis.text.x = element_blank(),
-      legend.title = element_text(family="Century Gothic",
-                                    size = 14, face = "bold"),
-        legend.key.size = unit(1,"cm"),
-        legend.text = element_text(family="Century Gothic",size = 14))
-
-
-
-# facet by State
-
-
-
-# visualization of persistence probabilities at the landscape level
-specDatTrait$Habitat.type <- factor(specDatTrait$Habitat.type, levels=c("Forest", "Grassland", "Generalist", "Wooded Habitat"))
-specDatTrait$PXt <- as.numeric(specDatTrait$PXt)
-
-
-
-
-
-
-```
-
-
-
-
-
-```{r read_data}
 # read in shapefile of the study area to subset by bounding box
 
 # first, we load the India states boundary from GADM
@@ -198,6 +154,36 @@ box_tn <- st_bbox(tamil_nadu)
 kerala <- india_states[india_states$NAME_1=="Kerala",]
 box_ker <- st_bbox(kerala)  
 
+
+
+# get data spatial coordinates
+dataLocs <- data %>%
+  map(function(x) {
+    select(x, longitude, latitude) %>%
+      filter(between(longitude, box["xmin"], box["xmax"]) &
+        between(latitude, box["ymin"], box["ymax"]))
+  }) %>%
+  bind_rows() %>%
+  distinct() %>%
+  st_as_sf(coords = c("longitude", "latitude")) %>%
+  st_set_crs(4326) %>%
+  st_intersection(hills)
+
+
+tn_coords <- setDF(tn_locs) %>%
+  st_as_sf(coords = c("longitude", "latitude")) %>%
+  `st_crs<-`(4326) %>%
+  bind_cols(as.data.table(st_coordinates(.))) %>%
+  st_transform(32643) %>%
+  mutate(id = 1:nrow(.))
+
+
+
+
+
+
+
+
 # tamil nadu
 tn_ebd <- ebd %>%
   filter(between(longitude, box_tn["xmin"], box_tn["xmax"]) &
@@ -208,19 +194,4 @@ ker_ebd <- ebd %>%
   filter(between(longitude, box_ker["xmin"], box_ker["xmax"]) &
   between(latitude, box_ker["ymin"], box_ker["ymax"]))
 ```
-
-
-
-```{r}
-
-
-
-```
-
-
-
-
-
-
-
 
