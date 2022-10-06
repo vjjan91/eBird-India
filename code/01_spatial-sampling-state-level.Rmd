@@ -3,9 +3,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Spatial sampling   
+# Spatial sampling (state-level)   
 
-In this script, we will examine data across multiple states with a focus on Kerala and Tamil Nadu. Since the Kerala Bird Atlas has been released, we suspect that the data is more structured when compared to the state of Tamil Nadu. we do not make an attempt to compare temporal sampling across scales in this script. For the state of Tamil Nadu and Kerala, we examine the proportion of checklists reported at 25 x 25 km grid level.  
+In this script, we will examine data across multiple states with a focus on Kerala and Tamil Nadu. Since the Kerala Bird Atlas has been released, we suspect that the data is more structured when compared to the state of Tamil Nadu. we do not make an attempt to compare temporal sampling across scales in this script. For the state of Tamil Nadu and Kerala, we examine the proportion of checklists reported at 25 x 25 km grid level.    
 
 ## Prepare libraries
 ```{r setup_sup_02}
@@ -67,9 +67,8 @@ newNames <- str_replace_all(colnames(tn_ebd), " ", "_") %>%
 setnames(tn_ebd, newNames)
 # keep useful columns
 columnsOfInterest <- c(
-  "common_name", "scientific_name", "observation_count", "locality",
-  "locality_id", "locality_type", "latitude",
-  "longitude", "observation_date", "sampling_event_identifier"
+  "common_name", "scientific_name", "observation_count", "locality", "state", "locality_id", "locality_type", "latitude",
+  "longitude", "observation_date", "time_observations_started", "protocol_type","effort_distance_km", "number_observers", "group_identifier", "reviewed", "sampling_event_identifier"
 )
 tn_ebd <- tn_ebd[, ..columnsOfInterest]
 
@@ -82,9 +81,8 @@ newNames <- str_replace_all(colnames(ker_ebd), " ", "_") %>%
 setnames(ker_ebd, newNames)
 # keep useful columns
 columnsOfInterest <- c(
-  "common_name", "scientific_name", "observation_count", "locality",
-  "locality_id", "locality_type", "latitude",
-  "longitude", "observation_date", "sampling_event_identifier"
+    "common_name", "scientific_name", "observation_count", "locality", "state", "locality_id", "locality_type", "latitude",
+  "longitude", "observation_date", "time_observations_started", "protocol_type","effort_distance_km", "number_observers", "group_identifier", "reviewed", "sampling_event_identifier"
 )
 ker_ebd <- ker_ebd[, ..columnsOfInterest]
 
@@ -517,3 +515,9 @@ ker_sp_list <- semi_join(speciesOfInterest, ker_grid_prop_cut, by = "scientific_
 write.csv(tn_sp_list, "results/01_list-of-species-cutoff50-TamilNadu.csv", row.names = F)
 write.csv(ker_sp_list, "results/01_list-of-species-cutoff50-Kerala.csv", row.names = F)
 ```
+
+## save .RData for future scripts
+```{r}
+save.image(file = "data/01_ebd-TN-KL.RData")
+```
+
