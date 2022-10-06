@@ -41,3 +41,9 @@ vignettes/*.pdf
 # ignore eBird data files
 data/ebd_IN_relJul-2022.txt
 data/ebd_sampling_relJul-2022.txt
+
+# ignore .Rdata
+*.Rdata
+
+# ignore very large outputs
+figs/species-proportions.pdf
