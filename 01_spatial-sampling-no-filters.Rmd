@@ -127,7 +127,7 @@ ebd_in <- ebd_in[(longitude %in% coords$longitude) &
 ## Get proportional observation counts across every 25 km x 25 km grid
 
 Analysis of proportional counts estimated at 25km
-```{r count_obs_cell}
+```{r}
 ## Analysis of proportional counts at 25 km for each state
 
 # round to 25km cell in UTM coords
@@ -158,7 +158,7 @@ ebd_summary <- setDF(ebd_summary) %>%
 ## Filter data only for a specific list of species
 
 We filtered data for a subset of 891 species. 
-```{r count_obs_cell}
+```{r}
 # remove species that are poorly reported (only filter being applied at this stage)
 # for example, accounts such as 'Turdidae sp.', are removed and only the latest
 # list of scientific names are taken into consideration
