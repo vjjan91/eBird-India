@@ -10,7 +10,7 @@ In this script, we will examine data at the species level for a chosen list of s
 No other filters are applied in this particular script.  
 
 ## Prepare libraries
-```{r setup_sup_02}
+```{r}
 # load libraries
 library(data.table)
 library(readxl)
@@ -43,7 +43,7 @@ f_in_sampling <- file.path("data/ebd_sampling_relJul-2022.txt")
 ## Subset observations by geographical confines of the study area  
 
 In this case, the geographical confines correspond to the political boundary of India.   
-```{r load_raw_data_supp02}
+```{r}
 # first, we load the India states boundary from GADM
 india_states <- st_read("data/spatial/shapefiles/india_states_boundary.shp")
 box_in <- st_bbox(india_states)
