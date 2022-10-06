@@ -1,0 +1,351 @@
+---
+editor_options:
+  chunk_output_type: console
+---
+
+# Spatial sampling (no filters)  
+
+In this script, we will examine data at the species level for a chosen list of species, across its entire geographic range in the Indian subcontinent. Our aim here is to first understand the proportion of checklists that report the species of interests for every 25 x 25 km grid size (finer scale will be chosen for comparison in a future script).  
+
+No other filters are applied in this particular script.  
+
+## Prepare libraries
+```{r setup_sup_02}
+# load libraries
+library(data.table)
+library(readxl)
+library(magrittr)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(ggthemes)
+library(scico)
+library(extrafont)
+library(sf)
+library(rnaturalearth)
+
+# round any function
+round_25 <- function(x, accuracy = 25000) {
+  round(x / accuracy) * accuracy
+}
+
+# set file paths for auk functions
+# To use these two datasets, please download the latest versions from https://ebird.org/data/download and set the file path accordingly. Since these two datasets are extremely large, we have not uploaded the same to GitHub.
+# In this study, the version of data loaded corresponds to July 2022.
+
+f_in_ebd <- file.path("data/ebd_IN_relJul-2022.txt")
+f_in_sampling <- file.path("data/ebd_sampling_relJul-2022.txt")
+```
+
+
+## Subset observations by geographical confines of the study area  
+
+In this case, the geographical confines correspond to the political boundary of India.   
+```{r load_raw_data_supp02}
+# first, we load the India states boundary from GADM
+india_states <- st_read("data/spatial/shapefiles/india_states_boundary.shp")
+box_in <- st_bbox(india_states)
+
+# read in ebd data and subset by state for our analysis
+# To access the latest dataset, please visit: https://ebird.org/data/download and set the file path accordingly.
+
+ebd <- fread("data/ebd_IN_relJul-2022.txt")
+
+# subsettting by lat-long
+ebd_in <- ebd[between(LONGITUDE, box_in["xmin"], box_in["xmax"]) &
+  between(LATITUDE, box_in["ymin"], box_in["ymax"]), ] # resulted in removal of 21 observations in total
+
+# make new column names
+newNames <- str_replace_all(colnames(ebd_in), " ", "_") %>%
+  str_to_lower()
+setnames(ebd_in, newNames)
+# keep useful columns
+columnsOfInterest <- c(
+  "common_name", "scientific_name", "observation_count", "locality", "state", "locality_id", "locality_type", "latitude",
+  "longitude", "observation_date", "time_observations_started", "protocol_type","duration_minutes","effort_distance_km", "number_observers", "group_identifier", "reviewed", "sampling_event_identifier"
+)
+ebd_in <- ebd_in[, ..columnsOfInterest]
+
+# remove the large ebd file if it's not required
+rm(ebd)
+gc() # run this function to clear up some memory space
+```
+
+## Data cleaning prior to visualization
+```{r}
+# Convert all presences marked 'X' as '1'
+ebd_in <- ebd_in %>%
+  mutate(observation_count = ifelse(observation_count == "X",
+    "1", observation_count
+  ))
+
+# Convert observation count to numeric
+ebd_in$observation_count <- as.numeric(ebd_in$observation_count)
+```
+
+## Load spatial grids for checklist locations
+
+Add a spatial filter.  
+```{r strict_filter_supp02}
+# strict spatial filter and assign grid
+locs <- ebd_in[, .(longitude, latitude)]
+
+# transform to UTM 
+coords <- setDF(locs) %>%
+  st_as_sf(coords = c("longitude", "latitude")) %>%
+  `st_crs<-`(4326) %>%
+  bind_cols(as.data.table(st_coordinates(.))) %>%
+  st_transform("+proj=laea +lon_0=80.859375 +lat_0=20.6486698 +datum=WGS84 +units=m +no_defs") %>%
+  mutate(id = 1:nrow(.))
+
+# make some empty space
+gc()
+
+# convert to UTM for filter
+india_states <- st_transform(india_states, "+proj=laea +lon_0=80.859375 +lat_0=20.6486698 +datum=WGS84 +units=m +no_defs")
+
+coords <- coords %>%
+  filter(id %in% unlist(st_contains(india_states, coords))) %>%
+  rename(longitude = X, latitude = Y) %>%
+  bind_cols(as.data.table(st_coordinates(.))) %>%
+  st_drop_geometry() %>%
+  as.data.table()
+
+# remove unneeded objects
+rm(locs)
+gc()
+
+coords <- coords[, .N, by = .(longitude, latitude, X, Y)]
+
+ebd_in <- merge(ebd_in, coords, all = FALSE, by = c("longitude", "latitude"))
+ebd_in <- ebd_in[(longitude %in% coords$longitude) &
+  (latitude %in% coords$latitude), ]
+```
+
+## Get proportional observation counts across every 25 km x 25 km grid
+
+Analysis of proportional counts estimated at 25km
+```{r count_obs_cell}
+## Analysis of proportional counts at 25 km for each state
+
+# round to 25km cell in UTM coords
+ebd_in[, `:=`(X = round_25(X), Y = round_25(Y))]
+
+# count checklists in cell
+ebd_summary <- ebd_in[, nchk := length(unique(sampling_event_identifier)),
+  by = .(X, Y)]
+
+# count checklists reporting each species in cell and get proportion
+ebd_summary <- ebd_summary[, .(nrep = length(unique(
+  sampling_event_identifier
+))),
+by = .(X, Y, nchk, scientific_name)
+]
+ebd_summary[, p_rep := nrep / nchk]
+
+# complete the dataframe for no reports
+# keep no reports as NA --- allows filtering based on proportion reporting
+ebd_summary <- setDF(ebd_summary) %>%
+  complete(
+    nesting(X, Y), scientific_name # ,
+    # fill = list(p_rep = 0)
+  ) %>%
+  filter(!is.na(p_rep))
+```
+
+## Filter data only for a specific list of species
+
+We filtered data for a subset of 891 species. 
+```{r count_obs_cell}
+# remove species that are poorly reported (only filter being applied at this stage)
+# for example, accounts such as 'Turdidae sp.', are removed and only the latest
+# list of scientific names are taken into consideration
+
+species_list <- read.csv("data/2022-SoIB-species-list.csv")
+speciesOfInterest <- species_list %>%
+  filter(Selected...SOIB =="X")
+speciesOfInterest <- data.frame(speciesOfInterest$Scientific.Name)
+names(speciesOfInterest) <- "scientific_name"
+
+# filter for species list above - we are choosing only the 891 species
+ebd_summary <- ebd_summary[ebd_summary$scientific_name %in% speciesOfInterest$scientific_name, ]
+```
+
+## Checklist distribution 
+
+```{r }
+# total number of checklists across unique grids
+tot_n_chklist <- ebd_summary %>%
+  distinct(X, Y, nchk)
+
+# India has a total of 4792 unique 25 x 25 km grids
+
+# species-specific number of grids
+spp_grids <- ebd_summary %>%
+  group_by(scientific_name) %>%
+  distinct(X, Y) %>%
+  count(scientific_name,
+    name = "n_grids"
+  )
+
+# Write the above two results
+write.csv(spp_grids, "results/01_ngrids-per-spp.csv", row.names=F)
+
+# left-join the datasets
+ebd_summary <- left_join(ebd_summary, spp_grids, by = "scientific_name")
+```
+
+## Figure: Checklist distribution
+
+```{r load_map_plot_data}
+# add land
+land <- ne_countries(
+  scale = 50, type = "countries", continent = "asia",
+  country = "india",
+  returnclass = c("sf")
+)
+# crop land
+land <- st_transform(land, "+proj=laea +lon_0=80.859375 +lat_0=20.6486698 +datum=WGS84 +units=m +no_defs")
+```
+
+```{r, echo=FALSE}
+# make plot
+india_states <- st_transform(india_states, "+proj=laea +lon_0=80.859375 +lat_0=20.6486698 +datum=WGS84 +units=m +no_defs")
+bbox <- st_bbox(india_states)
+
+# get a plot of number of checklists across grids 
+plotNchk <-
+  ggplot() +
+  geom_sf(data = land, fill = "grey90", col = NA) +
+  geom_tile(
+    data = tot_n_chklist,
+    aes(X, Y, fill = nchk), lwd = 0.5, col = "grey90"
+  ) +
+  geom_sf(data = india_states, fill = NA, col = "black", lwd = 0.3) +
+  scale_fill_scico(
+    palette = "lajolla",
+    direction = 1,
+    trans = "log10",
+    limits = c(1, 50000),
+    breaks = 10^c(1:5)
+  ) +
+  coord_sf(xlim = bbox[c("xmin", "xmax")], ylim = bbox[c("ymin", "ymax")]) +
+  theme_few() +
+  theme(
+    legend.position = "right",
+    axis.title = element_blank(),
+    axis.text.y = element_text(angle = 90),
+    panel.background = element_rect(fill = "lightblue")
+  ) +
+  labs(fill = "number\nof\nchecklists")
+
+# export data
+ggsave(plotNchk,
+  filename = "figs/fig_number_checklists_25km.png", height = 10,
+  width = 10, device = png(), dpi = 300
+)
+dev.off()
+```
+
+![Number of checklists over time](figs/fig_number_checklists_25km.png)
+
+## What species are reported sufficiently in checklists?
+
+Similar to Ramesh et al. (2022), we visualized and listed species that occurred in atleast 5% of all checklists across half of the unique study area grids they were reported from. 
+
+For example, let us consider the case of Accipiter nisus. This species has been reported from  1000 unique (25 x 25 km grids) across India. There are 206 unique grids in which this species has been reported in over 5% of all checklists from that grid.  
+
+```{r}
+p_cutoff <- 0.05 # Proportion of checklists a species has been reported in
+
+grid_proportions <- ebd_summary %>%
+  group_by(scientific_name) %>%
+  tally(p_rep >= p_cutoff) %>%
+  mutate(prop_grids_cut = n / (spp_grids$n_grids)) %>%
+  arrange(desc(prop_grids_cut))
+grid_prop_cut <- filter(
+  grid_proportions,
+  prop_grids_cut >= p_cutoff
+)
+
+# Write the results
+write.csv(grid_prop_cut, "results/01_prop-grids-per-spp.csv", row.names = F)
+
+# Identifying the number of species that occur in potentially <5% of all lists
+total_number_lists <- sum(tot_n_chklist$nchk)
+
+spp_sum_chk <- ebd_summary %>%
+  distinct(X, Y, scientific_name, nrep) %>%
+  group_by(scientific_name) %>%
+  mutate(sum_chk = sum(nrep)) %>%
+  distinct(scientific_name, sum_chk)
+
+# 88 species of the list of 877 occur in >5% of all checklists
+prop_all_lists <- spp_sum_chk %>%
+  mutate(prop_lists = sum_chk / total_number_lists) %>%
+  arrange(desc(prop_lists))
+```
+
+## Figure: Proportion of checklists reporting species in each grid cell
+
+Note: Here we plot all species that occur in atleast 5% of all checklists across half of the 25 x 25 km cells from where they have been reported 
+```{r plot_obs_distributions,echo=FALSE}
+# filter list of species
+ebd_filter <- semi_join(ebd_summary, grid_prop_cut, by = "scientific_name")
+
+# run the loop to create a list of plots
+plots <- list()
+
+for(i in 1:length(unique(ebd_filter$scientific_name))) {
+  
+  a <- unique(ebd_filter$scientific_name)[i]
+  data <- ebd_filter[ebd_filter$scientific_name==a,]
+  
+  plots[[i]] <-
+  ggplot() +
+  geom_sf(data = land, fill = "grey90", col = NA) +
+  geom_tile(
+    data = data,
+    aes(X, Y, fill = p_rep), lwd = 0.5, col = "grey90"
+  ) +
+  geom_sf(data = india_states, fill = NA, col = "black", lwd = 0.3) +
+  scale_fill_scico(palette = "lajolla", direction = 1, label = scales::percent) +
+  facet_wrap(~scientific_name, ncol = 12) +
+  coord_sf(xlim = bbox[c("xmin", "xmax")], ylim = bbox[c("ymin", "ymax")]) +
+  ggthemes::theme_few(
+    base_family = "Century Gothic",
+    base_size = 8
+  ) +
+  theme(
+    legend.position = "right",
+    strip.text = element_text(face = "italic"),
+    axis.title = element_blank(),
+    axis.text.y = element_text(angle = 90),
+    panel.background = element_rect(fill = "lightblue")
+  ) +
+  labs(fill = "prop.\nreporting\nchecklists")
+}
+
+# plot and save as a single pdf
+cairo_pdf(
+  filename = "figs/species-proportions.pdf",
+  onefile = TRUE
+)
+plots
+dev.off()
+```
+
+## write the species lists to file
+
+```{r}
+# write the list of species that occur in at least 5% of checklists across a minimum of 50% of the grids they have been reported in
+sp_list <- semi_join(speciesOfInterest, grid_prop_cut, by = "scientific_name")
+write.csv(sp_list, "results/01_list-of-species-cutoff50.csv", row.names = F)
+```
+
+## save .RData for future scripts
+```{r}
+save.image(file = "data/01_ebd-India.RData")
+```
