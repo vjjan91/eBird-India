@@ -3,9 +3,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Temporal sampling
+# Temporal sampling (no filters)
 
-In this script, we examine temporal differences in the reporting of observations for the states of Tamil Nadu and Kerala. 
+In this script, we will examine data at the species level for a chosen list of species, across its entire geographic range in the Indian subcontinent. Our aim here is visualize the the distribution of checklists for  
 
 
 The analyses we carry out include: a) reporting of checklists for every 5-year interval
