@@ -46,4 +46,4 @@ data/ebd_sampling_relJul-2022.txt
 *.Rdata
 
 # ignore very large outputs
-figs/fig_species_proportion_checklists.pdf
+figs/fig_species_proportions.pdf
