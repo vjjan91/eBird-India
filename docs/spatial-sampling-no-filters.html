@@ -23,7 +23,7 @@
 <meta name="author" content="Vijay Ramesh" />
 
 
-<meta name="date" content="2022-10-06" />
+<meta name="date" content="2022-10-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="temporal-sampling.html"/>
+<link rel="next" href="temporal-sampling-no-filters.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -152,14 +152,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.11" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#write-the-species-lists-to-file"><i class="fa fa-check"></i><b>2.11</b> write the species lists to file</a></li>
 <li class="chapter" data-level="2.12" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#save-.rdata-for-future-scripts"><i class="fa fa-check"></i><b>2.12</b> save .RData for future scripts</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="temporal-sampling.html"><a href="temporal-sampling.html"><i class="fa fa-check"></i><b>3</b> Temporal sampling</a>
+<li class="chapter" data-level="3" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html"><i class="fa fa-check"></i><b>3</b> Temporal sampling (no filters)</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="temporal-sampling.html"><a href="temporal-sampling.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
-<li class="chapter" data-level="3.2" data-path="temporal-sampling.html"><a href="temporal-sampling.html#filter-data-using-auk-package"><i class="fa fa-check"></i><b>3.2</b> Filter data using auk package</a></li>
-<li class="chapter" data-level="3.3" data-path="temporal-sampling.html"><a href="temporal-sampling.html#process-filtered-data"><i class="fa fa-check"></i><b>3.3</b> Process filtered data</a></li>
-<li class="chapter" data-level="3.4" data-path="temporal-sampling.html"><a href="temporal-sampling.html#include-only-species-with-scientific-names"><i class="fa fa-check"></i><b>3.4</b> Include only species with scientific names</a></li>
-<li class="chapter" data-level="3.5" data-path="temporal-sampling.html"><a href="temporal-sampling.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Subset data by time period</a></li>
-<li class="chapter" data-level="3.6" data-path="temporal-sampling.html"><a href="temporal-sampling.html#subset-data-spatially"><i class="fa fa-check"></i><b>3.6</b> Subset data spatially</a></li>
+<li class="chapter" data-level="3.1" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#filter-data-using-auk-package"><i class="fa fa-check"></i><b>3.2</b> Filter data using auk package</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#process-filtered-data"><i class="fa fa-check"></i><b>3.3</b> Process filtered data</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#include-only-species-with-scientific-names"><i class="fa fa-check"></i><b>3.4</b> Include only species with scientific names</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#subset-data-spatially"><i class="fa fa-check"></i><b>3.6</b> Subset data spatially</a></li>
 </ul></li>
 </ul>
 
@@ -375,35 +375,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="what-species-are-reported-sufficiently-in-checklists" class="section level2 hasAnchor" number="2.9">
 <h2><span class="header-section-number">2.9</span> What species are reported sufficiently in checklists?<a href="spatial-sampling-no-filters.html#what-species-are-reported-sufficiently-in-checklists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Similar to Ramesh et al. (2022), we visualized and listed species that occurred in atleast 5% of all checklists across half of the unique study area grids they were reported from.</p>
-<p>For example, let us consider the case of Accipiter nisus. This species has been reported from 1000 unique (25 x 25 km grids) across India. There are 206 unique grids in which this species has been reported in over 5% of all checklists from that grid.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="spatial-sampling-no-filters.html#cb9-1" aria-hidden="true" tabindex="-1"></a>p_cutoff <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># Proportion of checklists a species has been reported in</span></span>
 <span id="cb9-2"><a href="spatial-sampling-no-filters.html#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="spatial-sampling-no-filters.html#cb9-3" aria-hidden="true" tabindex="-1"></a>grid_proportions <span class="ot">&lt;-</span> ebd_summary <span class="sc">%&gt;%</span></span>
 <span id="cb9-4"><a href="spatial-sampling-no-filters.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="spatial-sampling-no-filters.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>(p_rep <span class="sc">&gt;=</span> p_cutoff) <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="spatial-sampling-no-filters.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>(p_rep <span class="sc">&gt;=</span> p_cutoff) <span class="sc">%&gt;%</span> <span class="co"># n here is the number of grids in which a species has been reported in over 5% of checklists</span></span>
 <span id="cb9-6"><a href="spatial-sampling-no-filters.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_grids_cut =</span> n <span class="sc">/</span> (spp_grids<span class="sc">$</span>n_grids)) <span class="sc">%&gt;%</span></span>
 <span id="cb9-7"><a href="spatial-sampling-no-filters.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_grids_cut))</span>
-<span id="cb9-8"><a href="spatial-sampling-no-filters.html#cb9-8" aria-hidden="true" tabindex="-1"></a>grid_prop_cut <span class="ot">&lt;-</span> <span class="fu">filter</span>(</span>
-<span id="cb9-9"><a href="spatial-sampling-no-filters.html#cb9-9" aria-hidden="true" tabindex="-1"></a>  grid_proportions,</span>
-<span id="cb9-10"><a href="spatial-sampling-no-filters.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  prop_grids_cut <span class="sc">&gt;=</span> p_cutoff</span>
-<span id="cb9-11"><a href="spatial-sampling-no-filters.html#cb9-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-12"><a href="spatial-sampling-no-filters.html#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-13"><a href="spatial-sampling-no-filters.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the results</span></span>
-<span id="cb9-14"><a href="spatial-sampling-no-filters.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(grid_prop_cut, <span class="st">&quot;results/01_prop-grids-per-spp.csv&quot;</span>, <span class="at">row.names =</span> F)</span>
+<span id="cb9-8"><a href="spatial-sampling-no-filters.html#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="spatial-sampling-no-filters.html#cb9-9" aria-hidden="true" tabindex="-1"></a>grid_prop_cut <span class="ot">&lt;-</span> <span class="fu">filter</span>(</span>
+<span id="cb9-10"><a href="spatial-sampling-no-filters.html#cb9-10" aria-hidden="true" tabindex="-1"></a>  grid_proportions,</span>
+<span id="cb9-11"><a href="spatial-sampling-no-filters.html#cb9-11" aria-hidden="true" tabindex="-1"></a>  prop_grids_cut <span class="sc">&gt;=</span> <span class="fl">0.5</span> <span class="co"># How many species have been reported in atleast 5% of checklists across atleast 50% of the grids they have been reported from? </span></span>
+<span id="cb9-12"><a href="spatial-sampling-no-filters.html#cb9-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-13"><a href="spatial-sampling-no-filters.html#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="spatial-sampling-no-filters.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Only 254 species!</span></span>
 <span id="cb9-15"><a href="spatial-sampling-no-filters.html#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-16"><a href="spatial-sampling-no-filters.html#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying the number of species that occur in potentially &lt;5% of all lists</span></span>
-<span id="cb9-17"><a href="spatial-sampling-no-filters.html#cb9-17" aria-hidden="true" tabindex="-1"></a>total_number_lists <span class="ot">&lt;-</span> <span class="fu">sum</span>(tot_n_chklist<span class="sc">$</span>nchk)</span>
+<span id="cb9-16"><a href="spatial-sampling-no-filters.html#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the results</span></span>
+<span id="cb9-17"><a href="spatial-sampling-no-filters.html#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(grid_prop_cut, <span class="st">&quot;results/01_prop-grids-per-spp.csv&quot;</span>, <span class="at">row.names =</span> F)</span>
 <span id="cb9-18"><a href="spatial-sampling-no-filters.html#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="spatial-sampling-no-filters.html#cb9-19" aria-hidden="true" tabindex="-1"></a>spp_sum_chk <span class="ot">&lt;-</span> ebd_summary <span class="sc">%&gt;%</span></span>
-<span id="cb9-20"><a href="spatial-sampling-no-filters.html#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, scientific_name, nrep) <span class="sc">%&gt;%</span></span>
-<span id="cb9-21"><a href="spatial-sampling-no-filters.html#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name) <span class="sc">%&gt;%</span></span>
-<span id="cb9-22"><a href="spatial-sampling-no-filters.html#cb9-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum_chk =</span> <span class="fu">sum</span>(nrep)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-23"><a href="spatial-sampling-no-filters.html#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(scientific_name, sum_chk)</span>
-<span id="cb9-24"><a href="spatial-sampling-no-filters.html#cb9-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="spatial-sampling-no-filters.html#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="co"># 88 species of the list of 877 occur in &gt;5% of all checklists</span></span>
-<span id="cb9-26"><a href="spatial-sampling-no-filters.html#cb9-26" aria-hidden="true" tabindex="-1"></a>prop_all_lists <span class="ot">&lt;-</span> spp_sum_chk <span class="sc">%&gt;%</span></span>
-<span id="cb9-27"><a href="spatial-sampling-no-filters.html#cb9-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_lists =</span> sum_chk <span class="sc">/</span> total_number_lists) <span class="sc">%&gt;%</span></span>
-<span id="cb9-28"><a href="spatial-sampling-no-filters.html#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_lists))</span></code></pre></div>
+<span id="cb9-19"><a href="spatial-sampling-no-filters.html#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Identifying the number of species that occur in potentially &lt;5% of all lists</span></span>
+<span id="cb9-20"><a href="spatial-sampling-no-filters.html#cb9-20" aria-hidden="true" tabindex="-1"></a>total_number_lists <span class="ot">&lt;-</span> <span class="fu">sum</span>(tot_n_chklist<span class="sc">$</span>nchk)</span>
+<span id="cb9-21"><a href="spatial-sampling-no-filters.html#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="spatial-sampling-no-filters.html#cb9-22" aria-hidden="true" tabindex="-1"></a>spp_sum_chk <span class="ot">&lt;-</span> ebd_summary <span class="sc">%&gt;%</span></span>
+<span id="cb9-23"><a href="spatial-sampling-no-filters.html#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, scientific_name, nrep) <span class="sc">%&gt;%</span></span>
+<span id="cb9-24"><a href="spatial-sampling-no-filters.html#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name) <span class="sc">%&gt;%</span></span>
+<span id="cb9-25"><a href="spatial-sampling-no-filters.html#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sum_chk =</span> <span class="fu">sum</span>(nrep)) <span class="sc">%&gt;%</span></span>
+<span id="cb9-26"><a href="spatial-sampling-no-filters.html#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(scientific_name, sum_chk)</span>
+<span id="cb9-27"><a href="spatial-sampling-no-filters.html#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="spatial-sampling-no-filters.html#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 88 species of the list of 877 occur in &gt;5% of all checklists</span></span>
+<span id="cb9-29"><a href="spatial-sampling-no-filters.html#cb9-29" aria-hidden="true" tabindex="-1"></a>prop_all_lists <span class="ot">&lt;-</span> spp_sum_chk <span class="sc">%&gt;%</span></span>
+<span id="cb9-30"><a href="spatial-sampling-no-filters.html#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_lists =</span> sum_chk <span class="sc">/</span> total_number_lists) <span class="sc">%&gt;%</span></span>
+<span id="cb9-31"><a href="spatial-sampling-no-filters.html#cb9-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_lists))</span></code></pre></div>
 </div>
 <div id="figure-proportion-of-checklists-reporting-species-in-each-grid-cell" class="section level2 hasAnchor" number="2.10">
 <h2><span class="header-section-number">2.10</span> Figure: Proportion of checklists reporting species in each grid cell<a href="spatial-sampling-no-filters.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="temporal-sampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="temporal-sampling-no-filters.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

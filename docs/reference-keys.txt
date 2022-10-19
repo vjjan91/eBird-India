@@ -13,7 +13,7 @@ what-species-are-reported-sufficiently-in-checklists
 figure-proportion-of-checklists-reporting-species-in-each-grid-cell
 write-the-species-lists-to-file
 save-.rdata-for-future-scripts
-temporal-sampling
+temporal-sampling-no-filters
 prepare-libraries-1
 filter-data-using-auk-package
 process-filtered-data
