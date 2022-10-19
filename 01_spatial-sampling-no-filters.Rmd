@@ -255,20 +255,21 @@ dev.off()
 
 Similar to Ramesh et al. (2022), we visualized and listed species that occurred in atleast 5% of all checklists across half of the unique study area grids they were reported from. 
 
-For example, let us consider the case of Accipiter nisus. This species has been reported from  1000 unique (25 x 25 km grids) across India. There are 206 unique grids in which this species has been reported in over 5% of all checklists from that grid.  
-
 ```{r}
 p_cutoff <- 0.05 # Proportion of checklists a species has been reported in
 
 grid_proportions <- ebd_summary %>%
   group_by(scientific_name) %>%
-  tally(p_rep >= p_cutoff) %>%
+  tally(p_rep >= p_cutoff) %>% # n here is the number of grids in which a species has been reported in over 5% of checklists
   mutate(prop_grids_cut = n / (spp_grids$n_grids)) %>%
   arrange(desc(prop_grids_cut))
+
 grid_prop_cut <- filter(
   grid_proportions,
-  prop_grids_cut >= p_cutoff
+  prop_grids_cut >= 0.5 # How many species have been reported in atleast 5% of checklists across atleast 50% of the grids they have been reported from? 
 )
+
+# Only 254 species!
 
 # Write the results
 write.csv(grid_prop_cut, "results/01_prop-grids-per-spp.csv", row.names = F)
