@@ -3,11 +3,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Spatial sampling (no filters)  
+# Visualization of all observations over time across the Indian subcontinent
 
-In this script, we will examine data at the species level for a chosen list of species, across its entire geographic range in the Indian subcontinent. Our aim here is to first understand the proportion of checklists that report the species of interests for every 25 x 25 km grid size (finer scale will be chosen for comparison in a future script).  
-
-No other filters are applied in this particular script.  
+In this script, we will visualize the overall number of checklists across the Indian subcontinent and repeat the same analysis at the species level. At this stage, no specific filters are applied and we report all analysis for every 25 x 25 km grid size (finer scales/sizes will be used for comparison at a later stage). 
 
 ## Prepare libraries
 ```{r}
@@ -39,10 +37,10 @@ f_in_ebd <- file.path("data/ebd_IN_relJul-2022.txt")
 f_in_sampling <- file.path("data/ebd_sampling_relJul-2022.txt")
 ```
 
+## Subset observations by geographical confines of the study area
 
-## Subset observations by geographical confines of the study area  
+In this case, the geographical confines correspond to the political boundary of India.
 
-In this case, the geographical confines correspond to the political boundary of India.   
 ```{r}
 # first, we load the India states boundary from GADM
 india_states <- st_read("data/spatial/shapefiles/india_states_boundary.shp")
@@ -63,7 +61,7 @@ newNames <- str_replace_all(colnames(ebd_in), " ", "_") %>%
 setnames(ebd_in, newNames)
 # keep useful columns
 columnsOfInterest <- c(
-  "common_name", "scientific_name", "observation_count", "locality", "state", "locality_id", "locality_type", "latitude",
+  "common_name", "scientific_name", "observation_count", "locality", "state","state_code","locality_id", "locality_type", "latitude",
   "longitude", "observation_date", "time_observations_started", "protocol_type","duration_minutes","effort_distance_km", "number_observers", "group_identifier", "reviewed", "sampling_event_identifier"
 )
 ebd_in <- ebd_in[, ..columnsOfInterest]
@@ -87,7 +85,8 @@ ebd_in$observation_count <- as.numeric(ebd_in$observation_count)
 
 ## Load spatial grids for checklist locations
 
-Add a spatial filter.  
+Add a spatial filter.
+
 ```{r strict_filter_supp02}
 # strict spatial filter and assign grid
 locs <- ebd_in[, .(longitude, latitude)]
@@ -127,6 +126,7 @@ ebd_in <- ebd_in[(longitude %in% coords$longitude) &
 ## Get proportional observation counts across every 25 km x 25 km grid
 
 Analysis of proportional counts estimated at 25km
+
 ```{r}
 ## Analysis of proportional counts at 25 km for each state
 
@@ -155,32 +155,31 @@ ebd_summary <- setDF(ebd_summary) %>%
   filter(!is.na(p_rep))
 ```
 
-## Filter data only for a specific list of species
+## Add the list of species
 
-We filtered data for a subset of 891 species. 
+In this script, no species is being excluded and we are visualizing data for all 1352 species across the Indian subcontinent.  
+
 ```{r}
 # remove species that are poorly reported (only filter being applied at this stage)
 # for example, accounts such as 'Turdidae sp.', are removed and only the latest
 # list of scientific names are taken into consideration
 
 species_list <- read.csv("data/2022-SoIB-species-list.csv")
-speciesOfInterest <- species_list %>%
-  filter(Selected...SOIB =="X")
-speciesOfInterest <- data.frame(speciesOfInterest$Scientific.Name)
+speciesOfInterest <- data.frame(species_list$Scientific.Name)
 names(speciesOfInterest) <- "scientific_name"
 
-# filter for species list above - we are choosing only the 891 species
+# filter for species list above
 ebd_summary <- ebd_summary[ebd_summary$scientific_name %in% speciesOfInterest$scientific_name, ]
 ```
 
-## Checklist distribution 
+## Checklist distribution
 
 ```{r }
 # total number of checklists across unique grids
 tot_n_chklist <- ebd_summary %>%
   distinct(X, Y, nchk)
 
-# India has a total of 4792 unique 25 x 25 km grids
+# Across India, species have been reported from a total of 4803 unique 25 x 25 km grids
 
 # species-specific number of grids
 spp_grids <- ebd_summary %>%
@@ -191,6 +190,7 @@ spp_grids <- ebd_summary %>%
   )
 
 # Write the above two results
+# total of 1316 species
 write.csv(spp_grids, "results/01_ngrids-per-spp.csv", row.names=F)
 
 # left-join the datasets
@@ -251,58 +251,18 @@ dev.off()
 
 ![Number of checklists over time](figs/fig_number_checklists_25km.png)
 
-## What species are reported sufficiently in checklists?
-
-Similar to Ramesh et al. (2022), we visualized and listed species that occurred in atleast 5% of all checklists across half of the unique study area grids they were reported from. 
-
-```{r}
-p_cutoff <- 0.05 # Proportion of checklists a species has been reported in
-
-grid_proportions <- ebd_summary %>%
-  group_by(scientific_name) %>%
-  tally(p_rep >= p_cutoff) %>% # n here is the number of grids in which a species has been reported in over 5% of checklists
-  mutate(prop_grids_cut = n / (spp_grids$n_grids)) %>%
-  arrange(desc(prop_grids_cut))
-
-grid_prop_cut <- filter(
-  grid_proportions,
-  prop_grids_cut >= 0.5 # How many species have been reported in atleast 5% of checklists across atleast 50% of the grids they have been reported from? 
-)
-
-# Only 254 species!
-
-# Write the results
-write.csv(grid_prop_cut, "results/01_prop-grids-per-spp.csv", row.names = F)
-
-# Identifying the number of species that occur in potentially <5% of all lists
-total_number_lists <- sum(tot_n_chklist$nchk)
-
-spp_sum_chk <- ebd_summary %>%
-  distinct(X, Y, scientific_name, nrep) %>%
-  group_by(scientific_name) %>%
-  mutate(sum_chk = sum(nrep)) %>%
-  distinct(scientific_name, sum_chk)
-
-# 88 species of the list of 877 occur in >5% of all checklists
-prop_all_lists <- spp_sum_chk %>%
-  mutate(prop_lists = sum_chk / total_number_lists) %>%
-  arrange(desc(prop_lists))
-```
-
 ## Figure: Proportion of checklists reporting species in each grid cell
 
-Note: Here we plot all species that occur in atleast 5% of all checklists across half of the 25 x 25 km cells from where they have been reported 
-```{r plot_obs_distributions,echo=FALSE}
-# filter list of species
-ebd_filter <- semi_join(ebd_summary, grid_prop_cut, by = "scientific_name")
+Note: Here we visualize the proportion of checklists that report a particular species for every 25 x 25 km cell (no specific filter is being applied).  
 
+```{r plot_obs_distributions,echo=FALSE}
 # run the loop to create a list of plots
 plots <- list()
 
-for(i in 1:length(unique(ebd_filter$scientific_name))) {
+for(i in 1:length(unique(ebd_summary$scientific_name))) {
   
-  a <- unique(ebd_filter$scientific_name)[i]
-  data <- ebd_filter[ebd_filter$scientific_name==a,]
+  a <- unique(ebd_summary$scientific_name)[i]
+  data <- ebd_summary[ebd_summary$scientific_name==a,]
   
   plots[[i]] <-
   ggplot() +
@@ -331,22 +291,16 @@ for(i in 1:length(unique(ebd_filter$scientific_name))) {
 
 # plot and save as a single pdf
 cairo_pdf(
-  filename = "figs/species-proportions.pdf",
+  filename = "figs/fig_species_proportions_no_filters.pdf",
   onefile = TRUE
 )
+options(max.print = 1500)
 plots
 dev.off()
 ```
 
-## write the species lists to file
-
-```{r}
-# write the list of species that occur in at least 5% of checklists across a minimum of 50% of the grids they have been reported in
-sp_list <- semi_join(speciesOfInterest, grid_prop_cut, by = "scientific_name")
-write.csv(sp_list, "results/01_list-of-species-cutoff50.csv", row.names = F)
-```
-
 ## save .RData for future scripts
+
 ```{r}
 save.image(file = "data/01_ebd-India.RData")
 ```
