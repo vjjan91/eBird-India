@@ -23,7 +23,7 @@
 <meta name="author" content="Vijay Ramesh" />
 
 
-<meta name="date" content="2022-10-19" />
+<meta name="date" content="2022-11-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="spatial-sampling-no-filters.html"/>
+<link rel="next" href="visualization-of-all-observations-over-time.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -137,29 +137,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-processing"><i class="fa fa-check"></i><b>1.1</b> Data processing</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html"><i class="fa fa-check"></i><b>2</b> Spatial sampling (no filters)</a>
+<li class="chapter" data-level="2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html"><i class="fa fa-check"></i><b>2</b> Visualization of all observations over time</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#prepare-libraries"><i class="fa fa-check"></i><b>2.1</b> Prepare libraries</a></li>
-<li class="chapter" data-level="2.2" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#subset-observations-by-geographical-confines-of-the-study-area"><i class="fa fa-check"></i><b>2.2</b> Subset observations by geographical confines of the study area</a></li>
-<li class="chapter" data-level="2.3" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#data-cleaning-prior-to-visualization"><i class="fa fa-check"></i><b>2.3</b> Data cleaning prior to visualization</a></li>
-<li class="chapter" data-level="2.4" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#load-spatial-grids-for-checklist-locations"><i class="fa fa-check"></i><b>2.4</b> Load spatial grids for checklist locations</a></li>
-<li class="chapter" data-level="2.5" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#get-proportional-observation-counts-across-every-25-km-x-25-km-grid"><i class="fa fa-check"></i><b>2.5</b> Get proportional observation counts across every 25 km x 25 km grid</a></li>
-<li class="chapter" data-level="2.6" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#filter-data-only-for-a-specific-list-of-species"><i class="fa fa-check"></i><b>2.6</b> Filter data only for a specific list of species</a></li>
-<li class="chapter" data-level="2.7" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#checklist-distribution"><i class="fa fa-check"></i><b>2.7</b> Checklist distribution</a></li>
-<li class="chapter" data-level="2.8" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#figure-checklist-distribution"><i class="fa fa-check"></i><b>2.8</b> Figure: Checklist distribution</a></li>
-<li class="chapter" data-level="2.9" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#what-species-are-reported-sufficiently-in-checklists"><i class="fa fa-check"></i><b>2.9</b> What species are reported sufficiently in checklists?</a></li>
-<li class="chapter" data-level="2.10" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell"><i class="fa fa-check"></i><b>2.10</b> Figure: Proportion of checklists reporting species in each grid cell</a></li>
-<li class="chapter" data-level="2.11" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#write-the-species-lists-to-file"><i class="fa fa-check"></i><b>2.11</b> write the species lists to file</a></li>
-<li class="chapter" data-level="2.12" data-path="spatial-sampling-no-filters.html"><a href="spatial-sampling-no-filters.html#save-.rdata-for-future-scripts"><i class="fa fa-check"></i><b>2.12</b> save .RData for future scripts</a></li>
+<li class="chapter" data-level="2.1" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#prepare-libraries"><i class="fa fa-check"></i><b>2.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#subset-observations-by-geographical-confines-of-the-study-area"><i class="fa fa-check"></i><b>2.2</b> Subset observations by geographical confines of the study area</a></li>
+<li class="chapter" data-level="2.3" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#data-cleaning-prior-to-visualization"><i class="fa fa-check"></i><b>2.3</b> Data cleaning prior to visualization</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#load-spatial-grids-for-checklist-locations"><i class="fa fa-check"></i><b>2.4</b> Load spatial grids for checklist locations</a></li>
+<li class="chapter" data-level="2.5" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#get-proportional-observation-counts-across-every-25-km-x-25-km-grid"><i class="fa fa-check"></i><b>2.5</b> Get proportional observation counts across every 25 km x 25 km grid</a></li>
+<li class="chapter" data-level="2.6" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#add-the-list-of-species"><i class="fa fa-check"></i><b>2.6</b> Add the list of species</a></li>
+<li class="chapter" data-level="2.7" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#checklist-distribution"><i class="fa fa-check"></i><b>2.7</b> Checklist distribution</a></li>
+<li class="chapter" data-level="2.8" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-checklist-distribution"><i class="fa fa-check"></i><b>2.8</b> Figure: Checklist distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell"><i class="fa fa-check"></i><b>2.9</b> Figure: Proportion of checklists reporting species in each grid cell</a></li>
+<li class="chapter" data-level="2.10" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#save-.rdata-for-future-scripts"><i class="fa fa-check"></i><b>2.10</b> save .RData for future scripts</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html"><i class="fa fa-check"></i><b>3</b> Temporal sampling (no filters)</a>
+<li class="chapter" data-level="3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html"><i class="fa fa-check"></i><b>3</b> Temporal visualization of all observations</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
-<li class="chapter" data-level="3.2" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#filter-data-using-auk-package"><i class="fa fa-check"></i><b>3.2</b> Filter data using auk package</a></li>
-<li class="chapter" data-level="3.3" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#process-filtered-data"><i class="fa fa-check"></i><b>3.3</b> Process filtered data</a></li>
-<li class="chapter" data-level="3.4" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#include-only-species-with-scientific-names"><i class="fa fa-check"></i><b>3.4</b> Include only species with scientific names</a></li>
-<li class="chapter" data-level="3.5" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Subset data by time period</a></li>
-<li class="chapter" data-level="3.6" data-path="temporal-sampling-no-filters.html"><a href="temporal-sampling-no-filters.html#subset-data-spatially"><i class="fa fa-check"></i><b>3.6</b> Subset data spatially</a></li>
+<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.1</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.2</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.3</b> Checklist distribution over time</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.4</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Testing for differences in number of checklists by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Figure: violinplot of number of checklists by time period</a></li>
+<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-the-proportion-of-checklists-by-time-period-species-and-gridid-as-random-effects"><i class="fa fa-check"></i><b>3.7</b> Testing for differences in the proportion of checklists by time period (species and gridId as random effects)</a></li>
 </ul></li>
 </ul>
 
@@ -181,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Source code and supplementary material for independent validation of State of India’s birds</h1>
 <p class="author"><em>Vijay Ramesh</em></p>
-<p class="date"><em>2022-10-19</em></p>
+<p class="date"><em>2022-11-13</em></p>
 </div>
 <div id="introduction" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Section 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -200,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="spatial-sampling-no-filters.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualization-of-all-observations-over-time.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
