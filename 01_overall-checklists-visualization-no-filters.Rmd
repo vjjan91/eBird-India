@@ -3,7 +3,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Visualization of all observations over time across the Indian subcontinent
+# Visualization of all observations over time 
 
 In this script, we will visualize the overall number of checklists across the Indian subcontinent and repeat the same analysis at the species level. At this stage, no specific filters are applied and we report all analysis for every 25 x 25 km grid size (finer scales/sizes will be used for comparison at a later stage). 
 
@@ -133,6 +133,12 @@ Analysis of proportional counts estimated at 25km
 # round to 25km cell in UTM coords
 ebd_in[, `:=`(X = round_25(X), Y = round_25(Y))]
 
+# separate observation_date as year, month, day
+# please note: the below operation takes awhile to run
+ebd_in <- ebd_in %>%
+  separate(observation_date, c("year","month","day"))
+gc()
+
 # count checklists in cell
 ebd_summary <- ebd_in[, nchk := length(unique(sampling_event_identifier)),
   by = .(X, Y)]
@@ -189,12 +195,12 @@ spp_grids <- ebd_summary %>%
     name = "n_grids"
   )
 
-# Write the above two results
+# Write the above result
 # total of 1316 species
 write.csv(spp_grids, "results/01_ngrids-per-spp.csv", row.names=F)
 
 # left-join the datasets
-ebd_summary <- left_join(ebd_summary, spp_grids, by = "scientific_name")
+# ebd_summary <- left_join(ebd_summary, spp_grids, by = "scientific_name")
 ```
 
 ## Figure: Checklist distribution
