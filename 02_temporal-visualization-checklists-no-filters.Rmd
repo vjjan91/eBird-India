@@ -1,0 +1,270 @@
+---
+editor_options:
+  chunk_output_type: console
+---
+
+# Temporal visualization of all observations   
+
+In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.  
+
+
+## Prepare libraries
+```{r setup_sup_02}
+# load libraries
+library(data.table)
+library(readxl)
+library(magrittr)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(ggthemes)
+library(scico)
+library(extrafont)
+library(sf)
+library(rnaturalearth)
+library(lme4)
+library(multcomp)
+library(sjPlot)
+library(ggstatsplot)
+library(paletteer)
+```
+
+## Load .Rdata from a previous script
+```{r}
+load("data/01_ebd-India.RData")
+```
+
+## Subset data by time period
+
+We will divide data into five-year intervals: 2000-2005, 2006-2010, 2011-2015, 2016-2020 and all data before 2000 as a single category. 
+
+```{r}
+# subset data by time period
+ebd_in <- ebd_in %>%
+  mutate(timePeriod = case_when(
+    year >= 2000 & year < 2005 ~ "2000-2005",
+    year >= 2005 & year < 2010 ~ "2005-2010",
+    year >= 2010 & year < 2015 ~ "2010-2015",
+    year >= 2015 & year < 2020 ~ "2015-2020",
+    year >= 2020 ~ "post2020",
+    year < 2000 ~ "pre2000"
+  ))
+
+## count checklists in cell
+ebd_summary <- ebd_in[, nchk := length(unique(sampling_event_identifier)),
+  by = .(X, Y, timePeriod)]
+
+# count checklists reporting each species in cell and get proportion
+ebd_summary <- ebd_summary[, .(nrep = length(unique(
+  sampling_event_identifier
+))),
+by = .(X, Y, nchk, scientific_name, timePeriod)
+]
+ebd_summary[, p_rep := nrep / nchk]
+
+# complete the dataframe for no reports
+# keep no reports as NA --- allows filtering based on proportion reporting
+ebd_summary <- setDF(ebd_summary) %>%
+  complete(
+    nesting(X, Y), scientific_name, timePeriod # ,
+    # fill = list(p_rep = 0)
+  ) %>%
+  filter(!is.na(p_rep))
+
+# filter for species list above
+ebd_summary <- ebd_summary[ebd_summary$scientific_name %in% speciesOfInterest$scientific_name, ]
+```
+
+## Checklist distribution over time
+
+```{r }
+# total number of checklists across unique grids
+tot_n_chklist <- ebd_summary %>%
+  distinct(X, Y, nchk, timePeriod)
+
+# species-specific number of grids by time Period
+spp_grids <- ebd_summary %>%
+  group_by(scientific_name, timePeriod) %>%
+  distinct(X, Y) %>%
+  count(scientific_name,
+    name = "n_grids"
+  )
+
+# Write the above two results
+# total of 1316 species
+write.csv(spp_grids, "results/02_ngrids-per-spp-by-timePeriod.csv", row.names=F)
+```
+
+## Figure: Checklist distribution by time period
+
+```{r}
+# reordering factors for plotting
+tot_n_chklist$timePeriod <- factor(tot_n_chklist$timePeriod, levels = c("pre2000", "2000-2005", "2005-2010","2010-2015",
+  "2015-2020","post2020"))
+
+# get a plot of number of checklists across grids for each timePeriod
+plotNchk <-
+  ggplot() +
+  geom_sf(data = land, fill = "grey90", col = NA) +
+  geom_tile(
+    data = tot_n_chklist,
+    aes(X, Y, fill = nchk), lwd = 0.5, col = "grey90"
+  ) +
+  geom_sf(data = india_states, fill = NA, col = "black", lwd = 0.3) +
+  scale_fill_scico(
+    palette = "lajolla",
+    direction = 1,
+    trans = "log10",
+    limits = c(1, 50000),
+    breaks = 10^c(1:5)
+  ) +
+  facet_wrap(~timePeriod) +
+  coord_sf(xlim = bbox[c("xmin", "xmax")], ylim = bbox[c("ymin", "ymax")]) +
+  theme_few() +
+  theme(
+    legend.position = "right",
+    axis.title = element_blank(),
+    axis.text.y = element_text(angle = 90),
+    panel.background = element_rect(fill = "lightblue")
+  ) +
+  labs(fill = "number\nof\nchecklists")
+
+# export data
+ggsave(plotNchk,
+  filename = "figs/fig_number_checklists_25km_by_timePeriod.png", height = 15,  width = 20, device = png(), dpi = 300
+)
+dev.off()
+```
+
+![Number of checklists by time period](figs/fig_number_checklists_25km_by_timePeriod.png)
+
+## Testing for differences in number of checklists by time period
+```{r}
+# Test if there are significant differences in the number of checklists by time period
+
+# add a grid code (to be used in a random effects model)
+tot_n_chklist <- tot_n_chklist %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+glmm_nChk_time <- glmer(nchk ~ timePeriod + (1|gridCode), data = tot_n_chklist, family = gaussian(link="identity"))
+
+tukey_nChk_time <- summary(glht(glmm_nChk_time, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_nChk_time)
+
+# differences between time periods as revealed through glht
+# 2000-2005 2005-2010 2010-2015 2015-2020  post2020   pre2000 
+#      "a"      "ab"       "b"       "c"       "c"      "ab" 
+
+report::report(glmm_nChk_time)
+
+# note that the random effects plot suggests differences attributed to grid code/the 25 x 25 km cell and there are significant differences as some grids are sampled much more than others. 
+```
+
+## Figure: violinplot of number of checklists by time period
+```{r}
+# create log values of nChk
+tot_n_chklist$logNchk <- log(tot_n_chklist$nchk)
+
+fig_nchk_time <- ggbetweenstats(
+  data = tot_n_chklist,
+  x = timePeriod,
+  y = logNchk,
+  type = "robust", ## type of statistics
+  xlab = "Time Period", 
+  ylab = "log Number of checklists",
+  title = "Distribution of checklists by time period across 25 x 25 km grid cells",
+  plot.type = "boxviolin",
+  pairwise.display = "s") +
+  scale_color_manual(values = paletteer_c("scico::roma", n=6)) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+  
+ggsave(fig_nchk_time, filename = "figs/fig_logChecklists_timePeriod.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+![Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers tot eh number of unique grid cells for which data exists/was reported for each time period. All bars repreent significant differences as inferred through a pairwise comparisons test (Yuen's trimmed means test)](figs/fig_logChecklists_timePeriod.png)
+## Figure: Proportion of checklists reporting species in each grid cell by time period
+
+Note: Here we visualize the proportion of checklists that report a particular species for every 25 x 25 km cell (no specific filter is being applied) for each time period
+```{r}
+# reordering factors for plotting
+ebd_summary$timePeriod <- factor(ebd_summary$timePeriod, levels = c("pre2000", "2000-2005", "2005-2010","2010-2015",
+  "2015-2020","post2020"))
+
+# run the loop to create a list of plots
+# Note: this step takes a long time to run (plots created for >1000 spp)
+for(i in 1:length(unique(ebd_summary$scientific_name))) {
+  
+  a <- unique(ebd_summary$scientific_name)[i]
+  data <- ebd_summary[ebd_summary$scientific_name==a,]
+  
+  g1 <-
+  ggplot() +
+  geom_sf(data = land, fill = "grey90", col = NA) +
+  geom_tile(
+    data = data,
+    aes(X, Y, fill = p_rep), lwd = 0.5, col = "grey90"
+  ) +
+  geom_sf(data = india_states, fill = NA, col = "black", lwd = 0.3) +
+  scale_fill_scico(palette = "lajolla", direction = 1, label = scales::percent) +
+  facet_wrap(~timePeriod) +
+  coord_sf(xlim = bbox[c("xmin", "xmax")], ylim = bbox[c("ymin", "ymax")]) + labs(title = a)+
+  ggthemes::theme_few(
+    base_family = "Century Gothic",
+    base_size = 25
+  ) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 22, face = "bold"),
+    legend.position = "right",
+    strip.text = element_text(face = "italic"),
+     legend.title = element_text(family="Century Gothic",
+                                    size = 16, face = "bold"),
+        legend.key.size = unit(1,"cm"),
+        legend.text = element_text(family="Century Gothic",size = 16),
+        axis.title = element_blank(),
+    axis.text.y = element_text(angle = 90),
+    panel.background = element_rect(fill = "lightblue")
+  ) +
+  labs(fill = "prop.\nreporting\nchecklists")
+  
+  ggsave(filename="",width=20, height=15, units="in", dpi = 300, 
+         plot=g1, device="png", path = paste("figs/figs_speciesProportions_by_timePeriod/",  paste(a, ".png", sep=""), sep=""))
+}
+
+dev.off()
+```
+
+## Testing for differences in the proportion of checklists by time period (species and gridId as random effects)
+```{r}
+# add a grid code (to be used in a random effects model)
+ebd_summary <- ebd_summary %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# Note: takes a bit of time to run (given the number of observations)
+glmm_propChk_time <- glmer(p_rep ~ timePeriod + +(1|scientific_name)+ (1|gridCode), data = ebd_summary, family = gaussian(link="identity"))
+
+tukey_propChk_time <- summary(glht(glmm_propChk_time, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_propChk_time)
+
+# differences between time periods as revealed through glht
+# pre2000 2000-2005 2005-2010 2010-2015 2015-2020  post2020 
+#      "e"       "f"       "d"       "c"       "b"       "a" 
+
+report::report(glmm_propChk_time)
+# note that the random effects plot suggests differences attributed to grid code/the 25 x 25 km cell and species scientific name & that there are significant differences as some grids are sampled much more than others. 
+```
