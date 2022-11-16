@@ -18,4 +18,4 @@ checklist-distribution-over-time
 figure-checklist-distribution-by-time-period
 testing-for-differences-in-number-of-checklists-by-time-period
 figure-violinplot-of-number-of-checklists-by-time-period
-testing-for-differences-in-the-proportion-of-checklists-by-time-period-species-and-gridid-as-random-effects
+figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period
