@@ -5,7 +5,8 @@ editor_options:
 
 # Temporal visualization of all observations   
 
-In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.  
+In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.   
+
 ## Prepare libraries
 ```{r setup_sup_02}
 # load libraries
@@ -31,7 +32,7 @@ library(paletteer)
 
 ## Load .Rdata from a previous script
 ```{r}
-load("data/01_ebd-India.RData")
+load("data/01_ebd-India-spatial.RData")
 ```
 
 ## Subset data by time period
@@ -182,13 +183,12 @@ fig_nchk_time <- ggbetweenstats(
   data = tot_n_chklist,
   x = timePeriod,
   y = logNchk,
-  type = "robust", ## type of statistics
   xlab = "Time Period", 
   ylab = "log Number of checklists",
   title = "Distribution of checklists by time period across 25 x 25 km grid cells",
   plot.type = "boxviolin",
   pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
-  scale_color_manual(values = c("#9EB0FFFF", "#6FA9E8FF","#4294C2FF", "#2C7192FF","#1D4D63FF","#122C39FF","#101317FF","#230B02FF","#3B1000FF", "#5C1D08FF","#863B26FF","#AD5F50FF","#D5857DFF","#FFACACFF")) +
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
   theme(plot.title = element_text(family = "Century Gothic",
       size = 18, face = "bold"),
     axis.title = element_text(family = "Century Gothic",
@@ -204,18 +204,16 @@ fig_nchk_time <- ggbetweenstats(
 ggsave(fig_nchk_time, filename = "figs/fig_logChecklists_timePeriod.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
 dev.off()
 
-## Note: there are atleast 77 different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Yuen's trimmed means test)
+## Note: there are atleast 69 different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test)
 ## Please view the statistics below for more details
 
-stats_timePeriod_logNChk <- pairwise_comparisons(tot_n_chklist, timePeriod, logNchk, type = "robust") %>%
+stats_timePeriod_logNChk <- pairwise_comparisons(tot_n_chklist, timePeriod, logNchk) %>%
   filter(p.value <= 0.05) %>%
   data.frame()
 
-write.csv(stats_timePeriod_logNChk[,-10], "results/02_pairwiseComparisons_timePeriod_logNchk.csv", row.names = F)
+write.csv(stats_timePeriod_logNChk[,-9], "results/02_pairwiseComparisons_timePeriod_logNchk.csv", row.names = F)
 ```
 ![Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Yuen's trimmed means test)](figs/fig_logChecklists_timePeriod.png)
-
-
 ## Figure: Proportion of checklists reporting species in each grid cell by time period
 
 Note: Here we visualize the proportion of checklists that report a particular species for every 25 x 25 km cell (no specific filter is being applied) for each time period
@@ -265,4 +263,9 @@ for(i in 1:length(unique(ebd_summary$scientific_name))) {
 }
 
 dev.off()
+```
+
+## save .RData for future scripts
+```{r}
+save.image(file = "data/02_ebd-India-spatial-temporal.RData")
 ```
