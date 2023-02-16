@@ -128,8 +128,6 @@ ebd_in <- ebd_in[(longitude %in% coords$longitude) &
 Analysis of proportional counts estimated at 25km
 
 ```{r}
-## Analysis of proportional counts at 25 km for each state
-
 # round to 25km cell in UTM coords
 ebd_in[, `:=`(X = round_25(X), Y = round_25(Y))]
 
@@ -306,7 +304,6 @@ dev.off()
 ```
 
 ## save .RData for future scripts
-
 ```{r}
-save.image(file = "data/01_ebd-India.RData")
+save.image(file = "data/01_ebd-India-spatial.RData")
 ```
