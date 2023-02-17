@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 5 Protocol type | Source code and supplementary material for independent validation of State of India’s birds</title>
+  <meta name="description" content="Section 5 Protocol type | Source code and supplementary material for independent validation of State of India’s birds" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 5 Protocol type | Source code and supplementary material for independent validation of State of India’s birds" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="vjjan91/eBird-India" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 5 Protocol type | Source code and supplementary material for independent validation of State of India’s birds" />
+  
+  
+  
+
+<meta name="author" content="Vijay Ramesh" />
+
+
+<meta name="date" content="2023-02-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="locality-type.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-processing"><i class="fa fa-check"></i><b>1.1</b> Data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html"><i class="fa fa-check"></i><b>2</b> Visualization of all observations over time</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#prepare-libraries"><i class="fa fa-check"></i><b>2.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#subset-observations-by-geographical-confines-of-the-study-area"><i class="fa fa-check"></i><b>2.2</b> Subset observations by geographical confines of the study area</a></li>
+<li class="chapter" data-level="2.3" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#data-cleaning-prior-to-visualization"><i class="fa fa-check"></i><b>2.3</b> Data cleaning prior to visualization</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#load-spatial-grids-for-checklist-locations"><i class="fa fa-check"></i><b>2.4</b> Load spatial grids for checklist locations</a></li>
+<li class="chapter" data-level="2.5" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#get-proportional-observation-counts-across-every-25-km-x-25-km-grid"><i class="fa fa-check"></i><b>2.5</b> Get proportional observation counts across every 25 km x 25 km grid</a></li>
+<li class="chapter" data-level="2.6" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#add-the-list-of-species"><i class="fa fa-check"></i><b>2.6</b> Add the list of species</a></li>
+<li class="chapter" data-level="2.7" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#checklist-distribution"><i class="fa fa-check"></i><b>2.7</b> Checklist distribution</a></li>
+<li class="chapter" data-level="2.8" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-checklist-distribution"><i class="fa fa-check"></i><b>2.8</b> Figure: Checklist distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell"><i class="fa fa-check"></i><b>2.9</b> Figure: Proportion of checklists reporting species in each grid cell</a></li>
+<li class="chapter" data-level="2.10" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#save-.rdata-for-future-scripts"><i class="fa fa-check"></i><b>2.10</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html"><i class="fa fa-check"></i><b>3</b> Temporal visualization of all observations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.3</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.4</b> Checklist distribution over time</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Testing for differences in number of checklists by time period</a></li>
+<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: violinplot of number of checklists by time period</a></li>
+<li class="chapter" data-level="3.8" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.8</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.9" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#save-.rdata-for-future-scripts-1"><i class="fa fa-check"></i><b>3.9</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="locality-type.html"><a href="locality-type.html"><i class="fa fa-check"></i><b>4</b> Locality type</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="locality-type.html"><a href="locality-type.html#prepare-libraries-2"><i class="fa fa-check"></i><b>4.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="locality-type.html"><a href="locality-type.html#load-.rdata-from-a-previous-script-1"><i class="fa fa-check"></i><b>4.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="4.3" data-path="locality-type.html"><a href="locality-type.html#subset-data-by-hotspot-or-personal-locations"><i class="fa fa-check"></i><b>4.3</b> Subset data by hotspot or personal locations</a></li>
+<li class="chapter" data-level="4.4" data-path="locality-type.html"><a href="locality-type.html#checklist-distribution-over-time-across-personal-and-hotspot-locations"><i class="fa fa-check"></i><b>4.4</b> Checklist distribution over time across personal and hotspot locations</a></li>
+<li class="chapter" data-level="4.5" data-path="locality-type.html"><a href="locality-type.html#figure-checklist-distribution-by-time-period-1"><i class="fa fa-check"></i><b>4.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="4.6" data-path="locality-type.html"><a href="locality-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-location-type"><i class="fa fa-check"></i><b>4.6</b> Testing for differences in number of checklists by time period and location type</a></li>
+<li class="chapter" data-level="4.7" data-path="locality-type.html"><a href="locality-type.html#figure-violinplot-of-number-of-checklists"><i class="fa fa-check"></i><b>4.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="4.8" data-path="locality-type.html"><a href="locality-type.html#visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time"><i class="fa fa-check"></i><b>4.8</b> Visualization of hotspot and personal observations from the same grid across time</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="protocol-type.html"><a href="protocol-type.html"><i class="fa fa-check"></i><b>5</b> Protocol type</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="protocol-type.html"><a href="protocol-type.html#prepare-libraries-3"><i class="fa fa-check"></i><b>5.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="protocol-type.html"><a href="protocol-type.html#load-.rdata-from-a-previous-script-2"><i class="fa fa-check"></i><b>5.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="5.3" data-path="protocol-type.html"><a href="protocol-type.html#subset-data-by-stationary-or-traveling-checklists"><i class="fa fa-check"></i><b>5.3</b> Subset data by stationary or traveling checklists</a></li>
+<li class="chapter" data-level="5.4" data-path="protocol-type.html"><a href="protocol-type.html#checklist-distribution-over-time-for-stationary-and-traveling-checklists"><i class="fa fa-check"></i><b>5.4</b> Checklist distribution over time for stationary and traveling checklists</a></li>
+<li class="chapter" data-level="5.5" data-path="protocol-type.html"><a href="protocol-type.html#figure-checklist-distribution-by-time-period-2"><i class="fa fa-check"></i><b>5.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="5.6" data-path="protocol-type.html"><a href="protocol-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type"><i class="fa fa-check"></i><b>5.6</b> Testing for differences in number of checklists by time period and protocol type</a></li>
+<li class="chapter" data-level="5.7" data-path="protocol-type.html"><a href="protocol-type.html#figure-violinplot-of-number-of-checklists-1"><i class="fa fa-check"></i><b>5.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="5.8" data-path="protocol-type.html"><a href="protocol-type.html#examining-variation-in-duration-of-checklists-over-time"><i class="fa fa-check"></i><b>5.8</b> Examining variation in duration of checklists over time</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Source code and supplementary material for independent validation of State of India’s birds</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="protocol-type" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Section 5</span> Protocol type<a href="protocol-type.html#protocol-type" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this script, we will visualize checklist observations spatially and temporally to assess if there are differences in reporting of observations depending on protocol type - i.e. incidental, stationary, or traveling checklists. For the purpose of this exercise, only stationary and traveling checklists are chosen, as these two protocol types often contribute to complete checklists (incidental checklists are often ignored in most analyses as they only offer a snapshot of bird presence/absence at a location).</p>
+<div id="prepare-libraries-3" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Prepare libraries<a href="protocol-type.html#prepare-libraries-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="protocol-type.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb28-2"><a href="protocol-type.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb28-3"><a href="protocol-type.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb28-4"><a href="protocol-type.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb28-5"><a href="protocol-type.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb28-6"><a href="protocol-type.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb28-7"><a href="protocol-type.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb28-8"><a href="protocol-type.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb28-9"><a href="protocol-type.html#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb28-10"><a href="protocol-type.html#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb28-11"><a href="protocol-type.html#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
+<span id="cb28-12"><a href="protocol-type.html#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb28-13"><a href="protocol-type.html#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb28-14"><a href="protocol-type.html#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb28-15"><a href="protocol-type.html#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb28-16"><a href="protocol-type.html#cb28-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb28-17"><a href="protocol-type.html#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb28-18"><a href="protocol-type.html#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span></code></pre></div>
+</div>
+<div id="load-.rdata-from-a-previous-script-2" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Load .Rdata from a previous script<a href="protocol-type.html#load-.rdata-from-a-previous-script-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="protocol-type.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/02_ebd-India-spatial-temporal.RData&quot;</span>)</span></code></pre></div>
+</div>
+<div id="subset-data-by-stationary-or-traveling-checklists" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Subset data by stationary or traveling checklists<a href="protocol-type.html#subset-data-by-stationary-or-traveling-checklists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="protocol-type.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stationary checklists</span></span>
+<span id="cb30-2"><a href="protocol-type.html#cb30-2" aria-hidden="true" tabindex="-1"></a>ebd_stat <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="protocol-type.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(protocol_type <span class="sc">==</span> <span class="st">&quot;Stationary&quot;</span>) <span class="co"># ~ 7.3 million observations </span></span>
+<span id="cb30-4"><a href="protocol-type.html#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="protocol-type.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># traveling checklists</span></span>
+<span id="cb30-6"><a href="protocol-type.html#cb30-6" aria-hidden="true" tabindex="-1"></a>ebd_trav <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb30-7"><a href="protocol-type.html#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(protocol_type <span class="sc">==</span> <span class="st">&quot;Traveling&quot;</span>) <span class="co"># ~ 25 million observations</span></span>
+<span id="cb30-8"><a href="protocol-type.html#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="protocol-type.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Clearly, majority of observations are coming from traveling checklists</span></span>
+<span id="cb30-10"><a href="protocol-type.html#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="protocol-type.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="do">## count checklists in cell</span></span>
+<span id="cb30-12"><a href="protocol-type.html#cb30-12" aria-hidden="true" tabindex="-1"></a>ebd_summary_stat <span class="ot">&lt;-</span> ebd_stat[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb30-13"><a href="protocol-type.html#cb30-13" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod)]</span>
+<span id="cb30-14"><a href="protocol-type.html#cb30-14" aria-hidden="true" tabindex="-1"></a>ebd_summary_trav <span class="ot">&lt;-</span> ebd_trav[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb30-15"><a href="protocol-type.html#cb30-15" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod)]</span>
+<span id="cb30-16"><a href="protocol-type.html#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="protocol-type.html#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
+<span id="cb30-18"><a href="protocol-type.html#cb30-18" aria-hidden="true" tabindex="-1"></a>ebd_summary_stat <span class="ot">&lt;-</span> ebd_summary_stat[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb30-19"><a href="protocol-type.html#cb30-19" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb30-20"><a href="protocol-type.html#cb30-20" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb30-21"><a href="protocol-type.html#cb30-21" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod)</span>
+<span id="cb30-22"><a href="protocol-type.html#cb30-22" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb30-23"><a href="protocol-type.html#cb30-23" aria-hidden="true" tabindex="-1"></a>ebd_summary_stat[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb30-24"><a href="protocol-type.html#cb30-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-25"><a href="protocol-type.html#cb30-25" aria-hidden="true" tabindex="-1"></a>ebd_summary_trav <span class="ot">&lt;-</span> ebd_summary_trav[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb30-26"><a href="protocol-type.html#cb30-26" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb30-27"><a href="protocol-type.html#cb30-27" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb30-28"><a href="protocol-type.html#cb30-28" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod)</span>
+<span id="cb30-29"><a href="protocol-type.html#cb30-29" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb30-30"><a href="protocol-type.html#cb30-30" aria-hidden="true" tabindex="-1"></a>ebd_summary_trav[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb30-31"><a href="protocol-type.html#cb30-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-32"><a href="protocol-type.html#cb30-32" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
+<span id="cb30-33"><a href="protocol-type.html#cb30-33" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
+<span id="cb30-34"><a href="protocol-type.html#cb30-34" aria-hidden="true" tabindex="-1"></a>ebd_summary_stat <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_stat) <span class="sc">%&gt;%</span></span>
+<span id="cb30-35"><a href="protocol-type.html#cb30-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb30-36"><a href="protocol-type.html#cb30-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod <span class="co"># ,</span></span>
+<span id="cb30-37"><a href="protocol-type.html#cb30-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb30-38"><a href="protocol-type.html#cb30-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-39"><a href="protocol-type.html#cb30-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb30-40"><a href="protocol-type.html#cb30-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-41"><a href="protocol-type.html#cb30-41" aria-hidden="true" tabindex="-1"></a>ebd_summary_trav <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_trav) <span class="sc">%&gt;%</span></span>
+<span id="cb30-42"><a href="protocol-type.html#cb30-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb30-43"><a href="protocol-type.html#cb30-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod <span class="co"># ,</span></span>
+<span id="cb30-44"><a href="protocol-type.html#cb30-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb30-45"><a href="protocol-type.html#cb30-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-46"><a href="protocol-type.html#cb30-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb30-47"><a href="protocol-type.html#cb30-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-48"><a href="protocol-type.html#cb30-48" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for species list above</span></span>
+<span id="cb30-49"><a href="protocol-type.html#cb30-49" aria-hidden="true" tabindex="-1"></a>ebd_summary_stat <span class="ot">&lt;-</span> ebd_summary_stat[ebd_summary_stat<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span>
+<span id="cb30-50"><a href="protocol-type.html#cb30-50" aria-hidden="true" tabindex="-1"></a>ebd_summary_trav <span class="ot">&lt;-</span> ebd_summary_trav[ebd_summary_trav<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span></code></pre></div>
+</div>
+<div id="checklist-distribution-over-time-for-stationary-and-traveling-checklists" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Checklist distribution over time for stationary and traveling checklists<a href="protocol-type.html#checklist-distribution-over-time-for-stationary-and-traveling-checklists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="protocol-type.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of checklists</span></span>
+<span id="cb31-2"><a href="protocol-type.html#cb31-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_stat <span class="ot">&lt;-</span> ebd_summary_stat <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="protocol-type.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod)</span>
+<span id="cb31-4"><a href="protocol-type.html#cb31-4" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_trav <span class="ot">&lt;-</span> ebd_summary_trav <span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="protocol-type.html#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod)</span>
+<span id="cb31-6"><a href="protocol-type.html#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="protocol-type.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># species-specific number of grids by time Period</span></span>
+<span id="cb31-8"><a href="protocol-type.html#cb31-8" aria-hidden="true" tabindex="-1"></a>spp_grids_stat <span class="ot">&lt;-</span> ebd_summary_stat <span class="sc">%&gt;%</span></span>
+<span id="cb31-9"><a href="protocol-type.html#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name, timePeriod) <span class="sc">%&gt;%</span></span>
+<span id="cb31-10"><a href="protocol-type.html#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y) <span class="sc">%&gt;%</span></span>
+<span id="cb31-11"><a href="protocol-type.html#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(scientific_name,</span>
+<span id="cb31-12"><a href="protocol-type.html#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;n_grids&quot;</span></span>
+<span id="cb31-13"><a href="protocol-type.html#cb31-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-14"><a href="protocol-type.html#cb31-14" aria-hidden="true" tabindex="-1"></a>spp_grids_trav <span class="ot">&lt;-</span> ebd_summary_trav <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="protocol-type.html#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name, timePeriod) <span class="sc">%&gt;%</span></span>
+<span id="cb31-16"><a href="protocol-type.html#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y) <span class="sc">%&gt;%</span></span>
+<span id="cb31-17"><a href="protocol-type.html#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(scientific_name,</span>
+<span id="cb31-18"><a href="protocol-type.html#cb31-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;n_grids&quot;</span></span>
+<span id="cb31-19"><a href="protocol-type.html#cb31-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-20"><a href="protocol-type.html#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="protocol-type.html#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the above two results</span></span>
+<span id="cb31-22"><a href="protocol-type.html#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spp_grids_stat, <span class="st">&quot;results/04_ngrids-per-spp-by-timePeriod-statChk.csv&quot;</span>, <span class="at">row.names=</span>F)</span>
+<span id="cb31-23"><a href="protocol-type.html#cb31-23" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spp_grids_trav, <span class="st">&quot;results/04_ngrids-per-spp-by-timePeriod-travChk.csv&quot;</span>, <span class="at">row.names=</span>F)</span></code></pre></div>
+</div>
+<div id="figure-checklist-distribution-by-time-period-2" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Figure: Checklist distribution by time period<a href="protocol-type.html#figure-checklist-distribution-by-time-period-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="protocol-type.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
+<span id="cb32-2"><a href="protocol-type.html#cb32-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_stat<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_stat<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb32-3"><a href="protocol-type.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb32-4"><a href="protocol-type.html#cb32-4" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_trav<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_trav<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb32-5"><a href="protocol-type.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb32-6"><a href="protocol-type.html#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="protocol-type.html#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get a plot of number of checklists across grids for each timePeriod</span></span>
+<span id="cb32-8"><a href="protocol-type.html#cb32-8" aria-hidden="true" tabindex="-1"></a>plotNchk_stat <span class="ot">&lt;-</span></span>
+<span id="cb32-9"><a href="protocol-type.html#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb32-10"><a href="protocol-type.html#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="protocol-type.html#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb32-12"><a href="protocol-type.html#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> tot_n_chklist_stat,</span>
+<span id="cb32-13"><a href="protocol-type.html#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> nchk), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span></span>
+<span id="cb32-14"><a href="protocol-type.html#cb32-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-15"><a href="protocol-type.html#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb32-16"><a href="protocol-type.html#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb32-17"><a href="protocol-type.html#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb32-18"><a href="protocol-type.html#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb32-19"><a href="protocol-type.html#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>,</span>
+<span id="cb32-20"><a href="protocol-type.html#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">50000</span>),</span>
+<span id="cb32-21"><a href="protocol-type.html#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb32-22"><a href="protocol-type.html#cb32-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-23"><a href="protocol-type.html#cb32-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb32-24"><a href="protocol-type.html#cb32-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb32-25"><a href="protocol-type.html#cb32-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb32-26"><a href="protocol-type.html#cb32-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-27"><a href="protocol-type.html#cb32-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb32-28"><a href="protocol-type.html#cb32-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-29"><a href="protocol-type.html#cb32-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb32-30"><a href="protocol-type.html#cb32-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb32-31"><a href="protocol-type.html#cb32-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-32"><a href="protocol-type.html#cb32-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">checklists&quot;</span>)</span>
+<span id="cb32-33"><a href="protocol-type.html#cb32-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-34"><a href="protocol-type.html#cb32-34" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb32-35"><a href="protocol-type.html#cb32-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plotNchk_stat,</span>
+<span id="cb32-36"><a href="protocol-type.html#cb32-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_number_checklists_25km_by_timePeriod_statChk.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb32-37"><a href="protocol-type.html#cb32-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-38"><a href="protocol-type.html#cb32-38" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb32-39"><a href="protocol-type.html#cb32-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-40"><a href="protocol-type.html#cb32-40" aria-hidden="true" tabindex="-1"></a>plotNchk_trav <span class="ot">&lt;-</span></span>
+<span id="cb32-41"><a href="protocol-type.html#cb32-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb32-42"><a href="protocol-type.html#cb32-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb32-43"><a href="protocol-type.html#cb32-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb32-44"><a href="protocol-type.html#cb32-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> tot_n_chklist_trav,</span>
+<span id="cb32-45"><a href="protocol-type.html#cb32-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> nchk), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span></span>
+<span id="cb32-46"><a href="protocol-type.html#cb32-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-47"><a href="protocol-type.html#cb32-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb32-48"><a href="protocol-type.html#cb32-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb32-49"><a href="protocol-type.html#cb32-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb32-50"><a href="protocol-type.html#cb32-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb32-51"><a href="protocol-type.html#cb32-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>,</span>
+<span id="cb32-52"><a href="protocol-type.html#cb32-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">50000</span>),</span>
+<span id="cb32-53"><a href="protocol-type.html#cb32-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb32-54"><a href="protocol-type.html#cb32-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-55"><a href="protocol-type.html#cb32-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb32-56"><a href="protocol-type.html#cb32-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb32-57"><a href="protocol-type.html#cb32-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb32-58"><a href="protocol-type.html#cb32-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb32-59"><a href="protocol-type.html#cb32-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb32-60"><a href="protocol-type.html#cb32-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-61"><a href="protocol-type.html#cb32-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb32-62"><a href="protocol-type.html#cb32-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb32-63"><a href="protocol-type.html#cb32-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-64"><a href="protocol-type.html#cb32-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">checklists&quot;</span>)</span>
+<span id="cb32-65"><a href="protocol-type.html#cb32-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-66"><a href="protocol-type.html#cb32-66" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb32-67"><a href="protocol-type.html#cb32-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plotNchk_trav,</span>
+<span id="cb32-68"><a href="protocol-type.html#cb32-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_number_checklists_25km_by_timePeriod_travChk.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb32-69"><a href="protocol-type.html#cb32-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-70"><a href="protocol-type.html#cb32-70" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="figs/fig_number_checklists_25km_by_timePeriod_statChk.png" alt="Number of checklists by time period and protocol type: stationary checklists" />
+<img src="figs/fig_number_checklists_25km_by_timePeriod_travChk.png" alt="Number of checklists by time period and protocol type: traveling checklists" /></p>
+</div>
+<div id="testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Testing for differences in number of checklists by time period and protocol type<a href="protocol-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="protocol-type.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add a grid code (to be used in a random effects model)</span></span>
+<span id="cb33-2"><a href="protocol-type.html#cb33-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_stat <span class="ot">&lt;-</span> tot_n_chklist_stat <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="protocol-type.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(X,Y) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="protocol-type.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gridCode =</span> <span class="fu">cur_group_id</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="protocol-type.html#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb33-6"><a href="protocol-type.html#cb33-6" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_trav <span class="ot">&lt;-</span> tot_n_chklist_trav <span class="sc">%&gt;%</span></span>
+<span id="cb33-7"><a href="protocol-type.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(X,Y) <span class="sc">%&gt;%</span></span>
+<span id="cb33-8"><a href="protocol-type.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gridCode =</span> <span class="fu">cur_group_id</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb33-9"><a href="protocol-type.html#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb33-10"><a href="protocol-type.html#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="protocol-type.html#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: this takes a long-time to run</span></span>
+<span id="cb33-12"><a href="protocol-type.html#cb33-12" aria-hidden="true" tabindex="-1"></a>glmm_nChk_time_stat <span class="ot">&lt;-</span> <span class="fu">glmer</span>(nchk <span class="sc">~</span> timePeriod <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gridCode), <span class="at">data =</span> tot_n_chklist_stat, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link=</span><span class="st">&quot;log&quot;</span>))</span>
+<span id="cb33-13"><a href="protocol-type.html#cb33-13" aria-hidden="true" tabindex="-1"></a>glmm_nChk_time_trav <span class="ot">&lt;-</span> <span class="fu">glmer</span>(nchk <span class="sc">~</span> timePeriod <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gridCode), <span class="at">data =</span> tot_n_chklist_trav, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link=</span><span class="st">&quot;log&quot;</span>))</span>
+<span id="cb33-14"><a href="protocol-type.html#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="protocol-type.html#cb33-15" aria-hidden="true" tabindex="-1"></a>tukey_nChk_time_stat <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">glht</span>(glmm_nChk_time_stat, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">timePeriod =</span><span class="st">&quot;Tukey&quot;</span>)))</span>
+<span id="cb33-16"><a href="protocol-type.html#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(tukey_nChk_time_stat)</span>
+<span id="cb33-17"><a href="protocol-type.html#cb33-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-18"><a href="protocol-type.html#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="co"># pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 </span></span>
+<span id="cb33-19"><a href="protocol-type.html#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;c&quot;       &quot;d&quot;       &quot;a&quot;       &quot;a&quot;       &quot;b&quot;       &quot;e&quot;       &quot;g&quot; </span></span>
+<span id="cb33-20"><a href="protocol-type.html#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co">#     2016      2017      2018      2019      2020      2021      2022 </span></span>
+<span id="cb33-21"><a href="protocol-type.html#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;f&quot;       &quot;h&quot;       &quot;j&quot;       &quot;i&quot;       &quot;l&quot;       &quot;k&quot;       &quot;i&quot; </span></span>
+<span id="cb33-22"><a href="protocol-type.html#cb33-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-23"><a href="protocol-type.html#cb33-23" aria-hidden="true" tabindex="-1"></a>tukey_nChk_time_trav <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">glht</span>(glmm_nChk_time_trav, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">timePeriod =</span><span class="st">&quot;Tukey&quot;</span>)))</span>
+<span id="cb33-24"><a href="protocol-type.html#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(tukey_nChk_time_trav)</span>
+<span id="cb33-25"><a href="protocol-type.html#cb33-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-26"><a href="protocol-type.html#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="co"># pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 </span></span>
+<span id="cb33-27"><a href="protocol-type.html#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;c&quot;      &quot;ac&quot;       &quot;d&quot;       &quot;b&quot;       &quot;a&quot;       &quot;e&quot;       &quot;f&quot; </span></span>
+<span id="cb33-28"><a href="protocol-type.html#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="co">#     2016      2017      2018      2019      2020      2021      2022 </span></span>
+<span id="cb33-29"><a href="protocol-type.html#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;g&quot;       &quot;i&quot;       &quot;h&quot;       &quot;j&quot;       &quot;k&quot;       &quot;m&quot;       &quot;l&quot; </span></span></code></pre></div>
+</div>
+<div id="figure-violinplot-of-number-of-checklists-1" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Figure: violinplot of number of checklists<a href="protocol-type.html#figure-violinplot-of-number-of-checklists-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="protocol-type.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create log values of nChk</span></span>
+<span id="cb34-2"><a href="protocol-type.html#cb34-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_stat<span class="sc">$</span>logNchk <span class="ot">&lt;-</span> <span class="fu">log</span>(tot_n_chklist_stat<span class="sc">$</span>nchk)</span>
+<span id="cb34-3"><a href="protocol-type.html#cb34-3" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_trav<span class="sc">$</span>logNchk <span class="ot">&lt;-</span> <span class="fu">log</span>(tot_n_chklist_trav<span class="sc">$</span>nchk)</span>
+<span id="cb34-4"><a href="protocol-type.html#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="protocol-type.html#cb34-5" aria-hidden="true" tabindex="-1"></a>fig_nchk_time_stat <span class="ot">&lt;-</span> <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb34-6"><a href="protocol-type.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_stat,</span>
+<span id="cb34-7"><a href="protocol-type.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> timePeriod,</span>
+<span id="cb34-8"><a href="protocol-type.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> logNchk,</span>
+<span id="cb34-9"><a href="protocol-type.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
+<span id="cb34-10"><a href="protocol-type.html#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
+<span id="cb34-11"><a href="protocol-type.html#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of stationary checklists by time period&quot;</span>,</span>
+<span id="cb34-12"><a href="protocol-type.html#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
+<span id="cb34-13"><a href="protocol-type.html#cb34-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
+<span id="cb34-14"><a href="protocol-type.html#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#7E1900&quot;</span>, <span class="st">&quot;#944611&quot;</span>, <span class="st">&quot;#A66B20&quot;</span>, <span class="st">&quot;#B89130&quot;</span>, <span class="st">&quot;#CBB94A&quot;</span>, <span class="st">&quot;#E0DC7B&quot;</span>,<span class="st">&quot;#180B09&quot;</span> ,<span class="st">&quot;#2C0E00&quot;</span>, <span class="st">&quot;#461300&quot;</span>, <span class="st">&quot;#68240F&quot;</span>, <span class="st">&quot;#8E422E&quot;</span>, <span class="st">&quot;#B36556&quot;</span>,<span class="st">&quot;#D88881&quot;</span>, <span class="st">&quot;#4799C9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb34-15"><a href="protocol-type.html#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb34-16"><a href="protocol-type.html#cb34-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb34-17"><a href="protocol-type.html#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb34-18"><a href="protocol-type.html#cb34-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb34-19"><a href="protocol-type.html#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb34-20"><a href="protocol-type.html#cb34-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb34-21"><a href="protocol-type.html#cb34-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb34-22"><a href="protocol-type.html#cb34-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb34-23"><a href="protocol-type.html#cb34-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb34-24"><a href="protocol-type.html#cb34-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb34-25"><a href="protocol-type.html#cb34-25" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb34-26"><a href="protocol-type.html#cb34-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-27"><a href="protocol-type.html#cb34-27" aria-hidden="true" tabindex="-1"></a>fig_nchk_time_trav <span class="ot">&lt;-</span> <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb34-28"><a href="protocol-type.html#cb34-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_trav,</span>
+<span id="cb34-29"><a href="protocol-type.html#cb34-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> timePeriod,</span>
+<span id="cb34-30"><a href="protocol-type.html#cb34-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> logNchk,</span>
+<span id="cb34-31"><a href="protocol-type.html#cb34-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
+<span id="cb34-32"><a href="protocol-type.html#cb34-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
+<span id="cb34-33"><a href="protocol-type.html#cb34-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of traveling checklists by time period&quot;</span>,</span>
+<span id="cb34-34"><a href="protocol-type.html#cb34-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
+<span id="cb34-35"><a href="protocol-type.html#cb34-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
+<span id="cb34-36"><a href="protocol-type.html#cb34-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#7E1900&quot;</span>, <span class="st">&quot;#944611&quot;</span>, <span class="st">&quot;#A66B20&quot;</span>, <span class="st">&quot;#B89130&quot;</span>, <span class="st">&quot;#CBB94A&quot;</span>, <span class="st">&quot;#E0DC7B&quot;</span>,<span class="st">&quot;#180B09&quot;</span> ,<span class="st">&quot;#2C0E00&quot;</span>, <span class="st">&quot;#461300&quot;</span>, <span class="st">&quot;#68240F&quot;</span>, <span class="st">&quot;#8E422E&quot;</span>, <span class="st">&quot;#B36556&quot;</span>,<span class="st">&quot;#D88881&quot;</span>, <span class="st">&quot;#4799C9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb34-37"><a href="protocol-type.html#cb34-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb34-38"><a href="protocol-type.html#cb34-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb34-39"><a href="protocol-type.html#cb34-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb34-40"><a href="protocol-type.html#cb34-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb34-41"><a href="protocol-type.html#cb34-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb34-42"><a href="protocol-type.html#cb34-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb34-43"><a href="protocol-type.html#cb34-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb34-44"><a href="protocol-type.html#cb34-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb34-45"><a href="protocol-type.html#cb34-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb34-46"><a href="protocol-type.html#cb34-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb34-47"><a href="protocol-type.html#cb34-47" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb34-48"><a href="protocol-type.html#cb34-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-49"><a href="protocol-type.html#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time_stat, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod_statChk.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb34-50"><a href="protocol-type.html#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb34-51"><a href="protocol-type.html#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time_trav, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod_travChk.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb34-52"><a href="protocol-type.html#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb34-53"><a href="protocol-type.html#cb34-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-54"><a href="protocol-type.html#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Note: pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test)</span></span>
+<span id="cb34-55"><a href="protocol-type.html#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Please view the statistics below for more details</span></span>
+<span id="cb34-56"><a href="protocol-type.html#cb34-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-57"><a href="protocol-type.html#cb34-57" aria-hidden="true" tabindex="-1"></a>stats_statChk_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist_stat, timePeriod, logNchk) <span class="sc">%&gt;%</span></span>
+<span id="cb34-58"><a href="protocol-type.html#cb34-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-59"><a href="protocol-type.html#cb34-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb34-60"><a href="protocol-type.html#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_statChk_logNChk[,<span class="sc">-</span><span class="dv">9</span>], <span class="st">&quot;results/04_pairwiseComparisons_statChk_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span>
+<span id="cb34-61"><a href="protocol-type.html#cb34-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-62"><a href="protocol-type.html#cb34-62" aria-hidden="true" tabindex="-1"></a>stats_travChk_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist_trav, timePeriod, logNchk) <span class="sc">%&gt;%</span></span>
+<span id="cb34-63"><a href="protocol-type.html#cb34-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-64"><a href="protocol-type.html#cb34-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb34-65"><a href="protocol-type.html#cb34-65" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_travChk_logNChk[,<span class="sc">-</span><span class="dv">9</span>], <span class="st">&quot;results/04_pairwiseComparisons_travChk_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
+<p><img src="figs/fig_logChecklists_timePeriod_statChk.png" alt="Distribution of the log number of stationary checklists by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)" />
+<img src="figs/fig_logChecklists_timePeriod_travChk.png" alt="Distribution of the log number of traveling checklists by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)" />
+## What is the proportion of checklists from each timeperiod grid that are stationary vs. traveling checklists?</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="protocol-type.html#cb35-1" aria-hidden="true" tabindex="-1"></a>stat_trav <span class="ot">&lt;-</span>  <span class="fu">left_join</span>(tot_n_chklist_stat[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)], tot_n_chklist_trav[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)],<span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;timePeriod&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="protocol-type.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)</span>
+<span id="cb35-3"><a href="protocol-type.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stat_trav)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Stationary&quot;</span></span>
+<span id="cb35-4"><a href="protocol-type.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stat_trav)[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Traveling&quot;</span></span>
+<span id="cb35-5"><a href="protocol-type.html#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="protocol-type.html#cb35-6" aria-hidden="true" tabindex="-1"></a>stat_trav <span class="ot">&lt;-</span> stat_trav <span class="sc">%&gt;%</span></span>
+<span id="cb35-7"><a href="protocol-type.html#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">names_to =</span> <span class="st">&quot;protocol_type&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;nChk&quot;</span>)</span>
+<span id="cb35-8"><a href="protocol-type.html#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="protocol-type.html#cb35-9" aria-hidden="true" tabindex="-1"></a>fig_prop_stat_trav <span class="ot">&lt;-</span> </span>
+<span id="cb35-10"><a href="protocol-type.html#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbarstats</span>(</span>
+<span id="cb35-11"><a href="protocol-type.html#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> stat_trav,</span>
+<span id="cb35-12"><a href="protocol-type.html#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> protocol_type,</span>
+<span id="cb35-13"><a href="protocol-type.html#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> timePeriod,</span>
+<span id="cb35-14"><a href="protocol-type.html#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">counts =</span> nChk,</span>
+<span id="cb35-15"><a href="protocol-type.html#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb35-16"><a href="protocol-type.html#cb35-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Stationary vs. Traveling checklists by time period&quot;</span>,</span>
+<span id="cb35-17"><a href="protocol-type.html#cb35-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.title =</span> <span class="st">&quot;Protocol type&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb35-18"><a href="protocol-type.html#cb35-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb35-19"><a href="protocol-type.html#cb35-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb35-20"><a href="protocol-type.html#cb35-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb35-21"><a href="protocol-type.html#cb35-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb35-22"><a href="protocol-type.html#cb35-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb35-23"><a href="protocol-type.html#cb35-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb35-24"><a href="protocol-type.html#cb35-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb35-25"><a href="protocol-type.html#cb35-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb35-26"><a href="protocol-type.html#cb35-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb35-27"><a href="protocol-type.html#cb35-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb35-28"><a href="protocol-type.html#cb35-28" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb35-29"><a href="protocol-type.html#cb35-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-30"><a href="protocol-type.html#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_prop_stat_trav, <span class="at">filename =</span> <span class="st">&quot;figs/fig_prop_stat_vs_travChk.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb35-31"><a href="protocol-type.html#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="figure">
+<img src="figs/fig_prop_stat_vs_travChk.png" alt="" />
+<p class="caption">Proportion of stationary and traveling checklists by tim period. Here, n refers to the number of checklists for which data exists/was reported for each time period.</p>
+</div>
+</div>
+<div id="examining-variation-in-duration-of-checklists-over-time" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Examining variation in duration of checklists over time<a href="protocol-type.html#examining-variation-in-duration-of-checklists-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="protocol-type.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stationary or traveling checklists</span></span>
+<span id="cb36-2"><a href="protocol-type.html#cb36-2" aria-hidden="true" tabindex="-1"></a>ebd_duration <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb36-3"><a href="protocol-type.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(protocol_type <span class="sc">==</span> <span class="st">&quot;Stationary&quot;</span> <span class="sc">|</span> protocol_type <span class="sc">==</span> <span class="st">&quot;Traveling&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">duration_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb36-4"><a href="protocol-type.html#cb36-4" aria-hidden="true" tabindex="-1"></a>    duration_minutes <span class="sc">&lt;</span> <span class="dv">15</span> <span class="sc">~</span> <span class="st">&quot;&lt;15min&quot;</span>,</span>
+<span id="cb36-5"><a href="protocol-type.html#cb36-5" aria-hidden="true" tabindex="-1"></a>    duration_minutes <span class="sc">&gt;=</span> <span class="dv">15</span> <span class="sc">&amp;</span> duration_minutes <span class="sc">&lt;=</span> <span class="dv">60</span> <span class="sc">~</span> <span class="st">&quot;15min_to_1hour&quot;</span>,</span>
+<span id="cb36-6"><a href="protocol-type.html#cb36-6" aria-hidden="true" tabindex="-1"></a>    duration_minutes <span class="sc">&gt;</span> <span class="dv">60</span> <span class="sc">&amp;</span> duration_minutes <span class="sc">&lt;=</span> <span class="dv">180</span> <span class="sc">~</span> <span class="st">&quot;1hour_to_3hours&quot;</span>,</span>
+<span id="cb36-7"><a href="protocol-type.html#cb36-7" aria-hidden="true" tabindex="-1"></a>    duration_minutes <span class="sc">&gt;</span> <span class="dv">180</span> <span class="sc">&amp;</span> duration_minutes <span class="sc">&lt;=</span> <span class="dv">300</span> <span class="sc">~</span> <span class="st">&quot;3hours_to_5hours&quot;</span>,</span>
+<span id="cb36-8"><a href="protocol-type.html#cb36-8" aria-hidden="true" tabindex="-1"></a>    duration_minutes <span class="sc">&gt;</span> <span class="dv">300</span> <span class="sc">~</span> <span class="st">&quot;&gt;5hours&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb36-9"><a href="protocol-type.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(., duration_cat)</span>
+<span id="cb36-10"><a href="protocol-type.html#cb36-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-11"><a href="protocol-type.html#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="do">## count checklists in cell</span></span>
+<span id="cb36-12"><a href="protocol-type.html#cb36-12" aria-hidden="true" tabindex="-1"></a>ebd_summary_dur <span class="ot">&lt;-</span> ebd_duration[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb36-13"><a href="protocol-type.html#cb36-13" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod, duration_cat)]</span>
+<span id="cb36-14"><a href="protocol-type.html#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-15"><a href="protocol-type.html#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
+<span id="cb36-16"><a href="protocol-type.html#cb36-16" aria-hidden="true" tabindex="-1"></a>ebd_summary_dur <span class="ot">&lt;-</span> ebd_summary_dur[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb36-17"><a href="protocol-type.html#cb36-17" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb36-18"><a href="protocol-type.html#cb36-18" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb36-19"><a href="protocol-type.html#cb36-19" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod, duration_cat)</span>
+<span id="cb36-20"><a href="protocol-type.html#cb36-20" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb36-21"><a href="protocol-type.html#cb36-21" aria-hidden="true" tabindex="-1"></a>ebd_summary_dur[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb36-22"><a href="protocol-type.html#cb36-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-23"><a href="protocol-type.html#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
+<span id="cb36-24"><a href="protocol-type.html#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
+<span id="cb36-25"><a href="protocol-type.html#cb36-25" aria-hidden="true" tabindex="-1"></a>ebd_summary_dur <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_dur) <span class="sc">%&gt;%</span></span>
+<span id="cb36-26"><a href="protocol-type.html#cb36-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb36-27"><a href="protocol-type.html#cb36-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod, duration_cat <span class="co"># ,</span></span>
+<span id="cb36-28"><a href="protocol-type.html#cb36-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb36-29"><a href="protocol-type.html#cb36-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb36-30"><a href="protocol-type.html#cb36-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb36-31"><a href="protocol-type.html#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-32"><a href="protocol-type.html#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for species list above</span></span>
+<span id="cb36-33"><a href="protocol-type.html#cb36-33" aria-hidden="true" tabindex="-1"></a>ebd_summary_dur <span class="ot">&lt;-</span> ebd_summary_dur[ebd_summary_dur<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span>
+<span id="cb36-34"><a href="protocol-type.html#cb36-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-35"><a href="protocol-type.html#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of checklists</span></span>
+<span id="cb36-36"><a href="protocol-type.html#cb36-36" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_dur <span class="ot">&lt;-</span> ebd_summary_dur <span class="sc">%&gt;%</span></span>
+<span id="cb36-37"><a href="protocol-type.html#cb36-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod, duration_cat)</span>
+<span id="cb36-38"><a href="protocol-type.html#cb36-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-39"><a href="protocol-type.html#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
+<span id="cb36-40"><a href="protocol-type.html#cb36-40" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_dur<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_dur<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb36-41"><a href="protocol-type.html#cb36-41" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb36-42"><a href="protocol-type.html#cb36-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-43"><a href="protocol-type.html#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="co"># visualization</span></span>
+<span id="cb36-44"><a href="protocol-type.html#cb36-44" aria-hidden="true" tabindex="-1"></a>fig_duration <span class="ot">&lt;-</span> </span>
+<span id="cb36-45"><a href="protocol-type.html#cb36-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbarstats</span>(</span>
+<span id="cb36-46"><a href="protocol-type.html#cb36-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_dur,</span>
+<span id="cb36-47"><a href="protocol-type.html#cb36-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> duration_cat,</span>
+<span id="cb36-48"><a href="protocol-type.html#cb36-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> timePeriod,</span>
+<span id="cb36-49"><a href="protocol-type.html#cb36-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">counts =</span> nchk,</span>
+<span id="cb36-50"><a href="protocol-type.html#cb36-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb36-51"><a href="protocol-type.html#cb36-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Checklist by duration over time&quot;</span>,</span>
+<span id="cb36-52"><a href="protocol-type.html#cb36-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.title =</span> <span class="st">&quot;Duration of checklists&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb36-53"><a href="protocol-type.html#cb36-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb36-54"><a href="protocol-type.html#cb36-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb36-55"><a href="protocol-type.html#cb36-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb36-56"><a href="protocol-type.html#cb36-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb36-57"><a href="protocol-type.html#cb36-57" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb36-58"><a href="protocol-type.html#cb36-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb36-59"><a href="protocol-type.html#cb36-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb36-60"><a href="protocol-type.html#cb36-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb36-61"><a href="protocol-type.html#cb36-61" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb36-62"><a href="protocol-type.html#cb36-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb36-63"><a href="protocol-type.html#cb36-63" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb36-64"><a href="protocol-type.html#cb36-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-65"><a href="protocol-type.html#cb36-65" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_duration, <span class="at">filename =</span> <span class="st">&quot;figs/fig_duration_nchk_timePeriod.png&quot;</span>, <span class="at">width =</span> <span class="dv">17</span>, <span class="at">height =</span> <span class="dv">12</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb36-66"><a href="protocol-type.html#cb36-66" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="figs/fig_duration_nchk_timePeriod.png" alt="Distribution of checklists by duration across time. Here, n refers to the number of checklists for which data exists/was reported for each time period." />
+## Examining variation in distance covered (effort) across traveling checklists over time</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="protocol-type.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># traveling checklists</span></span>
+<span id="cb37-2"><a href="protocol-type.html#cb37-2" aria-hidden="true" tabindex="-1"></a>ebd_dist <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="protocol-type.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(protocol_type <span class="sc">==</span> <span class="st">&quot;Traveling&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-4"><a href="protocol-type.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dist_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb37-5"><a href="protocol-type.html#cb37-5" aria-hidden="true" tabindex="-1"></a>    effort_distance_km <span class="sc">&lt;</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">&quot;&lt;1km&quot;</span>,</span>
+<span id="cb37-6"><a href="protocol-type.html#cb37-6" aria-hidden="true" tabindex="-1"></a>    effort_distance_km <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> effort_distance_km <span class="sc">&lt;=</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">&quot;1km_to_3km&quot;</span>,</span>
+<span id="cb37-7"><a href="protocol-type.html#cb37-7" aria-hidden="true" tabindex="-1"></a>    effort_distance_km <span class="sc">&gt;</span> <span class="dv">3</span> <span class="sc">&amp;</span> effort_distance_km <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">&quot;3km_to_5km&quot;</span>,</span>
+<span id="cb37-8"><a href="protocol-type.html#cb37-8" aria-hidden="true" tabindex="-1"></a>    effort_distance_km <span class="sc">&gt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> duration_minutes <span class="sc">&lt;=</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">&quot;5km_to_10km&quot;</span>,</span>
+<span id="cb37-9"><a href="protocol-type.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    effort_distance_km <span class="sc">&gt;</span> <span class="dv">10</span> <span class="sc">~</span> <span class="st">&quot;&gt;10km&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-10"><a href="protocol-type.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(., dist_cat)</span>
+<span id="cb37-11"><a href="protocol-type.html#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="protocol-type.html#cb37-12" aria-hidden="true" tabindex="-1"></a><span class="do">## count checklists in cell</span></span>
+<span id="cb37-13"><a href="protocol-type.html#cb37-13" aria-hidden="true" tabindex="-1"></a>ebd_summary_dist <span class="ot">&lt;-</span> ebd_dist[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb37-14"><a href="protocol-type.html#cb37-14" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod, dist_cat)]</span>
+<span id="cb37-15"><a href="protocol-type.html#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="protocol-type.html#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
+<span id="cb37-17"><a href="protocol-type.html#cb37-17" aria-hidden="true" tabindex="-1"></a>ebd_summary_dist <span class="ot">&lt;-</span> ebd_summary_dist[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb37-18"><a href="protocol-type.html#cb37-18" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb37-19"><a href="protocol-type.html#cb37-19" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb37-20"><a href="protocol-type.html#cb37-20" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod, dist_cat)</span>
+<span id="cb37-21"><a href="protocol-type.html#cb37-21" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb37-22"><a href="protocol-type.html#cb37-22" aria-hidden="true" tabindex="-1"></a>ebd_summary_dist[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb37-23"><a href="protocol-type.html#cb37-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-24"><a href="protocol-type.html#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
+<span id="cb37-25"><a href="protocol-type.html#cb37-25" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
+<span id="cb37-26"><a href="protocol-type.html#cb37-26" aria-hidden="true" tabindex="-1"></a>ebd_summary_dist <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_dist) <span class="sc">%&gt;%</span></span>
+<span id="cb37-27"><a href="protocol-type.html#cb37-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb37-28"><a href="protocol-type.html#cb37-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod, dist_cat <span class="co"># ,</span></span>
+<span id="cb37-29"><a href="protocol-type.html#cb37-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb37-30"><a href="protocol-type.html#cb37-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb37-31"><a href="protocol-type.html#cb37-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb37-32"><a href="protocol-type.html#cb37-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-33"><a href="protocol-type.html#cb37-33" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for species list above</span></span>
+<span id="cb37-34"><a href="protocol-type.html#cb37-34" aria-hidden="true" tabindex="-1"></a>ebd_summary_dist <span class="ot">&lt;-</span> ebd_summary_dist[ebd_summary_dist<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span>
+<span id="cb37-35"><a href="protocol-type.html#cb37-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-36"><a href="protocol-type.html#cb37-36" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of checklists</span></span>
+<span id="cb37-37"><a href="protocol-type.html#cb37-37" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_dist <span class="ot">&lt;-</span> ebd_summary_dist <span class="sc">%&gt;%</span></span>
+<span id="cb37-38"><a href="protocol-type.html#cb37-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod, dist_cat)</span>
+<span id="cb37-39"><a href="protocol-type.html#cb37-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-40"><a href="protocol-type.html#cb37-40" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
+<span id="cb37-41"><a href="protocol-type.html#cb37-41" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_dist<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_dist<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb37-42"><a href="protocol-type.html#cb37-42" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb37-43"><a href="protocol-type.html#cb37-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-44"><a href="protocol-type.html#cb37-44" aria-hidden="true" tabindex="-1"></a><span class="co"># visualization</span></span>
+<span id="cb37-45"><a href="protocol-type.html#cb37-45" aria-hidden="true" tabindex="-1"></a>fig_dist <span class="ot">&lt;-</span> </span>
+<span id="cb37-46"><a href="protocol-type.html#cb37-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggbarstats</span>(</span>
+<span id="cb37-47"><a href="protocol-type.html#cb37-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_dist,</span>
+<span id="cb37-48"><a href="protocol-type.html#cb37-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> dist_cat,</span>
+<span id="cb37-49"><a href="protocol-type.html#cb37-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> timePeriod,</span>
+<span id="cb37-50"><a href="protocol-type.html#cb37-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">counts =</span> nchk,</span>
+<span id="cb37-51"><a href="protocol-type.html#cb37-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb37-52"><a href="protocol-type.html#cb37-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Checklist by effort (distance covered in traveling checklists) over time&quot;</span>,</span>
+<span id="cb37-53"><a href="protocol-type.html#cb37-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">legend.title =</span> <span class="st">&quot;Distance covered&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb37-54"><a href="protocol-type.html#cb37-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb37-55"><a href="protocol-type.html#cb37-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb37-56"><a href="protocol-type.html#cb37-56" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb37-57"><a href="protocol-type.html#cb37-57" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb37-58"><a href="protocol-type.html#cb37-58" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb37-59"><a href="protocol-type.html#cb37-59" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb37-60"><a href="protocol-type.html#cb37-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb37-61"><a href="protocol-type.html#cb37-61" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb37-62"><a href="protocol-type.html#cb37-62" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb37-63"><a href="protocol-type.html#cb37-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb37-64"><a href="protocol-type.html#cb37-64" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb37-65"><a href="protocol-type.html#cb37-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-66"><a href="protocol-type.html#cb37-66" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_dist, <span class="at">filename =</span> <span class="st">&quot;figs/fig_distance_nchk_timePeriod.png&quot;</span>, <span class="at">width =</span> <span class="dv">17</span>, <span class="at">height =</span> <span class="dv">12</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb37-67"><a href="protocol-type.html#cb37-67" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<div class="figure">
+<img src="figs/fig_distance_nchk_timePeriod.png" alt="" />
+<p class="caption">Distribution of checklists by distance covered in traveling checklists across time. Here, n refers to the number of checklists for which data exists/was reported for each time period.</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="locality-type.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/vjjan91/SoIB-independent-validation/edit/master/04_protocol-type.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

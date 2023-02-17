@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   
   
-  <meta name="github-repo" content="vjjan91/SoIB-independent-validation" />
+  <meta name="github-repo" content="vjjan91/eBird-India" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 3 Temporal visualization of all observations | Source code and supplementary material for independent validation of State of India’s birds" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Vijay Ramesh" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2023-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="visualization-of-all-observations-over-time.html"/>
-
+<link rel="next" href="locality-type.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -152,13 +152,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html"><i class="fa fa-check"></i><b>3</b> Temporal visualization of all observations</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.1</b> Load .Rdata from a previous script</a></li>
-<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.2</b> Subset data by time period</a></li>
-<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.3</b> Checklist distribution over time</a></li>
-<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.4</b> Figure: Checklist distribution by time period</a></li>
-<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Testing for differences in number of checklists by time period</a></li>
-<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Figure: violinplot of number of checklists by time period</a></li>
-<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.3</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.4</b> Checklist distribution over time</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Testing for differences in number of checklists by time period</a></li>
+<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: violinplot of number of checklists by time period</a></li>
+<li class="chapter" data-level="3.8" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.8</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.9" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#save-.rdata-for-future-scripts-1"><i class="fa fa-check"></i><b>3.9</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="locality-type.html"><a href="locality-type.html"><i class="fa fa-check"></i><b>4</b> Locality type</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="locality-type.html"><a href="locality-type.html#prepare-libraries-2"><i class="fa fa-check"></i><b>4.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="locality-type.html"><a href="locality-type.html#load-.rdata-from-a-previous-script-1"><i class="fa fa-check"></i><b>4.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="4.3" data-path="locality-type.html"><a href="locality-type.html#subset-data-by-hotspot-or-personal-locations"><i class="fa fa-check"></i><b>4.3</b> Subset data by hotspot or personal locations</a></li>
+<li class="chapter" data-level="4.4" data-path="locality-type.html"><a href="locality-type.html#checklist-distribution-over-time-across-personal-and-hotspot-locations"><i class="fa fa-check"></i><b>4.4</b> Checklist distribution over time across personal and hotspot locations</a></li>
+<li class="chapter" data-level="4.5" data-path="locality-type.html"><a href="locality-type.html#figure-checklist-distribution-by-time-period-1"><i class="fa fa-check"></i><b>4.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="4.6" data-path="locality-type.html"><a href="locality-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-location-type"><i class="fa fa-check"></i><b>4.6</b> Testing for differences in number of checklists by time period and location type</a></li>
+<li class="chapter" data-level="4.7" data-path="locality-type.html"><a href="locality-type.html#figure-violinplot-of-number-of-checklists"><i class="fa fa-check"></i><b>4.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="4.8" data-path="locality-type.html"><a href="locality-type.html#visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time"><i class="fa fa-check"></i><b>4.8</b> Visualization of hotspot and personal observations from the same grid across time</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="protocol-type.html"><a href="protocol-type.html"><i class="fa fa-check"></i><b>5</b> Protocol type</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="protocol-type.html"><a href="protocol-type.html#prepare-libraries-3"><i class="fa fa-check"></i><b>5.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="protocol-type.html"><a href="protocol-type.html#load-.rdata-from-a-previous-script-2"><i class="fa fa-check"></i><b>5.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="5.3" data-path="protocol-type.html"><a href="protocol-type.html#subset-data-by-stationary-or-traveling-checklists"><i class="fa fa-check"></i><b>5.3</b> Subset data by stationary or traveling checklists</a></li>
+<li class="chapter" data-level="5.4" data-path="protocol-type.html"><a href="protocol-type.html#checklist-distribution-over-time-for-stationary-and-traveling-checklists"><i class="fa fa-check"></i><b>5.4</b> Checklist distribution over time for stationary and traveling checklists</a></li>
+<li class="chapter" data-level="5.5" data-path="protocol-type.html"><a href="protocol-type.html#figure-checklist-distribution-by-time-period-2"><i class="fa fa-check"></i><b>5.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="5.6" data-path="protocol-type.html"><a href="protocol-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type"><i class="fa fa-check"></i><b>5.6</b> Testing for differences in number of checklists by time period and protocol type</a></li>
+<li class="chapter" data-level="5.7" data-path="protocol-type.html"><a href="protocol-type.html#figure-violinplot-of-number-of-checklists-1"><i class="fa fa-check"></i><b>5.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="5.8" data-path="protocol-type.html"><a href="protocol-type.html#examining-variation-in-duration-of-checklists-over-time"><i class="fa fa-check"></i><b>5.8</b> Examining variation in duration of checklists over time</a></li>
 </ul></li>
 </ul>
 
@@ -179,33 +203,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="temporal-visualization-of-all-observations" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Section 3</span> Temporal visualization of all observations<a href="temporal-visualization-of-all-observations.html#temporal-visualization-of-all-observations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.<br />
-## Prepare libraries</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="temporal-visualization-of-all-observations.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries</span></span>
-<span id="cb10-2"><a href="temporal-visualization-of-all-observations.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb10-3"><a href="temporal-visualization-of-all-observations.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb10-4"><a href="temporal-visualization-of-all-observations.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb10-5"><a href="temporal-visualization-of-all-observations.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb10-6"><a href="temporal-visualization-of-all-observations.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-7"><a href="temporal-visualization-of-all-observations.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb10-8"><a href="temporal-visualization-of-all-observations.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb10-9"><a href="temporal-visualization-of-all-observations.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-10"><a href="temporal-visualization-of-all-observations.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb10-11"><a href="temporal-visualization-of-all-observations.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
-<span id="cb10-12"><a href="temporal-visualization-of-all-observations.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
-<span id="cb10-13"><a href="temporal-visualization-of-all-observations.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb10-14"><a href="temporal-visualization-of-all-observations.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb10-15"><a href="temporal-visualization-of-all-observations.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
-<span id="cb10-16"><a href="temporal-visualization-of-all-observations.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
-<span id="cb10-17"><a href="temporal-visualization-of-all-observations.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb10-18"><a href="temporal-visualization-of-all-observations.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
-<span id="cb10-19"><a href="temporal-visualization-of-all-observations.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span></code></pre></div>
-<div id="load-.rdata-from-a-previous-script" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Load .Rdata from a previous script<a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="temporal-visualization-of-all-observations.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/01_ebd-India.RData&quot;</span>)</span></code></pre></div>
+<p>In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.</p>
+<div id="prepare-libraries-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Prepare libraries<a href="temporal-visualization-of-all-observations.html#prepare-libraries-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="temporal-visualization-of-all-observations.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb10-2"><a href="temporal-visualization-of-all-observations.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-3"><a href="temporal-visualization-of-all-observations.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb10-4"><a href="temporal-visualization-of-all-observations.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb10-5"><a href="temporal-visualization-of-all-observations.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-6"><a href="temporal-visualization-of-all-observations.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb10-7"><a href="temporal-visualization-of-all-observations.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb10-8"><a href="temporal-visualization-of-all-observations.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-9"><a href="temporal-visualization-of-all-observations.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb10-10"><a href="temporal-visualization-of-all-observations.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb10-11"><a href="temporal-visualization-of-all-observations.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
+<span id="cb10-12"><a href="temporal-visualization-of-all-observations.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb10-13"><a href="temporal-visualization-of-all-observations.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb10-14"><a href="temporal-visualization-of-all-observations.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb10-15"><a href="temporal-visualization-of-all-observations.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb10-16"><a href="temporal-visualization-of-all-observations.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb10-17"><a href="temporal-visualization-of-all-observations.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb10-18"><a href="temporal-visualization-of-all-observations.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span></code></pre></div>
 </div>
-<div id="subset-data-by-time-period" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Subset data by time period<a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="load-.rdata-from-a-previous-script" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Load .Rdata from a previous script<a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="temporal-visualization-of-all-observations.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/01_ebd-India-spatial.RData&quot;</span>)</span></code></pre></div>
+</div>
+<div id="subset-data-by-time-period" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Subset data by time period<a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We will divide data into time-periods/intervals that are currently being used by the State of India’s birds.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="temporal-visualization-of-all-observations.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data by time period</span></span>
 <span id="cb12-2"><a href="temporal-visualization-of-all-observations.html#cb12-2" aria-hidden="true" tabindex="-1"></a>ebd_in <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
@@ -250,8 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-41"><a href="temporal-visualization-of-all-observations.html#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for species list above</span></span>
 <span id="cb12-42"><a href="temporal-visualization-of-all-observations.html#cb12-42" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> ebd_summary[ebd_summary<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span></code></pre></div>
 </div>
-<div id="checklist-distribution-over-time" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Checklist distribution over time<a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="checklist-distribution-over-time" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Checklist distribution over time<a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="temporal-visualization-of-all-observations.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of checklists across unique grids</span></span>
 <span id="cb13-2"><a href="temporal-visualization-of-all-observations.html#cb13-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist <span class="ot">&lt;-</span> ebd_summary <span class="sc">%&gt;%</span></span>
 <span id="cb13-3"><a href="temporal-visualization-of-all-observations.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod)</span>
@@ -268,8 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-14"><a href="temporal-visualization-of-all-observations.html#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># total of 1316 species</span></span>
 <span id="cb13-15"><a href="temporal-visualization-of-all-observations.html#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spp_grids, <span class="st">&quot;results/02_ngrids-per-spp-by-timePeriod.csv&quot;</span>, <span class="at">row.names=</span>F)</span></code></pre></div>
 </div>
-<div id="figure-checklist-distribution-by-time-period" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Figure: Checklist distribution by time period<a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="figure-checklist-distribution-by-time-period" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Figure: Checklist distribution by time period<a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="temporal-visualization-of-all-observations.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
 <span id="cb14-2"><a href="temporal-visualization-of-all-observations.html#cb14-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
 <span id="cb14-3"><a href="temporal-visualization-of-all-observations.html#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
@@ -311,8 +336,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">Number of checklists by time period</p>
 </div>
 </div>
-<div id="testing-for-differences-in-number-of-checklists-by-time-period" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Testing for differences in number of checklists by time period<a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="testing-for-differences-in-number-of-checklists-by-time-period" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Testing for differences in number of checklists by time period<a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="temporal-visualization-of-all-observations.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test if there are significant differences in the number of checklists by time period</span></span>
 <span id="cb15-2"><a href="temporal-visualization-of-all-observations.html#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="temporal-visualization-of-all-observations.html#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add a grid code (to be used in a random effects model)</span></span>
@@ -337,8 +362,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-22"><a href="temporal-visualization-of-all-observations.html#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-23"><a href="temporal-visualization-of-all-observations.html#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># note that the random effects plot suggests differences attributed to grid code/the 25 x 25 km cell and there are significant differences as some grids are sampled much more than others. </span></span></code></pre></div>
 </div>
-<div id="figure-violinplot-of-number-of-checklists-by-time-period" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Figure: violinplot of number of checklists by time period<a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="figure-violinplot-of-number-of-checklists-by-time-period" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Figure: violinplot of number of checklists by time period<a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="temporal-visualization-of-all-observations.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create log values of nChk</span></span>
 <span id="cb16-2"><a href="temporal-visualization-of-all-observations.html#cb16-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist<span class="sc">$</span>logNchk <span class="ot">&lt;-</span> <span class="fu">log</span>(tot_n_chklist<span class="sc">$</span>nchk)</span>
 <span id="cb16-3"><a href="temporal-visualization-of-all-observations.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -346,43 +371,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-5"><a href="temporal-visualization-of-all-observations.html#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist,</span>
 <span id="cb16-6"><a href="temporal-visualization-of-all-observations.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> timePeriod,</span>
 <span id="cb16-7"><a href="temporal-visualization-of-all-observations.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> logNchk,</span>
-<span id="cb16-8"><a href="temporal-visualization-of-all-observations.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;robust&quot;</span>, <span class="do">## type of statistics</span></span>
-<span id="cb16-9"><a href="temporal-visualization-of-all-observations.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
-<span id="cb16-10"><a href="temporal-visualization-of-all-observations.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
-<span id="cb16-11"><a href="temporal-visualization-of-all-observations.html#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of checklists by time period across 25 x 25 km grid cells&quot;</span>,</span>
-<span id="cb16-12"><a href="temporal-visualization-of-all-observations.html#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
-<span id="cb16-13"><a href="temporal-visualization-of-all-observations.html#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
-<span id="cb16-14"><a href="temporal-visualization-of-all-observations.html#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#9EB0FFFF&quot;</span>, <span class="st">&quot;#6FA9E8FF&quot;</span>,<span class="st">&quot;#4294C2FF&quot;</span>, <span class="st">&quot;#2C7192FF&quot;</span>,<span class="st">&quot;#1D4D63FF&quot;</span>,<span class="st">&quot;#122C39FF&quot;</span>,<span class="st">&quot;#101317FF&quot;</span>,<span class="st">&quot;#230B02FF&quot;</span>,<span class="st">&quot;#3B1000FF&quot;</span>, <span class="st">&quot;#5C1D08FF&quot;</span>,<span class="st">&quot;#863B26FF&quot;</span>,<span class="st">&quot;#AD5F50FF&quot;</span>,<span class="st">&quot;#D5857DFF&quot;</span>,<span class="st">&quot;#FFACACFF&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-15"><a href="temporal-visualization-of-all-observations.html#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
-<span id="cb16-16"><a href="temporal-visualization-of-all-observations.html#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb16-17"><a href="temporal-visualization-of-all-observations.html#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
-<span id="cb16-18"><a href="temporal-visualization-of-all-observations.html#cb16-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb16-19"><a href="temporal-visualization-of-all-observations.html#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
-<span id="cb16-20"><a href="temporal-visualization-of-all-observations.html#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
-<span id="cb16-21"><a href="temporal-visualization-of-all-observations.html#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
-<span id="cb16-22"><a href="temporal-visualization-of-all-observations.html#cb16-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
-<span id="cb16-23"><a href="temporal-visualization-of-all-observations.html#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
-<span id="cb16-24"><a href="temporal-visualization-of-all-observations.html#cb16-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
-<span id="cb16-25"><a href="temporal-visualization-of-all-observations.html#cb16-25" aria-hidden="true" tabindex="-1"></a>    ))</span>
-<span id="cb16-26"><a href="temporal-visualization-of-all-observations.html#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-27"><a href="temporal-visualization-of-all-observations.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb16-28"><a href="temporal-visualization-of-all-observations.html#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
-<span id="cb16-29"><a href="temporal-visualization-of-all-observations.html#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-30"><a href="temporal-visualization-of-all-observations.html#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Note: there are atleast 77 different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Yuen&#39;s trimmed means test)</span></span>
-<span id="cb16-31"><a href="temporal-visualization-of-all-observations.html#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Please view the statistics below for more details</span></span>
-<span id="cb16-32"><a href="temporal-visualization-of-all-observations.html#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-33"><a href="temporal-visualization-of-all-observations.html#cb16-33" aria-hidden="true" tabindex="-1"></a>stats_timePeriod_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist, timePeriod, logNchk, <span class="at">type =</span> <span class="st">&quot;robust&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-34"><a href="temporal-visualization-of-all-observations.html#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-35"><a href="temporal-visualization-of-all-observations.html#cb16-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
-<span id="cb16-36"><a href="temporal-visualization-of-all-observations.html#cb16-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-37"><a href="temporal-visualization-of-all-observations.html#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_timePeriod_logNChk[,<span class="sc">-</span><span class="dv">10</span>], <span class="st">&quot;results/02_pairwiseComparisons_timePeriod_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
+<span id="cb16-8"><a href="temporal-visualization-of-all-observations.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
+<span id="cb16-9"><a href="temporal-visualization-of-all-observations.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
+<span id="cb16-10"><a href="temporal-visualization-of-all-observations.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of checklists by time period across 25 x 25 km grid cells&quot;</span>,</span>
+<span id="cb16-11"><a href="temporal-visualization-of-all-observations.html#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
+<span id="cb16-12"><a href="temporal-visualization-of-all-observations.html#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
+<span id="cb16-13"><a href="temporal-visualization-of-all-observations.html#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#7E1900&quot;</span>, <span class="st">&quot;#944611&quot;</span>, <span class="st">&quot;#A66B20&quot;</span>, <span class="st">&quot;#B89130&quot;</span>, <span class="st">&quot;#CBB94A&quot;</span>, <span class="st">&quot;#E0DC7B&quot;</span>,<span class="st">&quot;#180B09&quot;</span> ,<span class="st">&quot;#2C0E00&quot;</span>, <span class="st">&quot;#461300&quot;</span>, <span class="st">&quot;#68240F&quot;</span>, <span class="st">&quot;#8E422E&quot;</span>, <span class="st">&quot;#B36556&quot;</span>,<span class="st">&quot;#D88881&quot;</span>, <span class="st">&quot;#4799C9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="temporal-visualization-of-all-observations.html#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb16-15"><a href="temporal-visualization-of-all-observations.html#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb16-16"><a href="temporal-visualization-of-all-observations.html#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb16-17"><a href="temporal-visualization-of-all-observations.html#cb16-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb16-18"><a href="temporal-visualization-of-all-observations.html#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb16-19"><a href="temporal-visualization-of-all-observations.html#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb16-20"><a href="temporal-visualization-of-all-observations.html#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb16-21"><a href="temporal-visualization-of-all-observations.html#cb16-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb16-22"><a href="temporal-visualization-of-all-observations.html#cb16-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb16-23"><a href="temporal-visualization-of-all-observations.html#cb16-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb16-24"><a href="temporal-visualization-of-all-observations.html#cb16-24" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb16-25"><a href="temporal-visualization-of-all-observations.html#cb16-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-26"><a href="temporal-visualization-of-all-observations.html#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb16-27"><a href="temporal-visualization-of-all-observations.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb16-28"><a href="temporal-visualization-of-all-observations.html#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-29"><a href="temporal-visualization-of-all-observations.html#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="do">## Note: there are atleast 69 different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test)</span></span>
+<span id="cb16-30"><a href="temporal-visualization-of-all-observations.html#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Please view the statistics below for more details</span></span>
+<span id="cb16-31"><a href="temporal-visualization-of-all-observations.html#cb16-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-32"><a href="temporal-visualization-of-all-observations.html#cb16-32" aria-hidden="true" tabindex="-1"></a>stats_timePeriod_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist, timePeriod, logNchk) <span class="sc">%&gt;%</span></span>
+<span id="cb16-33"><a href="temporal-visualization-of-all-observations.html#cb16-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-34"><a href="temporal-visualization-of-all-observations.html#cb16-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb16-35"><a href="temporal-visualization-of-all-observations.html#cb16-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-36"><a href="temporal-visualization-of-all-observations.html#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_timePeriod_logNChk[,<span class="sc">-</span><span class="dv">9</span>], <span class="st">&quot;results/02_pairwiseComparisons_timePeriod_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
 <div class="figure">
 <img src="figs/fig_logChecklists_timePeriod.png" alt="" />
-<p class="caption">Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Yuen’s trimmed means test)</p>
+<p class="caption">Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)</p>
 </div>
 </div>
-<div id="figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> Figure: Proportion of checklists reporting species in each grid cell by time period<a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Figure: Proportion of checklists reporting species in each grid cell by time period<a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Note: Here we visualize the proportion of checklists that report a particular species for every 25 x 25 km cell (no specific filter is being applied) for each time period</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="temporal-visualization-of-all-observations.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
 <span id="cb17-2"><a href="temporal-visualization-of-all-observations.html#cb17-2" aria-hidden="true" tabindex="-1"></a>ebd_summary<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(ebd_summary<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
@@ -429,6 +453,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb17-43"><a href="temporal-visualization-of-all-observations.html#cb17-43" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb17-44"><a href="temporal-visualization-of-all-observations.html#cb17-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-45"><a href="temporal-visualization-of-all-observations.html#cb17-45" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+</div>
+<div id="save-.rdata-for-future-scripts-1" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> save .RData for future scripts<a href="temporal-visualization-of-all-observations.html#save-.rdata-for-future-scripts-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="temporal-visualization-of-all-observations.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&quot;data/02_ebd-India-spatial-temporal.RData&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
@@ -437,8 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="visualization-of-all-observations-over-time.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="visualization-of-all-observations-over-time.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="locality-type.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

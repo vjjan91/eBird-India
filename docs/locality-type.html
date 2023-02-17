@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 4 Locality type | Source code and supplementary material for independent validation of State of India’s birds</title>
+  <meta name="description" content="Section 4 Locality type | Source code and supplementary material for independent validation of State of India’s birds" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 4 Locality type | Source code and supplementary material for independent validation of State of India’s birds" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="vjjan91/eBird-India" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 4 Locality type | Source code and supplementary material for independent validation of State of India’s birds" />
+  
+  
+  
+
+<meta name="author" content="Vijay Ramesh" />
+
+
+<meta name="date" content="2023-02-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="temporal-visualization-of-all-observations.html"/>
+<link rel="next" href="protocol-type.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#data-processing"><i class="fa fa-check"></i><b>1.1</b> Data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html"><i class="fa fa-check"></i><b>2</b> Visualization of all observations over time</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#prepare-libraries"><i class="fa fa-check"></i><b>2.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="2.2" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#subset-observations-by-geographical-confines-of-the-study-area"><i class="fa fa-check"></i><b>2.2</b> Subset observations by geographical confines of the study area</a></li>
+<li class="chapter" data-level="2.3" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#data-cleaning-prior-to-visualization"><i class="fa fa-check"></i><b>2.3</b> Data cleaning prior to visualization</a></li>
+<li class="chapter" data-level="2.4" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#load-spatial-grids-for-checklist-locations"><i class="fa fa-check"></i><b>2.4</b> Load spatial grids for checklist locations</a></li>
+<li class="chapter" data-level="2.5" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#get-proportional-observation-counts-across-every-25-km-x-25-km-grid"><i class="fa fa-check"></i><b>2.5</b> Get proportional observation counts across every 25 km x 25 km grid</a></li>
+<li class="chapter" data-level="2.6" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#add-the-list-of-species"><i class="fa fa-check"></i><b>2.6</b> Add the list of species</a></li>
+<li class="chapter" data-level="2.7" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#checklist-distribution"><i class="fa fa-check"></i><b>2.7</b> Checklist distribution</a></li>
+<li class="chapter" data-level="2.8" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-checklist-distribution"><i class="fa fa-check"></i><b>2.8</b> Figure: Checklist distribution</a></li>
+<li class="chapter" data-level="2.9" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell"><i class="fa fa-check"></i><b>2.9</b> Figure: Proportion of checklists reporting species in each grid cell</a></li>
+<li class="chapter" data-level="2.10" data-path="visualization-of-all-observations-over-time.html"><a href="visualization-of-all-observations-over-time.html#save-.rdata-for-future-scripts"><i class="fa fa-check"></i><b>2.10</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html"><i class="fa fa-check"></i><b>3</b> Temporal visualization of all observations</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.3</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.4</b> Checklist distribution over time</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Testing for differences in number of checklists by time period</a></li>
+<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: violinplot of number of checklists by time period</a></li>
+<li class="chapter" data-level="3.8" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.8</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.9" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#save-.rdata-for-future-scripts-1"><i class="fa fa-check"></i><b>3.9</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="locality-type.html"><a href="locality-type.html"><i class="fa fa-check"></i><b>4</b> Locality type</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="locality-type.html"><a href="locality-type.html#prepare-libraries-2"><i class="fa fa-check"></i><b>4.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="locality-type.html"><a href="locality-type.html#load-.rdata-from-a-previous-script-1"><i class="fa fa-check"></i><b>4.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="4.3" data-path="locality-type.html"><a href="locality-type.html#subset-data-by-hotspot-or-personal-locations"><i class="fa fa-check"></i><b>4.3</b> Subset data by hotspot or personal locations</a></li>
+<li class="chapter" data-level="4.4" data-path="locality-type.html"><a href="locality-type.html#checklist-distribution-over-time-across-personal-and-hotspot-locations"><i class="fa fa-check"></i><b>4.4</b> Checklist distribution over time across personal and hotspot locations</a></li>
+<li class="chapter" data-level="4.5" data-path="locality-type.html"><a href="locality-type.html#figure-checklist-distribution-by-time-period-1"><i class="fa fa-check"></i><b>4.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="4.6" data-path="locality-type.html"><a href="locality-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-location-type"><i class="fa fa-check"></i><b>4.6</b> Testing for differences in number of checklists by time period and location type</a></li>
+<li class="chapter" data-level="4.7" data-path="locality-type.html"><a href="locality-type.html#figure-violinplot-of-number-of-checklists"><i class="fa fa-check"></i><b>4.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="4.8" data-path="locality-type.html"><a href="locality-type.html#visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time"><i class="fa fa-check"></i><b>4.8</b> Visualization of hotspot and personal observations from the same grid across time</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="protocol-type.html"><a href="protocol-type.html"><i class="fa fa-check"></i><b>5</b> Protocol type</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="protocol-type.html"><a href="protocol-type.html#prepare-libraries-3"><i class="fa fa-check"></i><b>5.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="protocol-type.html"><a href="protocol-type.html#load-.rdata-from-a-previous-script-2"><i class="fa fa-check"></i><b>5.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="5.3" data-path="protocol-type.html"><a href="protocol-type.html#subset-data-by-stationary-or-traveling-checklists"><i class="fa fa-check"></i><b>5.3</b> Subset data by stationary or traveling checklists</a></li>
+<li class="chapter" data-level="5.4" data-path="protocol-type.html"><a href="protocol-type.html#checklist-distribution-over-time-for-stationary-and-traveling-checklists"><i class="fa fa-check"></i><b>5.4</b> Checklist distribution over time for stationary and traveling checklists</a></li>
+<li class="chapter" data-level="5.5" data-path="protocol-type.html"><a href="protocol-type.html#figure-checklist-distribution-by-time-period-2"><i class="fa fa-check"></i><b>5.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="5.6" data-path="protocol-type.html"><a href="protocol-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type"><i class="fa fa-check"></i><b>5.6</b> Testing for differences in number of checklists by time period and protocol type</a></li>
+<li class="chapter" data-level="5.7" data-path="protocol-type.html"><a href="protocol-type.html#figure-violinplot-of-number-of-checklists-1"><i class="fa fa-check"></i><b>5.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="5.8" data-path="protocol-type.html"><a href="protocol-type.html#examining-variation-in-duration-of-checklists-over-time"><i class="fa fa-check"></i><b>5.8</b> Examining variation in duration of checklists over time</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Source code and supplementary material for independent validation of State of India’s birds</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="locality-type" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Section 4</span> Locality type<a href="locality-type.html#locality-type" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this script, we will visualize checklist observations spatially and temporally to assess if there are differences in reporting of observations depending on locality type - i.e. hotspot or personal observations.</p>
+<div id="prepare-libraries-2" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Prepare libraries<a href="locality-type.html#prepare-libraries-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="locality-type.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb19-2"><a href="locality-type.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb19-3"><a href="locality-type.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb19-4"><a href="locality-type.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb19-5"><a href="locality-type.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-6"><a href="locality-type.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb19-7"><a href="locality-type.html#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb19-8"><a href="locality-type.html#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-9"><a href="locality-type.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb19-10"><a href="locality-type.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb19-11"><a href="locality-type.html#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
+<span id="cb19-12"><a href="locality-type.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb19-13"><a href="locality-type.html#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb19-14"><a href="locality-type.html#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lme4)</span>
+<span id="cb19-15"><a href="locality-type.html#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(multcomp)</span>
+<span id="cb19-16"><a href="locality-type.html#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb19-17"><a href="locality-type.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb19-18"><a href="locality-type.html#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(paletteer)</span></code></pre></div>
+</div>
+<div id="load-.rdata-from-a-previous-script-1" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Load .Rdata from a previous script<a href="locality-type.html#load-.rdata-from-a-previous-script-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="locality-type.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/02_ebd-India-spatial-temporal.RData&quot;</span>)</span></code></pre></div>
+</div>
+<div id="subset-data-by-hotspot-or-personal-locations" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Subset data by hotspot or personal locations<a href="locality-type.html#subset-data-by-hotspot-or-personal-locations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="locality-type.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># personal locations</span></span>
+<span id="cb21-2"><a href="locality-type.html#cb21-2" aria-hidden="true" tabindex="-1"></a>ebd_persLoc <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="locality-type.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(locality_type <span class="sc">==</span> <span class="st">&quot;P&quot;</span>) <span class="co"># ~ 15 million observations </span></span>
+<span id="cb21-4"><a href="locality-type.html#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="locality-type.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># hotspot locations</span></span>
+<span id="cb21-6"><a href="locality-type.html#cb21-6" aria-hidden="true" tabindex="-1"></a>ebd_hotLoc <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="locality-type.html#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(locality_type <span class="sc">==</span> <span class="st">&quot;H&quot;</span>) <span class="co"># ~ 19 million observations</span></span>
+<span id="cb21-8"><a href="locality-type.html#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="locality-type.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="do">## count checklists in cell</span></span>
+<span id="cb21-10"><a href="locality-type.html#cb21-10" aria-hidden="true" tabindex="-1"></a>ebd_summary_pers <span class="ot">&lt;-</span> ebd_persLoc[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb21-11"><a href="locality-type.html#cb21-11" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod)]</span>
+<span id="cb21-12"><a href="locality-type.html#cb21-12" aria-hidden="true" tabindex="-1"></a>ebd_summary_hot <span class="ot">&lt;-</span> ebd_hotLoc[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb21-13"><a href="locality-type.html#cb21-13" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y, timePeriod)]</span>
+<span id="cb21-14"><a href="locality-type.html#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="locality-type.html#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
+<span id="cb21-16"><a href="locality-type.html#cb21-16" aria-hidden="true" tabindex="-1"></a>ebd_summary_pers <span class="ot">&lt;-</span> ebd_summary_pers[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb21-17"><a href="locality-type.html#cb21-17" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb21-18"><a href="locality-type.html#cb21-18" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb21-19"><a href="locality-type.html#cb21-19" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod)</span>
+<span id="cb21-20"><a href="locality-type.html#cb21-20" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb21-21"><a href="locality-type.html#cb21-21" aria-hidden="true" tabindex="-1"></a>ebd_summary_pers[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb21-22"><a href="locality-type.html#cb21-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-23"><a href="locality-type.html#cb21-23" aria-hidden="true" tabindex="-1"></a>ebd_summary_hot <span class="ot">&lt;-</span> ebd_summary_hot[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb21-24"><a href="locality-type.html#cb21-24" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb21-25"><a href="locality-type.html#cb21-25" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb21-26"><a href="locality-type.html#cb21-26" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name, timePeriod)</span>
+<span id="cb21-27"><a href="locality-type.html#cb21-27" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb21-28"><a href="locality-type.html#cb21-28" aria-hidden="true" tabindex="-1"></a>ebd_summary_hot[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb21-29"><a href="locality-type.html#cb21-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-30"><a href="locality-type.html#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
+<span id="cb21-31"><a href="locality-type.html#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
+<span id="cb21-32"><a href="locality-type.html#cb21-32" aria-hidden="true" tabindex="-1"></a>ebd_summary_pers <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_pers) <span class="sc">%&gt;%</span></span>
+<span id="cb21-33"><a href="locality-type.html#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb21-34"><a href="locality-type.html#cb21-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod <span class="co"># ,</span></span>
+<span id="cb21-35"><a href="locality-type.html#cb21-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb21-36"><a href="locality-type.html#cb21-36" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-37"><a href="locality-type.html#cb21-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb21-38"><a href="locality-type.html#cb21-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-39"><a href="locality-type.html#cb21-39" aria-hidden="true" tabindex="-1"></a>ebd_summary_hot <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary_hot) <span class="sc">%&gt;%</span></span>
+<span id="cb21-40"><a href="locality-type.html#cb21-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb21-41"><a href="locality-type.html#cb21-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name, timePeriod <span class="co"># ,</span></span>
+<span id="cb21-42"><a href="locality-type.html#cb21-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb21-43"><a href="locality-type.html#cb21-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-44"><a href="locality-type.html#cb21-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span>
+<span id="cb21-45"><a href="locality-type.html#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-46"><a href="locality-type.html#cb21-46" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for species list above</span></span>
+<span id="cb21-47"><a href="locality-type.html#cb21-47" aria-hidden="true" tabindex="-1"></a>ebd_summary_pers <span class="ot">&lt;-</span> ebd_summary_pers[ebd_summary_pers<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span>
+<span id="cb21-48"><a href="locality-type.html#cb21-48" aria-hidden="true" tabindex="-1"></a>ebd_summary_hot <span class="ot">&lt;-</span> ebd_summary_hot[ebd_summary_hot<span class="sc">$</span>scientific_name <span class="sc">%in%</span> speciesOfInterest<span class="sc">$</span>scientific_name, ]</span></code></pre></div>
+</div>
+<div id="checklist-distribution-over-time-across-personal-and-hotspot-locations" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Checklist distribution over time across personal and hotspot locations<a href="locality-type.html#checklist-distribution-over-time-across-personal-and-hotspot-locations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="locality-type.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of checklists</span></span>
+<span id="cb22-2"><a href="locality-type.html#cb22-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_pers <span class="ot">&lt;-</span> ebd_summary_pers <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="locality-type.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod)</span>
+<span id="cb22-4"><a href="locality-type.html#cb22-4" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_hot <span class="ot">&lt;-</span> ebd_summary_hot <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="locality-type.html#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y, nchk, timePeriod)</span>
+<span id="cb22-6"><a href="locality-type.html#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="locality-type.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># species-specific number of grids by time Period</span></span>
+<span id="cb22-8"><a href="locality-type.html#cb22-8" aria-hidden="true" tabindex="-1"></a>spp_grids_pers <span class="ot">&lt;-</span> ebd_summary_pers <span class="sc">%&gt;%</span></span>
+<span id="cb22-9"><a href="locality-type.html#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name, timePeriod) <span class="sc">%&gt;%</span></span>
+<span id="cb22-10"><a href="locality-type.html#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y) <span class="sc">%&gt;%</span></span>
+<span id="cb22-11"><a href="locality-type.html#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(scientific_name,</span>
+<span id="cb22-12"><a href="locality-type.html#cb22-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;n_grids&quot;</span></span>
+<span id="cb22-13"><a href="locality-type.html#cb22-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-14"><a href="locality-type.html#cb22-14" aria-hidden="true" tabindex="-1"></a>spp_grids_hot <span class="ot">&lt;-</span> ebd_summary_hot <span class="sc">%&gt;%</span></span>
+<span id="cb22-15"><a href="locality-type.html#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(scientific_name, timePeriod) <span class="sc">%&gt;%</span></span>
+<span id="cb22-16"><a href="locality-type.html#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(X, Y) <span class="sc">%&gt;%</span></span>
+<span id="cb22-17"><a href="locality-type.html#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(scientific_name,</span>
+<span id="cb22-18"><a href="locality-type.html#cb22-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;n_grids&quot;</span></span>
+<span id="cb22-19"><a href="locality-type.html#cb22-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-20"><a href="locality-type.html#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="locality-type.html#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Write the above two results</span></span>
+<span id="cb22-22"><a href="locality-type.html#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spp_grids_pers, <span class="st">&quot;results/03_ngrids-per-spp-by-timePeriod-personalLoc.csv&quot;</span>, <span class="at">row.names=</span>F)</span>
+<span id="cb22-23"><a href="locality-type.html#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(spp_grids_hot, <span class="st">&quot;results/03_ngrids-per-spp-by-timePeriod-hotLoc.csv&quot;</span>, <span class="at">row.names=</span>F)</span></code></pre></div>
+</div>
+<div id="figure-checklist-distribution-by-time-period-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Figure: Checklist distribution by time period<a href="locality-type.html#figure-checklist-distribution-by-time-period-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="locality-type.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
+<span id="cb23-2"><a href="locality-type.html#cb23-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_pers<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_pers<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb23-3"><a href="locality-type.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb23-4"><a href="locality-type.html#cb23-4" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_hot<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(tot_n_chklist_hot<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb23-5"><a href="locality-type.html#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb23-6"><a href="locality-type.html#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="locality-type.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get a plot of number of checklists across grids for each timePeriod</span></span>
+<span id="cb23-8"><a href="locality-type.html#cb23-8" aria-hidden="true" tabindex="-1"></a>plotNchk_pers <span class="ot">&lt;-</span></span>
+<span id="cb23-9"><a href="locality-type.html#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-10"><a href="locality-type.html#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="locality-type.html#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb23-12"><a href="locality-type.html#cb23-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> tot_n_chklist_pers,</span>
+<span id="cb23-13"><a href="locality-type.html#cb23-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> nchk), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span></span>
+<span id="cb23-14"><a href="locality-type.html#cb23-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="locality-type.html#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb23-16"><a href="locality-type.html#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb23-17"><a href="locality-type.html#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb23-18"><a href="locality-type.html#cb23-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb23-19"><a href="locality-type.html#cb23-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>,</span>
+<span id="cb23-20"><a href="locality-type.html#cb23-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">50000</span>),</span>
+<span id="cb23-21"><a href="locality-type.html#cb23-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb23-22"><a href="locality-type.html#cb23-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-23"><a href="locality-type.html#cb23-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb23-24"><a href="locality-type.html#cb23-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb23-25"><a href="locality-type.html#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb23-26"><a href="locality-type.html#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-27"><a href="locality-type.html#cb23-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb23-28"><a href="locality-type.html#cb23-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-29"><a href="locality-type.html#cb23-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb23-30"><a href="locality-type.html#cb23-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb23-31"><a href="locality-type.html#cb23-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-32"><a href="locality-type.html#cb23-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">checklists&quot;</span>)</span>
+<span id="cb23-33"><a href="locality-type.html#cb23-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-34"><a href="locality-type.html#cb23-34" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb23-35"><a href="locality-type.html#cb23-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plotNchk_pers,</span>
+<span id="cb23-36"><a href="locality-type.html#cb23-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_number_checklists_25km_by_timePeriod_persLoc.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb23-37"><a href="locality-type.html#cb23-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-38"><a href="locality-type.html#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb23-39"><a href="locality-type.html#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-40"><a href="locality-type.html#cb23-40" aria-hidden="true" tabindex="-1"></a>plotNchk_hot <span class="ot">&lt;-</span></span>
+<span id="cb23-41"><a href="locality-type.html#cb23-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-42"><a href="locality-type.html#cb23-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb23-43"><a href="locality-type.html#cb23-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb23-44"><a href="locality-type.html#cb23-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> tot_n_chklist_hot,</span>
+<span id="cb23-45"><a href="locality-type.html#cb23-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> nchk), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span></span>
+<span id="cb23-46"><a href="locality-type.html#cb23-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-47"><a href="locality-type.html#cb23-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb23-48"><a href="locality-type.html#cb23-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb23-49"><a href="locality-type.html#cb23-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb23-50"><a href="locality-type.html#cb23-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb23-51"><a href="locality-type.html#cb23-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>,</span>
+<span id="cb23-52"><a href="locality-type.html#cb23-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">50000</span>),</span>
+<span id="cb23-53"><a href="locality-type.html#cb23-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb23-54"><a href="locality-type.html#cb23-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-55"><a href="locality-type.html#cb23-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb23-56"><a href="locality-type.html#cb23-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb23-57"><a href="locality-type.html#cb23-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb23-58"><a href="locality-type.html#cb23-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-59"><a href="locality-type.html#cb23-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb23-60"><a href="locality-type.html#cb23-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-61"><a href="locality-type.html#cb23-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb23-62"><a href="locality-type.html#cb23-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb23-63"><a href="locality-type.html#cb23-63" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-64"><a href="locality-type.html#cb23-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;number</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">checklists&quot;</span>)</span>
+<span id="cb23-65"><a href="locality-type.html#cb23-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-66"><a href="locality-type.html#cb23-66" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb23-67"><a href="locality-type.html#cb23-67" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plotNchk_hot,</span>
+<span id="cb23-68"><a href="locality-type.html#cb23-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_number_checklists_25km_by_timePeriod_hotLoc.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb23-69"><a href="locality-type.html#cb23-69" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-70"><a href="locality-type.html#cb23-70" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="figs/fig_number_checklists_25km_by_timePeriod_persLoc.png" alt="Number of checklists by time period and personal location" />
+<img src="figs/fig_number_checklists_25km_by_timePeriod_hotLoc.png" alt="Number of checklists by time period and hotspot location" /></p>
+</div>
+<div id="testing-for-differences-in-number-of-checklists-by-time-period-and-location-type" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Testing for differences in number of checklists by time period and location type<a href="locality-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-location-type" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="locality-type.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test if there are significant differences in the number of checklists by time period</span></span>
+<span id="cb24-2"><a href="locality-type.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="locality-type.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add a grid code (to be used in a random effects model)</span></span>
+<span id="cb24-4"><a href="locality-type.html#cb24-4" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_pers <span class="ot">&lt;-</span> tot_n_chklist_pers <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="locality-type.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(X,Y) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="locality-type.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gridCode =</span> <span class="fu">cur_group_id</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="locality-type.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb24-8"><a href="locality-type.html#cb24-8" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_hot <span class="ot">&lt;-</span> tot_n_chklist_hot <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="locality-type.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(X,Y) <span class="sc">%&gt;%</span></span>
+<span id="cb24-10"><a href="locality-type.html#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gridCode =</span> <span class="fu">cur_group_id</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb24-11"><a href="locality-type.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb24-12"><a href="locality-type.html#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="locality-type.html#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: this takes a long-time to run</span></span>
+<span id="cb24-14"><a href="locality-type.html#cb24-14" aria-hidden="true" tabindex="-1"></a>glmm_nChk_time_pers <span class="ot">&lt;-</span> <span class="fu">glmer</span>(nchk <span class="sc">~</span> timePeriod <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gridCode), <span class="at">data =</span> tot_n_chklist_pers, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link=</span><span class="st">&quot;log&quot;</span>))</span>
+<span id="cb24-15"><a href="locality-type.html#cb24-15" aria-hidden="true" tabindex="-1"></a>glmm_nChk_time_hot <span class="ot">&lt;-</span> <span class="fu">glmer</span>(nchk <span class="sc">~</span> timePeriod <span class="sc">+</span> (<span class="dv">1</span><span class="sc">|</span>gridCode), <span class="at">data =</span> tot_n_chklist_hot, <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link=</span><span class="st">&quot;log&quot;</span>))</span>
+<span id="cb24-16"><a href="locality-type.html#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="locality-type.html#cb24-17" aria-hidden="true" tabindex="-1"></a>tukey_nChk_time_pers <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">glht</span>(glmm_nChk_time_pers, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">timePeriod =</span><span class="st">&quot;Tukey&quot;</span>)))</span>
+<span id="cb24-18"><a href="locality-type.html#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(tukey_nChk_time_pers)</span>
+<span id="cb24-19"><a href="locality-type.html#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-20"><a href="locality-type.html#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="co"># pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 </span></span>
+<span id="cb24-21"><a href="locality-type.html#cb24-21" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;d&quot;       &quot;c&quot;       &quot;d&quot;       &quot;b&quot;       &quot;a&quot;       &quot;e&quot;       &quot;f&quot; </span></span>
+<span id="cb24-22"><a href="locality-type.html#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="co">#     2016      2017      2018      2019      2020      2021      2022 </span></span>
+<span id="cb24-23"><a href="locality-type.html#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;g&quot;       &quot;h&quot;       &quot;i&quot;       &quot;j&quot;       &quot;m&quot;       &quot;l&quot;       &quot;k&quot; </span></span>
+<span id="cb24-24"><a href="locality-type.html#cb24-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="locality-type.html#cb24-25" aria-hidden="true" tabindex="-1"></a>tukey_nChk_time_hot <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">glht</span>(glmm_nChk_time_hot, <span class="at">linfct=</span><span class="fu">mcp</span>(<span class="at">timePeriod =</span><span class="st">&quot;Tukey&quot;</span>)))</span>
+<span id="cb24-26"><a href="locality-type.html#cb24-26" aria-hidden="true" tabindex="-1"></a><span class="fu">cld</span>(tukey_nChk_time_hot)</span>
+<span id="cb24-27"><a href="locality-type.html#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="locality-type.html#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co"># pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 </span></span>
+<span id="cb24-29"><a href="locality-type.html#cb24-29" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;b&quot;       &quot;a&quot;       &quot;d&quot;       &quot;c&quot;       &quot;a&quot;       &quot;e&quot;       &quot;f&quot; </span></span>
+<span id="cb24-30"><a href="locality-type.html#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="co">#     2016      2017      2018      2019      2020      2021      2022 </span></span>
+<span id="cb24-31"><a href="locality-type.html#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="co">#      &quot;g&quot;       &quot;h&quot;       &quot;i&quot;       &quot;k&quot;       &quot;l&quot;       &quot;m&quot;       &quot;j&quot; </span></span></code></pre></div>
+</div>
+<div id="figure-violinplot-of-number-of-checklists" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Figure: violinplot of number of checklists<a href="locality-type.html#figure-violinplot-of-number-of-checklists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="locality-type.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create log values of nChk</span></span>
+<span id="cb25-2"><a href="locality-type.html#cb25-2" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_pers<span class="sc">$</span>logNchk <span class="ot">&lt;-</span> <span class="fu">log</span>(tot_n_chklist_pers<span class="sc">$</span>nchk)</span>
+<span id="cb25-3"><a href="locality-type.html#cb25-3" aria-hidden="true" tabindex="-1"></a>tot_n_chklist_hot<span class="sc">$</span>logNchk <span class="ot">&lt;-</span> <span class="fu">log</span>(tot_n_chklist_hot<span class="sc">$</span>nchk)</span>
+<span id="cb25-4"><a href="locality-type.html#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="locality-type.html#cb25-5" aria-hidden="true" tabindex="-1"></a>fig_nchk_time_pers <span class="ot">&lt;-</span> <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb25-6"><a href="locality-type.html#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_pers,</span>
+<span id="cb25-7"><a href="locality-type.html#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> timePeriod,</span>
+<span id="cb25-8"><a href="locality-type.html#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> logNchk,</span>
+<span id="cb25-9"><a href="locality-type.html#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
+<span id="cb25-10"><a href="locality-type.html#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
+<span id="cb25-11"><a href="locality-type.html#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of checklists by time period across personal locations&quot;</span>,</span>
+<span id="cb25-12"><a href="locality-type.html#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
+<span id="cb25-13"><a href="locality-type.html#cb25-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
+<span id="cb25-14"><a href="locality-type.html#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#7E1900&quot;</span>, <span class="st">&quot;#944611&quot;</span>, <span class="st">&quot;#A66B20&quot;</span>, <span class="st">&quot;#B89130&quot;</span>, <span class="st">&quot;#CBB94A&quot;</span>, <span class="st">&quot;#E0DC7B&quot;</span>,<span class="st">&quot;#180B09&quot;</span> ,<span class="st">&quot;#2C0E00&quot;</span>, <span class="st">&quot;#461300&quot;</span>, <span class="st">&quot;#68240F&quot;</span>, <span class="st">&quot;#8E422E&quot;</span>, <span class="st">&quot;#B36556&quot;</span>,<span class="st">&quot;#D88881&quot;</span>, <span class="st">&quot;#4799C9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb25-15"><a href="locality-type.html#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb25-16"><a href="locality-type.html#cb25-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-17"><a href="locality-type.html#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb25-18"><a href="locality-type.html#cb25-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-19"><a href="locality-type.html#cb25-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb25-20"><a href="locality-type.html#cb25-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb25-21"><a href="locality-type.html#cb25-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb25-22"><a href="locality-type.html#cb25-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb25-23"><a href="locality-type.html#cb25-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb25-24"><a href="locality-type.html#cb25-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb25-25"><a href="locality-type.html#cb25-25" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb25-26"><a href="locality-type.html#cb25-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-27"><a href="locality-type.html#cb25-27" aria-hidden="true" tabindex="-1"></a>fig_nchk_time_hot <span class="ot">&lt;-</span> <span class="fu">ggbetweenstats</span>(</span>
+<span id="cb25-28"><a href="locality-type.html#cb25-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> tot_n_chklist_hot,</span>
+<span id="cb25-29"><a href="locality-type.html#cb25-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> timePeriod,</span>
+<span id="cb25-30"><a href="locality-type.html#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> logNchk,</span>
+<span id="cb25-31"><a href="locality-type.html#cb25-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Time Period&quot;</span>, </span>
+<span id="cb25-32"><a href="locality-type.html#cb25-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;log Number of checklists&quot;</span>,</span>
+<span id="cb25-33"><a href="locality-type.html#cb25-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Distribution of checklists by time period across hotspot locations&quot;</span>,</span>
+<span id="cb25-34"><a href="locality-type.html#cb25-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.type =</span> <span class="st">&quot;boxviolin&quot;</span>,</span>
+<span id="cb25-35"><a href="locality-type.html#cb25-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> F)<span class="sc">+</span> <span class="do">## Note: this is done to avoid plot cluttering</span></span>
+<span id="cb25-36"><a href="locality-type.html#cb25-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#7E1900&quot;</span>, <span class="st">&quot;#944611&quot;</span>, <span class="st">&quot;#A66B20&quot;</span>, <span class="st">&quot;#B89130&quot;</span>, <span class="st">&quot;#CBB94A&quot;</span>, <span class="st">&quot;#E0DC7B&quot;</span>,<span class="st">&quot;#180B09&quot;</span> ,<span class="st">&quot;#2C0E00&quot;</span>, <span class="st">&quot;#461300&quot;</span>, <span class="st">&quot;#68240F&quot;</span>, <span class="st">&quot;#8E422E&quot;</span>, <span class="st">&quot;#B36556&quot;</span>,<span class="st">&quot;#D88881&quot;</span>, <span class="st">&quot;#4799C9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb25-37"><a href="locality-type.html#cb25-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb25-38"><a href="locality-type.html#cb25-38" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">18</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-39"><a href="locality-type.html#cb25-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>,</span>
+<span id="cb25-40"><a href="locality-type.html#cb25-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb25-41"><a href="locality-type.html#cb25-41" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">family=</span><span class="st">&quot;Century Gothic&quot;</span>,<span class="at">size =</span> <span class="dv">14</span>),</span>
+<span id="cb25-42"><a href="locality-type.html#cb25-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(</span>
+<span id="cb25-43"><a href="locality-type.html#cb25-43" aria-hidden="true" tabindex="-1"></a>      <span class="at">family =</span> <span class="st">&quot;Century Gothic&quot;</span>, </span>
+<span id="cb25-44"><a href="locality-type.html#cb25-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb25-45"><a href="locality-type.html#cb25-45" aria-hidden="true" tabindex="-1"></a>      <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb25-46"><a href="locality-type.html#cb25-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">color=</span><span class="st">&quot;#1b2838&quot;</span></span>
+<span id="cb25-47"><a href="locality-type.html#cb25-47" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb25-48"><a href="locality-type.html#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-49"><a href="locality-type.html#cb25-49" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time_pers, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod_persLoc.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb25-50"><a href="locality-type.html#cb25-50" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb25-51"><a href="locality-type.html#cb25-51" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(fig_nchk_time_hot, <span class="at">filename =</span> <span class="st">&quot;figs/fig_logChecklists_timePeriod_hotLoc.png&quot;</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb25-52"><a href="locality-type.html#cb25-52" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb25-53"><a href="locality-type.html#cb25-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-54"><a href="locality-type.html#cb25-54" aria-hidden="true" tabindex="-1"></a><span class="do">## Note: pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test)</span></span>
+<span id="cb25-55"><a href="locality-type.html#cb25-55" aria-hidden="true" tabindex="-1"></a><span class="do">## Please view the statistics below for more details</span></span>
+<span id="cb25-56"><a href="locality-type.html#cb25-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-57"><a href="locality-type.html#cb25-57" aria-hidden="true" tabindex="-1"></a>stats_persLoc_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist_pers, timePeriod, logNchk) <span class="sc">%&gt;%</span></span>
+<span id="cb25-58"><a href="locality-type.html#cb25-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-59"><a href="locality-type.html#cb25-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb25-60"><a href="locality-type.html#cb25-60" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_persLoc_logNChk[,<span class="sc">-</span><span class="dv">9</span>], <span class="st">&quot;results/03_pairwiseComparisons_persLoc_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span>
+<span id="cb25-61"><a href="locality-type.html#cb25-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-62"><a href="locality-type.html#cb25-62" aria-hidden="true" tabindex="-1"></a>stats_hotLoc_logNChk <span class="ot">&lt;-</span> <span class="fu">pairwise_comparisons</span>(tot_n_chklist_hot, timePeriod, logNchk) <span class="sc">%&gt;%</span></span>
+<span id="cb25-63"><a href="locality-type.html#cb25-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(p.value <span class="sc">&lt;=</span> <span class="fl">0.05</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-64"><a href="locality-type.html#cb25-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>()</span>
+<span id="cb25-65"><a href="locality-type.html#cb25-65" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(stats_hotLoc_logNChk[,<span class="sc">-</span><span class="dv">9</span>], <span class="st">&quot;results/03_pairwiseComparisons_hotLoc_logNchk.csv&quot;</span>, <span class="at">row.names =</span> F)</span></code></pre></div>
+<p><img src="figs/fig_logChecklists_timePeriod_persLoc.png" alt="Distribution of the log number of checklists across personal locations. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)" />
+<img src="figs/fig_logChecklists_timePeriod_hotLoc.png" alt="Distribution of the log number of checklists across hotspot locations. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)" />
+## What is the number of checklists from each grid that are reported from hotspots compared to personal observations?</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="locality-type.html#cb26-1" aria-hidden="true" tabindex="-1"></a>pers_hot <span class="ot">&lt;-</span>  <span class="fu">left_join</span>(tot_n_chklist_pers[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)], tot_n_chklist_hot[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>)],<span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>, <span class="st">&quot;timePeriod&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="locality-type.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">replace</span>(<span class="fu">is.na</span>(.), <span class="dv">0</span>)</span>
+<span id="cb26-3"><a href="locality-type.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pers_hot)[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="st">&quot;P&quot;</span></span>
+<span id="cb26-4"><a href="locality-type.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pers_hot)[<span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="st">&quot;H&quot;</span></span>
+<span id="cb26-5"><a href="locality-type.html#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="locality-type.html#cb26-6" aria-hidden="true" tabindex="-1"></a>pers_hot <span class="ot">&lt;-</span> pers_hot <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="locality-type.html#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_pers =</span> ((P)<span class="sc">/</span>(P<span class="sc">+</span>H))) <span class="sc">%&gt;%</span></span>
+<span id="cb26-8"><a href="locality-type.html#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_hot =</span> ((H)<span class="sc">/</span>(P<span class="sc">+</span>H)))</span></code></pre></div>
+</div>
+<div id="visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Visualization of hotspot and personal observations from the same grid across time<a href="locality-type.html#visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="locality-type.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reordering factors for plotting</span></span>
+<span id="cb27-2"><a href="locality-type.html#cb27-2" aria-hidden="true" tabindex="-1"></a>pers_hot<span class="sc">$</span>timePeriod <span class="ot">&lt;-</span> <span class="fu">factor</span>(pers_hot<span class="sc">$</span>timePeriod, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;pre2000&quot;</span>, <span class="st">&quot;2000-2006&quot;</span>, <span class="st">&quot;2007-2010&quot;</span>,<span class="st">&quot;2011-2012&quot;</span>,<span class="st">&quot;2013&quot;</span>,<span class="st">&quot;2014&quot;</span>,<span class="st">&quot;2015&quot;</span>,</span>
+<span id="cb27-3"><a href="locality-type.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2016&quot;</span>,<span class="st">&quot;2017&quot;</span>,<span class="st">&quot;2018&quot;</span>,<span class="st">&quot;2019&quot;</span>,<span class="st">&quot;2020&quot;</span>,<span class="st">&quot;2021&quot;</span>,<span class="st">&quot;2022&quot;</span>))</span>
+<span id="cb27-4"><a href="locality-type.html#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="locality-type.html#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get a plot of proportion of checklists across grids for each timePeriod for personal observations</span></span>
+<span id="cb27-6"><a href="locality-type.html#cb27-6" aria-hidden="true" tabindex="-1"></a>plot_prop_pers <span class="ot">&lt;-</span></span>
+<span id="cb27-7"><a href="locality-type.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-8"><a href="locality-type.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb27-9"><a href="locality-type.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb27-10"><a href="locality-type.html#cb27-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pers_hot,</span>
+<span id="cb27-11"><a href="locality-type.html#cb27-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> prop_pers), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="locality-type.html#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="locality-type.html#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb27-14"><a href="locality-type.html#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb27-15"><a href="locality-type.html#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span></span>
+<span id="cb27-16"><a href="locality-type.html#cb27-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="locality-type.html#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb27-18"><a href="locality-type.html#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb27-19"><a href="locality-type.html#cb27-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb27-20"><a href="locality-type.html#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-21"><a href="locality-type.html#cb27-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb27-22"><a href="locality-type.html#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-23"><a href="locality-type.html#cb27-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb27-24"><a href="locality-type.html#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb27-25"><a href="locality-type.html#cb27-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-26"><a href="locality-type.html#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Proportion</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">personal checklist obs.&quot;</span>)</span>
+<span id="cb27-27"><a href="locality-type.html#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-28"><a href="locality-type.html#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb27-29"><a href="locality-type.html#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plot_prop_pers,</span>
+<span id="cb27-30"><a href="locality-type.html#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_prop_checklists_persLoc.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb27-31"><a href="locality-type.html#cb27-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-32"><a href="locality-type.html#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb27-33"><a href="locality-type.html#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-34"><a href="locality-type.html#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="co"># get a plot of proportion of checklists across grids for each timePeriod for hotspot observations</span></span>
+<span id="cb27-35"><a href="locality-type.html#cb27-35" aria-hidden="true" tabindex="-1"></a>plot_prop_hot <span class="ot">&lt;-</span></span>
+<span id="cb27-36"><a href="locality-type.html#cb27-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-37"><a href="locality-type.html#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> land, <span class="at">fill =</span> <span class="st">&quot;grey90&quot;</span>, <span class="at">col =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb27-38"><a href="locality-type.html#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(</span>
+<span id="cb27-39"><a href="locality-type.html#cb27-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> pers_hot,</span>
+<span id="cb27-40"><a href="locality-type.html#cb27-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(X, Y, <span class="at">fill =</span> prop_hot), <span class="at">lwd =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="st">&quot;grey90&quot;</span>) <span class="sc">+</span></span>
+<span id="cb27-41"><a href="locality-type.html#cb27-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> india_states, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lwd =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb27-42"><a href="locality-type.html#cb27-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_scico</span>(</span>
+<span id="cb27-43"><a href="locality-type.html#cb27-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">&quot;lajolla&quot;</span>,</span>
+<span id="cb27-44"><a href="locality-type.html#cb27-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">direction =</span> <span class="dv">1</span></span>
+<span id="cb27-45"><a href="locality-type.html#cb27-45" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-46"><a href="locality-type.html#cb27-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>timePeriod) <span class="sc">+</span></span>
+<span id="cb27-47"><a href="locality-type.html#cb27-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;xmin&quot;</span>, <span class="st">&quot;xmax&quot;</span>)], <span class="at">ylim =</span> bbox[<span class="fu">c</span>(<span class="st">&quot;ymin&quot;</span>, <span class="st">&quot;ymax&quot;</span>)]) <span class="sc">+</span></span>
+<span id="cb27-48"><a href="locality-type.html#cb27-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_few</span>() <span class="sc">+</span></span>
+<span id="cb27-49"><a href="locality-type.html#cb27-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb27-50"><a href="locality-type.html#cb27-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb27-51"><a href="locality-type.html#cb27-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-52"><a href="locality-type.html#cb27-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb27-53"><a href="locality-type.html#cb27-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span>
+<span id="cb27-54"><a href="locality-type.html#cb27-54" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb27-55"><a href="locality-type.html#cb27-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Proportion</span><span class="sc">\n</span><span class="st">of</span><span class="sc">\n</span><span class="st">hotspot checklist obs.&quot;</span>)</span>
+<span id="cb27-56"><a href="locality-type.html#cb27-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-57"><a href="locality-type.html#cb27-57" aria-hidden="true" tabindex="-1"></a><span class="co"># export data</span></span>
+<span id="cb27-58"><a href="locality-type.html#cb27-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(plot_prop_hot,</span>
+<span id="cb27-59"><a href="locality-type.html#cb27-59" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="st">&quot;figs/fig_prop_checklists_hotLoc.png&quot;</span>, <span class="at">height =</span> <span class="dv">15</span>,  <span class="at">width =</span> <span class="dv">15</span>, <span class="at">device =</span> <span class="fu">png</span>(), <span class="at">dpi =</span> <span class="dv">300</span></span>
+<span id="cb27-60"><a href="locality-type.html#cb27-60" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-61"><a href="locality-type.html#cb27-61" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p><img src="figs/fig_prop_checklists_persLoc.png" alt="Proportion of observations from a 25km x 25km grid that are assigned to personal locations" />
+<img src="figs/fig_prop_checklists_hotLoc.png" alt="Proportion of observations from a 25km x 25km grid that are assigned to personal locations" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="temporal-visualization-of-all-observations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="protocol-type.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/vjjan91/SoIB-independent-validation/edit/master/03_locality-type.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

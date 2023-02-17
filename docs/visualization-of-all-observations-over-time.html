@@ -12,7 +12,7 @@
   <meta property="og:type" content="book" />
   
   
-  <meta name="github-repo" content="vjjan91/SoIB-independent-validation" />
+  <meta name="github-repo" content="vjjan91/eBird-India" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Section 2 Visualization of all observations over time | Source code and supplementary material for independent validation of State of India’s birds" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Vijay Ramesh" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2023-02-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -152,13 +152,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html"><i class="fa fa-check"></i><b>3</b> Temporal visualization of all observations</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.1</b> Load .Rdata from a previous script</a></li>
-<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.2</b> Subset data by time period</a></li>
-<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.3</b> Checklist distribution over time</a></li>
-<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.4</b> Figure: Checklist distribution by time period</a></li>
-<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Testing for differences in number of checklists by time period</a></li>
-<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Figure: violinplot of number of checklists by time period</a></li>
-<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.1" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#prepare-libraries-1"><i class="fa fa-check"></i><b>3.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="3.2" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#load-.rdata-from-a-previous-script"><i class="fa fa-check"></i><b>3.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="3.3" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#subset-data-by-time-period"><i class="fa fa-check"></i><b>3.3</b> Subset data by time period</a></li>
+<li class="chapter" data-level="3.4" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#checklist-distribution-over-time"><i class="fa fa-check"></i><b>3.4</b> Checklist distribution over time</a></li>
+<li class="chapter" data-level="3.5" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-checklist-distribution-by-time-period"><i class="fa fa-check"></i><b>3.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="3.6" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#testing-for-differences-in-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.6</b> Testing for differences in number of checklists by time period</a></li>
+<li class="chapter" data-level="3.7" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-violinplot-of-number-of-checklists-by-time-period"><i class="fa fa-check"></i><b>3.7</b> Figure: violinplot of number of checklists by time period</a></li>
+<li class="chapter" data-level="3.8" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#figure-proportion-of-checklists-reporting-species-in-each-grid-cell-by-time-period"><i class="fa fa-check"></i><b>3.8</b> Figure: Proportion of checklists reporting species in each grid cell by time period</a></li>
+<li class="chapter" data-level="3.9" data-path="temporal-visualization-of-all-observations.html"><a href="temporal-visualization-of-all-observations.html#save-.rdata-for-future-scripts-1"><i class="fa fa-check"></i><b>3.9</b> save .RData for future scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="locality-type.html"><a href="locality-type.html"><i class="fa fa-check"></i><b>4</b> Locality type</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="locality-type.html"><a href="locality-type.html#prepare-libraries-2"><i class="fa fa-check"></i><b>4.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="locality-type.html"><a href="locality-type.html#load-.rdata-from-a-previous-script-1"><i class="fa fa-check"></i><b>4.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="4.3" data-path="locality-type.html"><a href="locality-type.html#subset-data-by-hotspot-or-personal-locations"><i class="fa fa-check"></i><b>4.3</b> Subset data by hotspot or personal locations</a></li>
+<li class="chapter" data-level="4.4" data-path="locality-type.html"><a href="locality-type.html#checklist-distribution-over-time-across-personal-and-hotspot-locations"><i class="fa fa-check"></i><b>4.4</b> Checklist distribution over time across personal and hotspot locations</a></li>
+<li class="chapter" data-level="4.5" data-path="locality-type.html"><a href="locality-type.html#figure-checklist-distribution-by-time-period-1"><i class="fa fa-check"></i><b>4.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="4.6" data-path="locality-type.html"><a href="locality-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-location-type"><i class="fa fa-check"></i><b>4.6</b> Testing for differences in number of checklists by time period and location type</a></li>
+<li class="chapter" data-level="4.7" data-path="locality-type.html"><a href="locality-type.html#figure-violinplot-of-number-of-checklists"><i class="fa fa-check"></i><b>4.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="4.8" data-path="locality-type.html"><a href="locality-type.html#visualization-of-hotspot-and-personal-observations-from-the-same-grid-across-time"><i class="fa fa-check"></i><b>4.8</b> Visualization of hotspot and personal observations from the same grid across time</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="protocol-type.html"><a href="protocol-type.html"><i class="fa fa-check"></i><b>5</b> Protocol type</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="protocol-type.html"><a href="protocol-type.html#prepare-libraries-3"><i class="fa fa-check"></i><b>5.1</b> Prepare libraries</a></li>
+<li class="chapter" data-level="5.2" data-path="protocol-type.html"><a href="protocol-type.html#load-.rdata-from-a-previous-script-2"><i class="fa fa-check"></i><b>5.2</b> Load .Rdata from a previous script</a></li>
+<li class="chapter" data-level="5.3" data-path="protocol-type.html"><a href="protocol-type.html#subset-data-by-stationary-or-traveling-checklists"><i class="fa fa-check"></i><b>5.3</b> Subset data by stationary or traveling checklists</a></li>
+<li class="chapter" data-level="5.4" data-path="protocol-type.html"><a href="protocol-type.html#checklist-distribution-over-time-for-stationary-and-traveling-checklists"><i class="fa fa-check"></i><b>5.4</b> Checklist distribution over time for stationary and traveling checklists</a></li>
+<li class="chapter" data-level="5.5" data-path="protocol-type.html"><a href="protocol-type.html#figure-checklist-distribution-by-time-period-2"><i class="fa fa-check"></i><b>5.5</b> Figure: Checklist distribution by time period</a></li>
+<li class="chapter" data-level="5.6" data-path="protocol-type.html"><a href="protocol-type.html#testing-for-differences-in-number-of-checklists-by-time-period-and-protocol-type"><i class="fa fa-check"></i><b>5.6</b> Testing for differences in number of checklists by time period and protocol type</a></li>
+<li class="chapter" data-level="5.7" data-path="protocol-type.html"><a href="protocol-type.html#figure-violinplot-of-number-of-checklists-1"><i class="fa fa-check"></i><b>5.7</b> Figure: violinplot of number of checklists</a></li>
+<li class="chapter" data-level="5.8" data-path="protocol-type.html"><a href="protocol-type.html#examining-variation-in-duration-of-checklists-over-time"><i class="fa fa-check"></i><b>5.8</b> Examining variation in duration of checklists over time</a></li>
 </ul></li>
 </ul>
 
@@ -182,32 +206,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this script, we will visualize the overall number of checklists across the Indian subcontinent and repeat the same analysis at the species level. At this stage, no specific filters are applied and we report all analysis for every 25 x 25 km grid size (finer scales/sizes will be used for comparison at a later stage).</p>
 <div id="prepare-libraries" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Prepare libraries<a href="visualization-of-all-observations-over-time.html#prepare-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualization-of-all-observations-over-time.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load libraries</span></span>
-<span id="cb1-2"><a href="visualization-of-all-observations-over-time.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb1-3"><a href="visualization-of-all-observations-over-time.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-4"><a href="visualization-of-all-observations-over-time.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
-<span id="cb1-5"><a href="visualization-of-all-observations-over-time.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb1-6"><a href="visualization-of-all-observations-over-time.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-7"><a href="visualization-of-all-observations-over-time.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-8"><a href="visualization-of-all-observations-over-time.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-9"><a href="visualization-of-all-observations-over-time.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-10"><a href="visualization-of-all-observations-over-time.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb1-11"><a href="visualization-of-all-observations-over-time.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
-<span id="cb1-12"><a href="visualization-of-all-observations-over-time.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
-<span id="cb1-13"><a href="visualization-of-all-observations-over-time.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-14"><a href="visualization-of-all-observations-over-time.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
-<span id="cb1-15"><a href="visualization-of-all-observations-over-time.html#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="visualization-of-all-observations-over-time.html#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># round any function</span></span>
-<span id="cb1-17"><a href="visualization-of-all-observations-over-time.html#cb1-17" aria-hidden="true" tabindex="-1"></a>round_25 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">accuracy =</span> <span class="dv">25000</span>) {</span>
-<span id="cb1-18"><a href="visualization-of-all-observations-over-time.html#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(x <span class="sc">/</span> accuracy) <span class="sc">*</span> accuracy</span>
-<span id="cb1-19"><a href="visualization-of-all-observations-over-time.html#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-20"><a href="visualization-of-all-observations-over-time.html#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="visualization-of-all-observations-over-time.html#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># set file paths for auk functions</span></span>
-<span id="cb1-22"><a href="visualization-of-all-observations-over-time.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># To use these two datasets, please download the latest versions from https://ebird.org/data/download and set the file path accordingly. Since these two datasets are extremely large, we have not uploaded the same to GitHub.</span></span>
-<span id="cb1-23"><a href="visualization-of-all-observations-over-time.html#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># In this study, the version of data loaded corresponds to July 2022.</span></span>
-<span id="cb1-24"><a href="visualization-of-all-observations-over-time.html#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="visualization-of-all-observations-over-time.html#cb1-25" aria-hidden="true" tabindex="-1"></a>f_in_ebd <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/ebd_IN_relJul-2022.txt&quot;</span>)</span>
-<span id="cb1-26"><a href="visualization-of-all-observations-over-time.html#cb1-26" aria-hidden="true" tabindex="-1"></a>f_in_sampling <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/ebd_sampling_relJul-2022.txt&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="visualization-of-all-observations-over-time.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb1-2"><a href="visualization-of-all-observations-over-time.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="visualization-of-all-observations-over-time.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb1-4"><a href="visualization-of-all-observations-over-time.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="visualization-of-all-observations-over-time.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="visualization-of-all-observations-over-time.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-7"><a href="visualization-of-all-observations-over-time.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-8"><a href="visualization-of-all-observations-over-time.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-9"><a href="visualization-of-all-observations-over-time.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb1-10"><a href="visualization-of-all-observations-over-time.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb1-11"><a href="visualization-of-all-observations-over-time.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont)</span>
+<span id="cb1-12"><a href="visualization-of-all-observations-over-time.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-13"><a href="visualization-of-all-observations-over-time.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb1-14"><a href="visualization-of-all-observations-over-time.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="visualization-of-all-observations-over-time.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># round any function</span></span>
+<span id="cb1-16"><a href="visualization-of-all-observations-over-time.html#cb1-16" aria-hidden="true" tabindex="-1"></a>round_25 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">accuracy =</span> <span class="dv">25000</span>) {</span>
+<span id="cb1-17"><a href="visualization-of-all-observations-over-time.html#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(x <span class="sc">/</span> accuracy) <span class="sc">*</span> accuracy</span>
+<span id="cb1-18"><a href="visualization-of-all-observations-over-time.html#cb1-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-19"><a href="visualization-of-all-observations-over-time.html#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="visualization-of-all-observations-over-time.html#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># set file paths for auk functions</span></span>
+<span id="cb1-21"><a href="visualization-of-all-observations-over-time.html#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># To use these two datasets, please download the latest versions from https://ebird.org/data/download and set the file path accordingly. Since these two datasets are extremely large, we have not uploaded the same to GitHub.</span></span>
+<span id="cb1-22"><a href="visualization-of-all-observations-over-time.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># In this study, the version of data loaded corresponds to July 2022.</span></span>
+<span id="cb1-23"><a href="visualization-of-all-observations-over-time.html#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="visualization-of-all-observations-over-time.html#cb1-24" aria-hidden="true" tabindex="-1"></a>f_in_ebd <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/ebd_IN_relJul-2022.txt&quot;</span>)</span>
+<span id="cb1-25"><a href="visualization-of-all-observations-over-time.html#cb1-25" aria-hidden="true" tabindex="-1"></a>f_in_sampling <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">&quot;data/ebd_sampling_relJul-2022.txt&quot;</span>)</span></code></pre></div>
 </div>
 <div id="subset-observations-by-geographical-confines-of-the-study-area" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Subset observations by geographical confines of the study area<a href="visualization-of-all-observations-over-time.html#subset-observations-by-geographical-confines-of-the-study-area" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -291,37 +314,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="get-proportional-observation-counts-across-every-25-km-x-25-km-grid" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Get proportional observation counts across every 25 km x 25 km grid<a href="visualization-of-all-observations-over-time.html#get-proportional-observation-counts-across-every-25-km-x-25-km-grid" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Analysis of proportional counts estimated at 25km</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualization-of-all-observations-over-time.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Analysis of proportional counts at 25 km for each state</span></span>
-<span id="cb5-2"><a href="visualization-of-all-observations-over-time.html#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="visualization-of-all-observations-over-time.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># round to 25km cell in UTM coords</span></span>
-<span id="cb5-4"><a href="visualization-of-all-observations-over-time.html#cb5-4" aria-hidden="true" tabindex="-1"></a>ebd_in[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">X =</span> <span class="fu">round_25</span>(X), <span class="at">Y =</span> <span class="fu">round_25</span>(Y))]</span>
-<span id="cb5-5"><a href="visualization-of-all-observations-over-time.html#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="visualization-of-all-observations-over-time.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># separate observation_date as year, month, day</span></span>
-<span id="cb5-7"><a href="visualization-of-all-observations-over-time.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># please note: the below operation takes awhile to run</span></span>
-<span id="cb5-8"><a href="visualization-of-all-observations-over-time.html#cb5-8" aria-hidden="true" tabindex="-1"></a>ebd_in <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="visualization-of-all-observations-over-time.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(observation_date, <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;month&quot;</span>,<span class="st">&quot;day&quot;</span>))</span>
-<span id="cb5-10"><a href="visualization-of-all-observations-over-time.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
-<span id="cb5-11"><a href="visualization-of-all-observations-over-time.html#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="visualization-of-all-observations-over-time.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists in cell</span></span>
-<span id="cb5-13"><a href="visualization-of-all-observations-over-time.html#cb5-13" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> ebd_in[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
-<span id="cb5-14"><a href="visualization-of-all-observations-over-time.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y)]</span>
-<span id="cb5-15"><a href="visualization-of-all-observations-over-time.html#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-16"><a href="visualization-of-all-observations-over-time.html#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
-<span id="cb5-17"><a href="visualization-of-all-observations-over-time.html#cb5-17" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> ebd_summary[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
-<span id="cb5-18"><a href="visualization-of-all-observations-over-time.html#cb5-18" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
-<span id="cb5-19"><a href="visualization-of-all-observations-over-time.html#cb5-19" aria-hidden="true" tabindex="-1"></a>))),</span>
-<span id="cb5-20"><a href="visualization-of-all-observations-over-time.html#cb5-20" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name)</span>
-<span id="cb5-21"><a href="visualization-of-all-observations-over-time.html#cb5-21" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb5-22"><a href="visualization-of-all-observations-over-time.html#cb5-22" aria-hidden="true" tabindex="-1"></a>ebd_summary[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
-<span id="cb5-23"><a href="visualization-of-all-observations-over-time.html#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="visualization-of-all-observations-over-time.html#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
-<span id="cb5-25"><a href="visualization-of-all-observations-over-time.html#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
-<span id="cb5-26"><a href="visualization-of-all-observations-over-time.html#cb5-26" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary) <span class="sc">%&gt;%</span></span>
-<span id="cb5-27"><a href="visualization-of-all-observations-over-time.html#cb5-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
-<span id="cb5-28"><a href="visualization-of-all-observations-over-time.html#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name <span class="co"># ,</span></span>
-<span id="cb5-29"><a href="visualization-of-all-observations-over-time.html#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
-<span id="cb5-30"><a href="visualization-of-all-observations-over-time.html#cb5-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb5-31"><a href="visualization-of-all-observations-over-time.html#cb5-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="visualization-of-all-observations-over-time.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># round to 25km cell in UTM coords</span></span>
+<span id="cb5-2"><a href="visualization-of-all-observations-over-time.html#cb5-2" aria-hidden="true" tabindex="-1"></a>ebd_in[, <span class="st">`</span><span class="at">:=</span><span class="st">`</span>(<span class="at">X =</span> <span class="fu">round_25</span>(X), <span class="at">Y =</span> <span class="fu">round_25</span>(Y))]</span>
+<span id="cb5-3"><a href="visualization-of-all-observations-over-time.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="visualization-of-all-observations-over-time.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># separate observation_date as year, month, day</span></span>
+<span id="cb5-5"><a href="visualization-of-all-observations-over-time.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># please note: the below operation takes awhile to run</span></span>
+<span id="cb5-6"><a href="visualization-of-all-observations-over-time.html#cb5-6" aria-hidden="true" tabindex="-1"></a>ebd_in <span class="ot">&lt;-</span> ebd_in <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="visualization-of-all-observations-over-time.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(observation_date, <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;month&quot;</span>,<span class="st">&quot;day&quot;</span>))</span>
+<span id="cb5-8"><a href="visualization-of-all-observations-over-time.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
+<span id="cb5-9"><a href="visualization-of-all-observations-over-time.html#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="visualization-of-all-observations-over-time.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists in cell</span></span>
+<span id="cb5-11"><a href="visualization-of-all-observations-over-time.html#cb5-11" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> ebd_in[, nchk <span class="sc">:</span><span class="er">=</span> <span class="fu">length</span>(<span class="fu">unique</span>(sampling_event_identifier)),</span>
+<span id="cb5-12"><a href="visualization-of-all-observations-over-time.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  by <span class="ot">=</span> .(X, Y)]</span>
+<span id="cb5-13"><a href="visualization-of-all-observations-over-time.html#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="visualization-of-all-observations-over-time.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># count checklists reporting each species in cell and get proportion</span></span>
+<span id="cb5-15"><a href="visualization-of-all-observations-over-time.html#cb5-15" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> ebd_summary[, .(<span class="at">nrep =</span> <span class="fu">length</span>(<span class="fu">unique</span>(</span>
+<span id="cb5-16"><a href="visualization-of-all-observations-over-time.html#cb5-16" aria-hidden="true" tabindex="-1"></a>  sampling_event_identifier</span>
+<span id="cb5-17"><a href="visualization-of-all-observations-over-time.html#cb5-17" aria-hidden="true" tabindex="-1"></a>))),</span>
+<span id="cb5-18"><a href="visualization-of-all-observations-over-time.html#cb5-18" aria-hidden="true" tabindex="-1"></a>by <span class="ot">=</span> .(X, Y, nchk, scientific_name)</span>
+<span id="cb5-19"><a href="visualization-of-all-observations-over-time.html#cb5-19" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-20"><a href="visualization-of-all-observations-over-time.html#cb5-20" aria-hidden="true" tabindex="-1"></a>ebd_summary[, p_rep <span class="sc">:</span><span class="er">=</span> nrep <span class="sc">/</span> nchk]</span>
+<span id="cb5-21"><a href="visualization-of-all-observations-over-time.html#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="visualization-of-all-observations-over-time.html#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the dataframe for no reports</span></span>
+<span id="cb5-23"><a href="visualization-of-all-observations-over-time.html#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co"># keep no reports as NA --- allows filtering based on proportion reporting</span></span>
+<span id="cb5-24"><a href="visualization-of-all-observations-over-time.html#cb5-24" aria-hidden="true" tabindex="-1"></a>ebd_summary <span class="ot">&lt;-</span> <span class="fu">setDF</span>(ebd_summary) <span class="sc">%&gt;%</span></span>
+<span id="cb5-25"><a href="visualization-of-all-observations-over-time.html#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(</span>
+<span id="cb5-26"><a href="visualization-of-all-observations-over-time.html#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nesting</span>(X, Y), scientific_name <span class="co"># ,</span></span>
+<span id="cb5-27"><a href="visualization-of-all-observations-over-time.html#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fill = list(p_rep = 0)</span></span>
+<span id="cb5-28"><a href="visualization-of-all-observations-over-time.html#cb5-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-29"><a href="visualization-of-all-observations-over-time.html#cb5-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(p_rep))</span></code></pre></div>
 </div>
 <div id="add-the-list-of-species" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Add the list of species<a href="visualization-of-all-observations-over-time.html#add-the-list-of-species" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -381,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="save-.rdata-for-future-scripts" class="section level2 hasAnchor" number="2.10">
 <h2><span class="header-section-number">2.10</span> save .RData for future scripts<a href="visualization-of-all-observations-over-time.html#save-.rdata-for-future-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualization-of-all-observations-over-time.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&quot;data/01_ebd-India.RData&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="visualization-of-all-observations-over-time.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save.image</span>(<span class="at">file =</span> <span class="st">&quot;data/01_ebd-India-spatial.RData&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>
