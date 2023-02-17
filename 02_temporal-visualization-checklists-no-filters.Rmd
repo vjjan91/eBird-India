@@ -85,7 +85,6 @@ ebd_summary <- ebd_summary[ebd_summary$scientific_name %in% speciesOfInterest$sc
 ```
 
 ## Checklist distribution over time
-
 ```{r }
 # total number of checklists across unique grids
 tot_n_chklist <- ebd_summary %>%
@@ -105,7 +104,6 @@ write.csv(spp_grids, "results/02_ngrids-per-spp-by-timePeriod.csv", row.names=F)
 ```
 
 ## Figure: Checklist distribution by time period
-
 ```{r}
 # reordering factors for plotting
 tot_n_chklist$timePeriod <- factor(tot_n_chklist$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
@@ -213,7 +211,7 @@ stats_timePeriod_logNChk <- pairwise_comparisons(tot_n_chklist, timePeriod, logN
 
 write.csv(stats_timePeriod_logNChk[,-9], "results/02_pairwiseComparisons_timePeriod_logNchk.csv", row.names = F)
 ```
-![Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Yuen's trimmed means test)](figs/fig_logChecklists_timePeriod.png)
+![Distribution of the log number of checklists across every 25 x 25 km grid cells by time period. Here, n refers to the number of unique grid cells for which data exists/was reported for each time period. Please refer to the .csv outlining the results of the pairwise comparisons tests (Games-Howell test)](figs/fig_logChecklists_timePeriod.png)
 ## Figure: Proportion of checklists reporting species in each grid cell by time period
 
 Note: Here we visualize the proportion of checklists that report a particular species for every 25 x 25 km cell (no specific filter is being applied) for each time period
