@@ -15,7 +15,7 @@ output:
     geometry: "left=4cm, right=3cm, top=2.5cm, bottom=2.5cm"
 biblio-style: apalike
 link-citations: yes
-github-repo: vjjan91/SoIB-independent-validation
+github-repo: vjjan91/eBird-India
 ---
 
 # Introduction
