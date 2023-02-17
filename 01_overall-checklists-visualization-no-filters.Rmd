@@ -9,7 +9,6 @@ In this script, we will visualize the overall number of checklists across the In
 
 ## Prepare libraries
 ```{r}
-# load libraries
 library(data.table)
 library(readxl)
 library(magrittr)
@@ -87,7 +86,7 @@ ebd_in$observation_count <- as.numeric(ebd_in$observation_count)
 
 Add a spatial filter.
 
-```{r strict_filter_supp02}
+```{r}
 # strict spatial filter and assign grid
 locs <- ebd_in[, .(longitude, latitude)]
 

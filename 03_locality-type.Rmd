@@ -8,7 +8,7 @@ editor_options:
 In this script, we will visualize checklist observations spatially and temporally to assess if there are differences in reporting of observations depending on locality type - i.e. hotspot or personal observations.
 
 ## Prepare libraries
-```{r setup_sup_02}
+```{r}
 library(data.table)
 library(readxl)
 library(magrittr)

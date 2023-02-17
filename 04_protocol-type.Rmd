@@ -8,7 +8,7 @@ editor_options:
 In this script, we will visualize checklist observations spatially and temporally to assess if there are differences in reporting of observations depending on protocol type - i.e. incidental, stationary, or traveling checklists. For the purpose of this exercise, only stationary and traveling checklists are chosen, as these two protocol types often contribute to complete checklists (incidental checklists are often ignored in most analyses as they only offer a snapshot of bird presence/absence at a location).   
 
 ## Prepare libraries
-```{r setup_sup_02}
+```{r}
 library(data.table)
 library(readxl)
 library(magrittr)

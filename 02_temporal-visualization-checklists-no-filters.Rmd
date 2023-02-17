@@ -8,8 +8,7 @@ editor_options:
 In this script, we will visualize all checklist observations temporally to assess if there are biases in reporting over time. For example, are more observations being reported in a particular 5-year interval/time-period when compared to another time period. We also aim to assess if there are significant differences in the number of observations across time periods.   
 
 ## Prepare libraries
-```{r setup_sup_02}
-# load libraries
+```{r}
 library(data.table)
 library(readxl)
 library(magrittr)
