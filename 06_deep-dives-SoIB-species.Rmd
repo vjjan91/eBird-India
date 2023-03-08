@@ -1,0 +1,1942 @@
+---
+editor_options:
+  chunk_output_type: console
+---
+
+# Deep dives 
+
+In this script, we will examine caveats associated with the data for a subset of species earmarked by the policy committee for the State of India's Birds 2023.  
+
+List of species that are being examined:
+
+Indian roller _Coracias benghalensis_
+Great Grey shrike _Lanius excubitor_
+Gull-billed tern _Gelochelidon nilotica_
+Black-bellied tern _Sterna acuticauda_
+Bearded vulture _Gypaetus barbatus_
+Egyptian vulture _Neophron percnopterus_
+Red-headed Vulture	_Sarcogyps calvus_
+Cinereous Vulture	_Aegypius monachus_
+White-rumped Vulture	_Gyps bengalensis_
+Indian Vulture	_Gyps indicus_
+Slender-billed Vulture	_Gyps tenuirostris_
+Himalayan Vulture	_Gyps himalayensis_
+Griffon Vulture	_Gyps fulvus_
+Besra _Accipiter virgatus_
+Indian cuckoo _Cuculus micropterus_
+Kentish plover _Charadrius alexandrinus_
+Garganey _Spatula querquedula_
+Black-capped Kingfisher _Halcyon pileata_
+Black-naped oriole _Oriolus chinensis_
+House Sparrow _Passer domesticus_
+Rock pigeon _Columba livia_
+Peafowl _Pavo cristatus_
+Ashy prinia _Prinia socialis_
+
+## Prepare libraries
+```{r}
+library(data.table)
+library(readxl)
+library(magrittr)
+library(stringr)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(ggthemes)
+library(scico)
+library(extrafont)
+library(sf)
+library(rnaturalearth)
+library(lme4)
+library(multcomp)
+library(sjPlot)
+library(ggstatsplot)
+library(paletteer)
+```
+
+## Load .Rdata from a previous script
+```{r}
+load("data/02_ebd-India-spatial-temporal.RData")
+```
+
+## Analyses/caveats to be looked at
+
+We will examine/look at the following analyses:
+
+- Proportion of checklists across years (violin plots and pairwise differences in reporting)
+- Linear mixed model to check for differences in reporting by time period
+
+## Indian roller _Coracias benghalensis_
+```{r}
+roller <- ebd_summary %>%
+  filter(scientific_name == "Coracias benghalensis")
+
+roller_tot <- roller %>%
+  distinct(X, Y, nchk, timePeriod) # 13,036 unique time-period/nChk report; 3107 unique grids report this species
+
+# reordering factors for plotting
+roller_tot$timePeriod <- factor(roller_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+roller_tot <- roller_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_roller <- glmer(nchk ~ timePeriod + (1|gridCode), data = roller_tot, family = poisson(link="log"))
+
+tukey_roller<- summary(glht(glmm_roller, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_roller)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "b"       "e"       "d"       "c"       "f"       "g" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "h"       "i"       "j"       "k"       "n"       "m"       "l" 
+
+# glmm suggests a significant difference in reporting across time-periods for the Indian roller. 
+
+## violin plot
+
+# create log values of nChk
+roller_tot$logNchk <- log(roller_tot$nchk)
+
+fig_roller <- ggbetweenstats(
+  data = roller_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Indian roller",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_roller, filename = "figs/indian-roller.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are atleast 60 different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test)
+## Please view the statistics below for more details
+
+stats_roller <- pairwise_comparisons(roller_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame()
+
+write.csv(stats_roller[,-9], "results/pairwiseComparisons_IndianRoller.csv", row.names = F)
+
+## Get the mean number of checklists by time period
+fig_roller_dot <- ggdotplotstats(
+  data = roller_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_roller_dot, filename = "figs/roller_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Great Grey shrike _Lanius excubitor_
+```{r}
+shrike <- ebd_summary %>%
+  filter(scientific_name == "Lanius excubitor")
+
+shrike_tot <- shrike %>%
+  distinct(X, Y, nchk, timePeriod) # 2155 unique grid/time-period combination
+
+# reordering factors for plotting
+shrike_tot$timePeriod <- factor(shrike_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+shrike_tot <- shrike_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_shrike <- glmer(nchk ~ timePeriod + (1|gridCode), data = shrike_tot, family = poisson(link="log"))
+
+tukey_shrike<- summary(glht(glmm_shrike, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_shrike)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "c"       "a"       "d"       "d"       "a"       "b"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "g"       "h"      "gh"       "i"       "j"      "gh" 
+
+# glmm suggests a significant difference in reporting across time-periods for the Great Grey shrike.
+
+## violin plot
+
+# create log values of nChk
+shrike_tot$logNchk <- log(shrike_tot$nchk)
+
+fig_shrike <- ggbetweenstats(
+  data = shrike_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Great grey shrike",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+## ~even reporting in checklists across time-periods
+ggsave(fig_shrike, filename = "figs/great-grey-shrike.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are ~22  different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). Data from pre-2000, 2000-2006, 2013, 2014 are significantly different from later years. 
+
+## Please view the statistics below for more details
+
+stats_shrike <- pairwise_comparisons(shrike_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame()
+
+write.csv(stats_shrike[,-9], "results/pairwiseComparisons_greatGreyShrike.csv", row.names = F)
+
+## Get the mean number of checklists by time period
+fig_shrike_dot <- ggdotplotstats(
+  data = shrike_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_shrike_dot, filename = "figs/shrike_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+
+## Gull-billed tern _Gelochelidon nilotica_
+```{r}
+gtern <- ebd_summary %>%
+  filter(scientific_name == "Gelochelidon nilotica")
+
+gtern_tot <- gtern %>%
+  distinct(X, Y, nchk, timePeriod) # 2009 unique grid/time-period combination
+
+# reordering factors for plotting
+gtern_tot$timePeriod <- factor(gtern_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+gtern_tot <- gtern_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_gtern <- glmer(nchk ~ timePeriod + (1|gridCode), data = gtern_tot, family = poisson(link="log"))
+
+tukey_gtern<- summary(glht(glmm_gtern, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_gtern)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "c"       "b"       "a"       "d"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "g"       "j"       "i"       "l"       "k"       "h"
+
+## violin plot
+
+# create log values of nChk
+gtern_tot$logNchk <- log(gtern_tot$nchk)
+
+fig_gtern <- ggbetweenstats(
+  data = gtern_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Gull-billed tern",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+## ~even reporting in checklists across time-periods
+ggsave(fig_gtern, filename = "figs/gull-billed-tern.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are ~36  different pairwise comparisons where there is a significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). Data from pre-2000, 2000-2006, 2013, 2014 are significantly different from later years (similar to Great-grey shrike) 
+
+## Please view the statistics below for more details
+
+stats_gtern <- pairwise_comparisons(gtern_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame()
+
+write.csv(stats_gtern[,-9], "results/pairwiseComparisons_gullBilledTern.csv", row.names = F)
+
+## Get the mean number of checklists by time period
+fig_gtern_dot <- ggdotplotstats(
+  data = gtern_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_gtern_dot, filename = "figs/gtern_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Black-bellied tern _Sterna acuticauda_
+```{r}
+btern <- ebd_summary %>%
+  filter(scientific_name == "Sterna acuticauda")
+
+btern_tot <- btern %>%
+  distinct(X, Y, nchk, timePeriod) # 338 unique grid/time-period combination
+
+# reordering factors for plotting
+btern_tot$timePeriod <- factor(btern_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+btern_tot <- btern_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_btern <- glmer(nchk ~ timePeriod + (1|gridCode), data = btern_tot, family = poisson(link="log"))
+
+tukey_btern<- summary(glht(glmm_btern, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_btern)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "c"      "ac"     "abc"       "b"      "bc"       "d" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "d"       "e"       "h"       "f"       "f"       "g"       "e" 
+
+## violin plot
+
+# create log values of nChk
+btern_tot$logNchk <- log(btern_tot$nchk)
+
+fig_btern <- ggbetweenstats(
+  data = btern_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Blakc-bellied tern",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+# rare reporting of this species
+ggsave(fig_btern, filename = "figs/black-bellied-tern.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are no significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). ## Please view the statistics below for more details
+
+stats_btern <- pairwise_comparisons(btern_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() # 0 reports
+
+## Get the mean number of checklists by time period
+fig_btern_dot <- ggdotplotstats(
+  data = btern_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_btern_dot, filename = "figs/btern_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Bearded vulture _Gypaetus barbatus_
+```{r}
+bvult <- ebd_summary %>%
+  filter(scientific_name == "Gypaetus barbatus")
+
+bvult_tot <- bvult %>%
+  distinct(X, Y, nchk, timePeriod) # 932 unique grid/time-period combination
+
+# reordering factors for plotting
+bvult_tot$timePeriod <- factor(bvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+bvult_tot <- bvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_bvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = bvult_tot, family = poisson(link="log"))
+
+tukey_bvult<- summary(glht(glmm_bvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_bvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "c"      "bc"       "a"      "ab"       "a"       "a"       "d" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "g"       "e"       "i"       "h"       "k"       "j" 
+
+## violin plot
+
+# create log values of nChk
+bvult_tot$logNchk <- log(bvult_tot$nchk)
+
+fig_bvult <- ggbetweenstats(
+  data = bvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Bearded vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+# rare reporting of this species
+ggsave(fig_bvult, filename = "figs/bearded-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 14 significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). Pre-2000 until 2014 show a significant difference when compared to later years. 
+
+## Please view the statistics below for more details
+
+stats_bvult <- pairwise_comparisons(bvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_bvult_dot <- ggdotplotstats(
+  data = bvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_bvult_dot, filename = "figs/bvult_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Egyptian vulture _Neophron percnopterus_
+```{r}
+evult <- ebd_summary %>%
+  filter(scientific_name == "Neophron percnopterus")
+
+evult_tot <- evult %>%
+  distinct(X, Y, nchk, timePeriod) # 3455 unique grid/time-period combination
+
+# reordering factors for plotting
+evult_tot$timePeriod <- factor(evult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+evult_tot <- evult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_evult <- glmer(nchk ~ timePeriod + (1|gridCode), data = evult_tot, family = poisson(link="log"))
+
+tukey_evult<- summary(glht(glmm_evult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_evult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "e"       "c"       "b"       "d"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "h"       "i"       "j"       "m"       "k"       "l" 
+
+## violin plot
+
+# create log values of nChk
+evult_tot$logNchk <- log(evult_tot$nchk)
+
+fig_evult <- ggbetweenstats(
+  data = evult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Egyptian vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_evult, filename = "figs/egyptian-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 27 significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). Pre-2000 until 2014 show a significant difference when compared to later years. 
+
+## Please view the statistics below for more details
+
+stats_evult <- pairwise_comparisons(evult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_evult_dot <- ggdotplotstats(
+  data = evult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_evult_dot, filename = "figs/egyptian-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Red-headed Vulture	_Sarcogyps calvus_
+```{r}
+rvult <- ebd_summary %>%
+  filter(scientific_name == "Sarcogyps calvus")
+
+rvult_tot <- rvult %>%
+  distinct(X, Y, nchk, timePeriod) # 969 unique grid/time-period combination
+
+# reordering factors for plotting
+rvult_tot$timePeriod <- factor(rvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+rvult_tot <- rvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_rvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = rvult_tot, family = poisson(link="log"))
+
+tukey_rvult<- summary(glht(glmm_rvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_rvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "b"       "a"       "d"       "d"       "a"       "c"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "h"       "g"       "h"       "i"       "j"       "k"  
+
+## violin plot
+
+# create log values of nChk
+rvult_tot$logNchk <- log(rvult_tot$nchk)
+
+fig_rvult <- ggbetweenstats(
+  data = rvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Red-headed vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_rvult, filename = "figs/red-headed-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 14 significant difference in the log Number of checklists across the time periods compared (using a Games-Howell test). Pre-2000 until 2014 show a significant difference when compared to later years. 
+
+## Please view the statistics below for more details
+
+stats_rvult <- pairwise_comparisons(rvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_rvult_dot <- ggdotplotstats(
+  data = rvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_rvult_dot, filename = "figs/red-headed-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Cinereous Vulture	_Aegypius monachus_
+```{r}
+cvult <- ebd_summary %>%
+  filter(scientific_name == "Aegypius monachus")
+
+cvult_tot <- cvult %>%
+  distinct(X, Y, nchk, timePeriod) # 575 unique grid/time-period combination (very rare reporting)
+
+# reordering factors for plotting
+cvult_tot$timePeriod <- factor(rvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+cvult_tot <- cvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_cvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = cvult_tot, family = poisson(link="log"))
+
+tukey_cvult<- summary(glht(glmm_cvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_cvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "c"       "a"       "d"       "b"       "a"       "b"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "h"       "g"       "i"       "j"       "k"       "k"  
+## violin plot
+
+# create log values of nChk
+cvult_tot$logNchk <- log(cvult_tot$nchk)
+
+fig_cvult <- ggbetweenstats(
+  data = cvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Cinereous vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_cvult, filename = "figs/cinereous-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are no significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test).  
+
+## Please view the statistics below for more details
+
+stats_cvult <- pairwise_comparisons(cvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() # 0 reports
+
+## Get the mean number of checklists by time period
+fig_cvult_dot <- ggdotplotstats(
+  data = cvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_cvult_dot, filename = "figs/cinereous-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## White-rumped Vulture	_Gyps bengalensis_
+```{r}
+wvult <- ebd_summary %>%
+  filter(scientific_name == "Gyps bengalensis")
+
+wvult_tot <- wvult %>%
+  distinct(X, Y, nchk, timePeriod) # 1497 unique grid/time-period combination 
+
+# reordering factors for plotting
+wvult_tot$timePeriod <- factor(wvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+wvult_tot <- wvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_wvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = wvult_tot, family = poisson(link="log"))
+
+tukey_wvult<- summary(glht(glmm_wvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_wvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "b"       "b"       "c"       "b"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "g"       "h"       "d"       "g"       "i"       "j" 
+
+## violin plot
+
+# create log values of nChk
+wvult_tot$logNchk <- log(wvult_tot$nchk)
+
+fig_wvult <- ggbetweenstats(
+  data = wvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "White-rumped vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_wvult, filename = "figs/white-rumped-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 24 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test).  Majority of the differences are pre-2000, 2000-2006, and later years. 
+
+## Please view the statistics below for more details
+
+stats_wvult <- pairwise_comparisons(wvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() # 0 reports
+
+## Get the mean number of checklists by time period
+fig_wvult_dot <- ggdotplotstats(
+  data = wvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_wvult_dot, filename = "figs/white-rumped-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Indian Vulture	_Gyps indicus_
+```{r}
+ivult <- ebd_summary %>%
+  filter(scientific_name == "Gyps indicus")
+
+ivult_tot <- ivult %>%
+  distinct(X, Y, nchk, timePeriod) # 1120 unique grid/time-period combination 
+
+# reordering factors for plotting
+ivult_tot$timePeriod <- factor(ivult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+ivult_tot <- ivult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_ivult <- glmer(nchk ~ timePeriod + (1|gridCode), data = ivult_tot, family = poisson(link="log"))
+
+tukey_ivult<- summary(glht(glmm_ivult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_ivult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "b"       "c"      "ab"       "b"      "ab"       "d" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "f"       "i"       "g"       "h"       "j"       "k" 
+
+## violin plot
+
+# create log values of nChk
+ivult_tot$logNchk <- log(ivult_tot$nchk)
+
+fig_ivult <- ggbetweenstats(
+  data = ivult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Indian vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_ivult, filename = "figs/indian-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 12 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test).  Majority of the differences are pre-2000 until 2014 and later years. 
+
+## Please view the statistics below for more details
+
+stats_ivult <- pairwise_comparisons(ivult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_ivult_dot <- ggdotplotstats(
+  data = ivult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_ivult_dot, filename = "figs/indian-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Slender-billed Vulture	_Gyps tenuirostris_
+```{r}
+svult <- ebd_summary %>%
+  filter(scientific_name == "Gyps tenuirostris")
+
+svult_tot <- svult %>%
+  distinct(X, Y, nchk, timePeriod) # 206 unique grid/time-period combination # rare species
+
+# reordering factors for plotting
+svult_tot$timePeriod <- factor(svult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+svult_tot <- svult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_svult <- glmer(nchk ~ timePeriod + (1|gridCode), data = svult_tot, family = poisson(link="log"))
+
+tukey_svult<- summary(glht(glmm_svult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_svult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "c"       "b"      "ab"       "b"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "d"       "g"      "eg"       "d"       "d"       "h"       "e" 
+
+## violin plot
+
+# create log values of nChk
+svult_tot$logNchk <- log(svult_tot$nchk)
+
+fig_svult <- ggbetweenstats(
+  data = svult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Slender-billed vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_svult, filename = "figs/slender-billed-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are no significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). 
+
+## Please view the statistics below for more details
+
+stats_svult <- pairwise_comparisons(svult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_svult_dot <- ggdotplotstats(
+  data = svult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_svult_dot, filename = "figs/slender-billed-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Himalayan Vulture	_Gyps himalayensis_
+```{r}
+hvult <- ebd_summary %>%
+  filter(scientific_name == "Gyps himalayensis")
+
+hvult_tot <- hvult %>%
+  distinct(X, Y, nchk, timePeriod) # 2127 unique grid/time-period combination 
+
+# reordering factors for plotting
+hvult_tot$timePeriod <- factor(hvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+hvult_tot <- hvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_hvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = hvult_tot, family = poisson(link="log"))
+
+tukey_hvult<- summary(glht(glmm_hvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_hvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "b"       "b"       "c"       "b"       "a"       "c"       "d" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "f"       "g"       "h"       "k"       "j"       "i" 
+
+## violin plot
+
+# create log values of nChk
+hvult_tot$logNchk <- log(hvult_tot$nchk)
+
+fig_hvult <- ggbetweenstats(
+  data = hvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Himalayan vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_hvult, filename = "figs/himalayan-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 37 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2014 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_hvult <- pairwise_comparisons(hvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_hvult_dot <- ggdotplotstats(
+  data = hvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_hvult_dot, filename = "figs/himalayan-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Griffon Vulture	_Gyps fulvus_
+```{r}
+gvult <- ebd_summary %>%
+  filter(scientific_name == "Gyps fulvus")
+
+gvult_tot <- gvult %>%
+  distinct(X, Y, nchk, timePeriod) # 1029 unique grid/time-period combination 
+
+# reordering factors for plotting
+gvult_tot$timePeriod <- factor(gvult_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+gvult_tot <- gvult_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_gvult <- glmer(nchk ~ timePeriod + (1|gridCode), data = gvult_tot, family = poisson(link="log"))
+
+tukey_gvult<- summary(glht(glmm_gvult, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_gvult)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "b"       "b"       "d"       "b"       "a"       "c"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "h"       "g"       "g"       "i"       "j"       "k" 
+
+## violin plot
+
+# create log values of nChk
+gvult_tot$logNchk <- log(gvult_tot$nchk)
+
+fig_gvult <- ggbetweenstats(
+  data = gvult_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Griffon vulture",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_gvult, filename = "figs/griffon-vulture.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 8 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2014 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_gvult <- pairwise_comparisons(gvult_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_gvult_dot <- ggdotplotstats(
+  data = gvult_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_gvult_dot, filename = "figs/griffon-vulture_dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Besra _Accipiter virgatus_
+```{r}
+besra <- ebd_summary %>%
+  filter(scientific_name == "Accipiter virgatus")
+
+besra_tot <- besra %>%
+  distinct(X, Y, nchk, timePeriod) # 796 unique grid/time-period combination # rare reporting
+
+# reordering factors for plotting
+besra_tot$timePeriod <- factor(besra_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+besra_tot <- besra_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_besra <- glmer(nchk ~ timePeriod + (1|gridCode), data = besra_tot, family = poisson(link="log"))
+
+tukey_besra<- summary(glht(glmm_besra, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_besra)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "d"      "ac"       "b"      "bc"       "d"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "e"       "f"       "g"       "h"       "i"       "j"       "h" 
+
+## violin plot
+
+# create log values of nChk
+besra_tot$logNchk <- log(besra_tot$nchk)
+
+fig_besra <- ggbetweenstats(
+  data = besra_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Besra",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_besra, filename = "figs/besra.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 36 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2014 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_besra <- pairwise_comparisons(besra_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_besra_dot <- ggdotplotstats(
+  data = besra_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_besra_dot, filename = "figs/besra-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Indian cuckoo _Cuculus micropterus_
+```{r}
+cuckoo <- ebd_summary %>%
+  filter(scientific_name == "Cuculus micropterus")
+
+cuckoo_tot <- cuckoo %>%
+  distinct(X, Y, nchk, timePeriod) # 2439 unique grid/time-period combination 
+
+# reordering factors for plotting
+cuckoo_tot$timePeriod <- factor(cuckoo_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+cuckoo_tot <- cuckoo_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_cuckoo <- glmer(nchk ~ timePeriod + (1|gridCode), data = cuckoo_tot, family = poisson(link="log"))
+
+tukey_cuckoo<- summary(glht(glmm_cuckoo, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_cuckoo)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "d"       "c"       "b"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "h"       "i"       "j"       "g"       "l"       "k"       "g" 
+
+## violin plot
+
+# create log values of nChk
+cuckoo_tot$logNchk <- log(cuckoo_tot$nchk)
+
+fig_cuckoo <- ggbetweenstats(
+  data = cuckoo_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Indian cuckoo",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_cuckoo, filename = "figs/indian-cuckoo.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 41 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2014 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_cuckoo <- pairwise_comparisons(cuckoo_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_cuckoo_dot <- ggdotplotstats(
+  data = cuckoo_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_cuckoo_dot, filename = "figs/indian-cuckoo-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Kentish plover _Charadrius alexandrinus_
+```{r}
+plover <- ebd_summary %>%
+  filter(scientific_name == "Charadrius alexandrinus")
+
+plover_tot <- plover %>%
+  distinct(X, Y, nchk, timePeriod) # 3353 unique grid/time-period combination 
+
+# reordering factors for plotting
+plover_tot$timePeriod <- factor(plover_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+plover_tot <- plover_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_plover <- glmer(nchk ~ timePeriod + (1|gridCode), data = plover_tot, family = poisson(link="log"))
+
+tukey_plover<- summary(glht(glmm_plover, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_plover)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "b"       "a"       "c"       "a"       "d"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "i"       "g"       "h"       "j"       "k"       "g"
+
+## violin plot
+
+# create log values of nChk
+plover_tot$logNchk <- log(plover_tot$nchk)
+
+fig_plover <- ggbetweenstats(
+  data = plover_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Kentish plover",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_plover, filename = "figs/kentish-plover.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 33 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2014 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_plover <- pairwise_comparisons(plover_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_plover_dot <- ggdotplotstats(
+  data = plover_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_plover_dot, filename = "figs/kentish-plover-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Garganey _Spatula querquedula_
+```{r}
+garganey <- ebd_summary %>%
+  filter(scientific_name == "Spatula querquedula")
+
+garganey_tot <- garganey %>%
+  distinct(X, Y, nchk, timePeriod) # 4760 unique grid/time-period combination 
+
+# reordering factors for plotting
+garganey_tot$timePeriod <- factor(garganey_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+garganey_tot <- garganey_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_garganey <- glmer(nchk ~ timePeriod + (1|gridCode), data = garganey_tot, family = poisson(link="log"))
+
+tukey_garganey<- summary(glht(glmm_garganey, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_garganey)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"      "ab"       "c"       "c"       "b"       "d"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "h"       "i"       "g"       "l"       "k"       "j"
+
+## violin plot
+
+# create log values of nChk
+garganey_tot$logNchk <- log(garganey_tot$nchk)
+
+fig_garganey <- ggbetweenstats(
+  data = garganey_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Garganey",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_garganey, filename = "figs/garganey.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 46 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 until 2010-2011 are showing significant differences.
+
+## Please view the statistics below for more details
+
+stats_garganey <- pairwise_comparisons(garganey_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_garganey_dot <- ggdotplotstats(
+  data = garganey_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_garganey_dot, filename = "figs/garganey-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Black-capped Kingfisher _Halcyon pileata_
+```{r}
+kingf <- ebd_summary %>%
+  filter(scientific_name == "Halcyon pileata")
+
+kingf_tot <- kingf %>%
+  distinct(X, Y, nchk, timePeriod) # 634 unique grid/time-period combination # rare reporting
+
+# reordering factors for plotting
+kingf_tot$timePeriod <- factor(kingf_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+kingf_tot <- kingf_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_kingf <- glmer(nchk ~ timePeriod + (1|gridCode), data = kingf_tot, family = poisson(link="log"))
+
+tukey_kingf<- summary(glht(glmm_kingf, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_kingf)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "d"       "c"       "c"       "b"       "a"       "a"       "e" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "f"       "g"       "i"       "h"       "j"       "k"       "h" 
+
+## violin plot
+
+# create log values of nChk
+kingf_tot$logNchk <- log(kingf_tot$nchk)
+
+fig_kingf <- ggbetweenstats(
+  data = kingf_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Black-capped kingfisher",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_kingf, filename = "figs/black-capped-kingfisher.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 4 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000, 2007-2010, 2013, and 2011-2012 are sig. dif from 2021
+
+## Please view the statistics below for more details
+
+stats_kingf <- pairwise_comparisons(kingf_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_kingf_dot <- ggdotplotstats(
+  data = kingf_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_kingf_dot, filename = "figs/black-capped-kingfisher-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Black-naped oriole _Oriolus chinensis_
+```{r}
+oriole <- ebd_summary %>%
+  filter(scientific_name == "Oriolus chinensis")
+
+oriole_tot <- oriole %>%
+  distinct(X, Y, nchk, timePeriod) # 2030 unique grid/time-period combination 
+
+# reordering factors for plotting
+oriole_tot$timePeriod <- factor(oriole_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+oriole_tot <- oriole_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_oriole <- glmer(nchk ~ timePeriod + (1|gridCode), data = oriole_tot, family = poisson(link="log"))
+
+tukey_oriole<- summary(glht(glmm_oriole, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_oriole)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "d"       "b"       "b"       "c"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "i"       "j"       "k"       "m"       "l"       "h" 
+
+## violin plot
+
+# create log values of nChk
+oriole_tot$logNchk <- log(oriole_tot$nchk)
+
+fig_oriole <- ggbetweenstats(
+  data = oriole_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Black-naped oriole",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_oriole, filename = "figs/black-naped-oriole.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 46 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 to 2014 are sig dif. from later years
+
+## Please view the statistics below for more details
+
+stats_oriole <- pairwise_comparisons(oriole_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_oriole_dot <- ggdotplotstats(
+  data = oriole_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_oriole_dot, filename = "figs/black-naped-oriole-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## House Sparrow _Passer domesticus_
+```{r}
+sparrow <- ebd_summary %>%
+  filter(scientific_name == "Passer domesticus")
+
+sparrow_tot <- sparrow %>%
+  distinct(X, Y, nchk, timePeriod) # 16413 unique grid/time-period combination (widely distributed)
+
+# reordering factors for plotting
+sparrow_tot$timePeriod <- factor(sparrow_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+sparrow_tot <- sparrow_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_sparrow <- glmer(nchk ~ timePeriod + (1|gridCode), data = sparrow_tot, family = poisson(link="log"))
+
+tukey_sparrow<- summary(glht(glmm_sparrow, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_sparrow)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "d"       "c"       "b"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "h"       "i"       "k"       "l"       "m"       "j" 
+
+## violin plot
+
+# create log values of nChk
+sparrow_tot$logNchk <- log(sparrow_tot$nchk)
+
+fig_sparrow <- ggbetweenstats(
+  data = sparrow_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "House sparrow",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_sparrow, filename = "figs/house-sparrow.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 57 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 to 2014 are sig dif. from later years 
+
+## Please view the statistics below for more details
+
+stats_sparrow <- pairwise_comparisons(sparrow_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_sparrow_dot <- ggdotplotstats(
+  data = sparrow_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_sparrow_dot, filename = "figs/house-sparrow-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Rock pigeon _Columba livia_
+```{r}
+pigeon <- ebd_summary %>%
+  filter(scientific_name == "Columba livia")
+
+pigeon_tot <- pigeon %>%
+  distinct(X, Y, nchk, timePeriod) # 17282 unique grid/time-period combination (widely distributed)
+
+# reordering factors for plotting
+pigeon_tot$timePeriod <- factor(pigeon_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+pigeon_tot <- pigeon_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_pigeon <- glmer(nchk ~ timePeriod + (1|gridCode), data = pigeon_tot, family = poisson(link="log"))
+
+tukey_pigeon<- summary(glht(glmm_pigeon, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_pigeon)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "b"       "d"       "c"       "b"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "h"       "i"       "k"       "l"       "m"       "j" 
+
+## violin plot
+
+# create log values of nChk
+pigeon_tot$logNchk <- log(pigeon_tot$nchk)
+
+fig_pigeon <- ggbetweenstats(
+  data = pigeon_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Rock pigeon",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_pigeon, filename = "figs/rock-pigeon.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 41 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 to 2014 are sig dif. from later years 
+
+## Please view the statistics below for more details
+
+stats_pigeon <- pairwise_comparisons(pigeon_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_pigeon_dot <- ggdotplotstats(
+  data = pigeon_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_pigeon_dot, filename = "figs/rock-pigeon-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Peafowl _Pavo cristatus_
+```{r}
+peafowl <- ebd_summary %>%
+  filter(scientific_name == "Pavo cristatus")
+
+peafowl_tot <- peafowl %>%
+  distinct(X, Y, nchk, timePeriod) # 10982 unique grid/time-period combination (widely distributed)
+
+# reordering factors for plotting
+peafowl_tot$timePeriod <- factor(peafowl_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+peafowl_tot <- peafowl_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_peafowl <- glmer(nchk ~ timePeriod + (1|gridCode), data = peafowl_tot, family = poisson(link="log"))
+
+tukey_peafowl<- summary(glht(glmm_peafowl, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_peafowl)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "a"       "a"       "d"       "c"       "b"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "i"       "j"       "h"       "k"       "l"       "h" 
+
+## violin plot
+
+# create log values of nChk
+peafowl_tot$logNchk <- log(peafowl_tot$nchk)
+
+fig_peafowl <- ggbetweenstats(
+  data = peafowl_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Peafowl",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_peafowl, filename = "figs/peafowl.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 54 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 to 2014 are sig dif. from later years 
+
+## Please view the statistics below for more details
+
+stats_peafowl <- pairwise_comparisons(peafowl_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_peafowl_dot <- ggdotplotstats(
+  data = peafowl_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_peafowl_dot, filename = "figs/peafowl-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
+
+## Ashy prinia _Prinia socialis_
+```{r}
+prinia <- ebd_summary %>%
+  filter(scientific_name == "Prinia socialis")
+
+prinia_tot <- prinia %>%
+  distinct(X, Y, nchk, timePeriod) # 11663 unique grid/time-period combination (widely distributed)
+
+# reordering factors for plotting
+prinia_tot$timePeriod <- factor(prinia_tot$timePeriod, levels = c("pre2000", "2000-2006", "2007-2010","2011-2012","2013","2014","2015",
+  "2016","2017","2018","2019","2020","2021","2022"))
+
+# Test if there are significant differences in the number of checklists by time period
+# add a grid code (to be used in a random effects model)
+
+prinia_tot <- prinia_tot %>%
+  group_by(X,Y) %>%
+  mutate(gridCode = cur_group_id()) %>%
+  ungroup()
+
+# takes a bit of time to run
+glmm_prinia <- glmer(nchk ~ timePeriod + (1|gridCode), data = prinia_tot, family = poisson(link="log"))
+
+tukey_prinia<- summary(glht(glmm_prinia, linfct=mcp(timePeriod ="Tukey")))
+cld(tukey_prinia)
+
+# pre2000 2000-2006 2007-2010 2011-2012      2013      2014      2015 
+#      "b"       "c"       "d"       "c"       "a"       "e"       "f" 
+#     2016      2017      2018      2019      2020      2021      2022 
+#      "g"       "h"       "i"       "k"       "m"       "l"       "j"
+
+## violin plot
+
+# create log values of nChk
+prinia_tot$logNchk <- log(prinia_tot$nchk)
+
+fig_prinia <- ggbetweenstats(
+  data = prinia_tot,
+  x = timePeriod,
+  y = logNchk,
+  xlab = "Time Period", 
+  ylab = "Number of checklists",
+  title = "Ashy prinia",
+  plot.type = "boxviolin",
+  pairwise.comparisons = F)+ ## Note: this is done to avoid plot cluttering
+  scale_color_manual(values = c("#7E1900", "#944611", "#A66B20", "#B89130", "#CBB94A", "#E0DC7B","#180B09" ,"#2C0E00", "#461300", "#68240F", "#8E422E", "#B36556","#D88881", "#4799C9")) +
+  theme(plot.title = element_text(family = "Century Gothic",
+      size = 18, face = "bold"),
+    axis.title = element_text(family = "Century Gothic",
+      size = 16, face = "bold"),
+        axis.text = element_text(family="Century Gothic",size = 14),
+      plot.subtitle = element_text(
+      family = "Century Gothic", 
+      size = 14, 
+      face = "bold",
+      color="#1b2838"
+    ))
+
+ggsave(fig_prinia, filename = "figs/ashy-prinia.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+
+## Note: there are 34 pairwise significant differences in the log Number of checklists across the time periods compared (using a Games-Howell test). pre-2000 to 2014 are sig dif. from later years 
+
+## Please view the statistics below for more details
+
+stats_prinia <- pairwise_comparisons(prinia_tot, timePeriod, logNchk) %>% filter(p.value <= 0.05) %>%
+  data.frame() 
+
+## Get the mean number of checklists by time period
+fig_prinia_dot <- ggdotplotstats(
+  data = prinia_tot,
+  x = nchk,
+  y = timePeriod,
+  title = "Mean number of checklists by time period",
+  xlab = "Number of checklists"
+)
+
+ggsave(fig_prinia_dot, filename = "figs/ashy-prinia-dotPlot.png", width = 15, height = 10, device = png(), units = "in", dpi = 300)
+dev.off()
+```
